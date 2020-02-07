@@ -38,7 +38,7 @@ async def chtream(ch):
     "For .update command, check if the bot is up to date, update if specified"
     await ch.edit("`Checking for updates, please wait....`")
     conf = ch.pattern_match.group(1).lower()
-    off_repo = 'https://github.com/mkaraniya/OpenUserBot.git'
+    off_repo = 'https://github.com/keselekpermen69/userbutt.git'
 
     try:
         txt = "`Oops.. Updater cannot continue due to some problems occured`\n\n**LOGTRACE:**\n"
@@ -116,6 +116,6 @@ CMD_HELP.update({
     'update':
     ".chl\
 \nUsage: Checks if the main userbot repository has any updates and shows a changelog if so.\
-\n\n.update\
+\n\n.update w \
 \nUsage: Updates your userbot, if there are any updates in the main userbot repository."
 })
