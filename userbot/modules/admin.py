@@ -85,6 +85,7 @@ async def set_group_photo(gpic):
         return
 
     if replymsg and replymsg.media:
+        await gpic.edit("`Changing Chat Picture`")
         if isinstance(replymsg.media, MessageMediaPhoto):
             photo = await gpic.client.download_media(message=replymsg.photo)
         elif "image" in replymsg.media.document.mime_type.split('/'):
@@ -126,10 +127,10 @@ async def promote(promt):
                                  delete_messages=True,
                                  pin_messages=True)
 
-    await promt.edit("`Promoting...`")
+    await promt.edit("`Promoting... please wait`")
     user, rank = await get_user_from_event(promt)
     if not rank:
-        rank = "Administrator"  # Just in case.
+        rank = "Admeme"  # Just in case.
     if user:
         pass
     else:
@@ -140,6 +141,8 @@ async def promote(promt):
         await promt.client(
             EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
         await promt.edit("`Promoted Successfully!`")
+        await sleep(5)
+        await promt.delete()
 
     # If Telethon spit BadRequestError, assume
     # we don't have Promote permission
@@ -195,6 +198,8 @@ async def demote(dmod):
         await dmod.edit(NO_PERM)
         return
     await dmod.edit("`Demoted Successfully!`")
+    await sleep(5)
+    await dmod.delete()
 
     # Announce to the logging group if we have demoted successfully
     if BOTLOG:
@@ -509,7 +514,7 @@ async def gspider(gspdr):
             '`Error! User probably already gmuted.\nRe-rolls the tape.`')
     else:
         if reason:
-            await gspdr.edit(f"`Globally taped!`Reason: {reason}")
+            await gspdr.edit(f"`Globally taped!`\nReason: {reason}")
         else:
             await gspdr.edit("`Globally taped!`")
 
@@ -646,6 +651,8 @@ async def pin(msg):
         return
 
     await msg.edit("`Pinned Successfully!`")
+    await sleep(2)
+    await msg.delete()
 
     user = await get_user_from_id(msg.from_id, msg)
 
@@ -943,6 +950,6 @@ CMD_HELP.update({
 \nUsage: Retrieves a list of bots in the chat.\
 \n\n.users or .users <name of member>\
 \nUsage: Retrieves all (or queried) users in the chat.\
-\n\n.setgppic <reply to image>\
+\n\n.setgpic <reply to image>\
 \nUsage: Changes the group's display picture."
 })

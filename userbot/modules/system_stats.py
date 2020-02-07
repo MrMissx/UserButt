@@ -72,7 +72,7 @@ async def bot_ver(event):
                          "`")
     else:
         await event.edit(
-            "Shame that you don't have git, You're running 9.0 - 'Extended' anyway"
+            "Shame that you don't have git, You're running 5.0 - 'Extended' anyway"
         )
 
 
@@ -122,23 +122,16 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-    await alive.edit("`"
-                     "i am alive My Mastor \n\n"
-                     " \n\n"
-                     "botdo is alive \n\n"
-                     f"Telethon version: {version.__version__} \n"
-                     f"Python: {python_version()} \n"
-                     f"------------------------------------ \n"
-                     f"Website: https://www.facebook.com/Teknoways \n"
-                     " \n\n"
-                     f"User: {DEFAULTUSER} \n"
-                     " \n\n"
-                     f"Maintainer: @Mayur_Karaniya \n"
-                     " \n\n"
-                     f"Admin: @Three_Cube_TeKnoways \n"
-                     " \n\n"
-                     f"Userbot: @testing_userbot "
-                     "`")    
+    await alive.edit("`안녕...\n\n`"
+                     " ======================================== \n"    
+                  f"`Telethon : v{version.__version__} `\n"
+                  f"`Python  : v{python_version()} `\n"
+                     " ======================================== \n"
+                  f"`User : `{DEFAULTUSER}  \n"
+                     " ======================================== \n"
+                     "`Join` [Support Group](https://t.me/userbotindo) \n\n"
+                     "`감사합니다 💝 `\n"
+                     "`Have a nice day `\n")
 
 
 
@@ -173,8 +166,8 @@ CMD_HELP.update(
     \nUsage: Does a search of pip modules(s)."})
 CMD_HELP.update({
     "on":
-    ".on\
-    \nUsage: Type .on to see wether your bot is working or not.\
+    ".alive\
+    \nUsage: Type .alive to see wether your bot is working or not.\
     \n\n.aliveu <text>\
     \nUsage: Changes the 'user' in alive to the text you want.\
     \n\n.resetalive\

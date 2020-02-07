@@ -1,7 +1,7 @@
 {
-  "name": "Telegram Open User Bot",
-  "description": "[OpenUserBot] A modular Telegram userbot running on Python 3.7+ with an sqlalchemy database.",
-  "logo": "https://telegra.ph/file/d04a1724c6dd8a957bd0e.png",
+  "name": "Telegram UserButt",
+  "description": "[UserButt] A modular Telegram userbot running on Python 3.7+ with an sqlalchemy database.",
+  "logo": "https://i.ibb.co/1sPZd6M/EPpl-XY-UUAAzh-Gp.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,9 +9,9 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/mkaraniya/OpenUserBot",
+  "repository": "https://github.com/keselekpermen69/userbutt",
   "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02",
-  "success_url": "https://t.me/PPE_Support",
+  "success_url": "https://t.me/userbotindo",
   "stack": "container",
   "env": {
     "API_KEY": {
@@ -31,6 +31,11 @@
       "value": "True",
       "required": true
     },
+	"TELEGRAPH_SHORT_NAME": {
+      "description": "Set the userbot's telegra.ph module. You must set this to make the bot alive",
+      "value": "*up to you",
+      "required": true
+	},  
     "HEROKU_API_KEY": {
       "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
       "value": ""
@@ -136,7 +141,7 @@
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
-      "value": "[PM = Report Spam] I ❤ ️@OpenUserBot",
+      "value": "❤ ️Sana",
       "required": false
     },
     "ALIVE_NAME": {
@@ -158,7 +163,7 @@
     "WEATHER_DEFCITY": {
       "description": "Set the default city for the userbot's weather module.",
       "required": false
-    },
+    }, 
     "LOGSPAMMER": {
       "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
       "value": "True"

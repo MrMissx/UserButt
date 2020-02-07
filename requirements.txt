@@ -24,6 +24,7 @@ oauth2client
 Pillow>=5.3.0
 psycopg2
 psycopg2-binary
+pyfiglet
 pybase64>=0.4.0
 pylast
 pySmartDL
@@ -36,6 +37,7 @@ requests>=2.18.4
 search-engine-parser>=0.4.2
 speedtest-cli>=2.0.2
 sqlalchemy>=1.2
+telegraph
 telethon>=1.10.6
 telethon-session-sqlalchemy>=0.2.6
 urbandict>=0.5
