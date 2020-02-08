@@ -57,8 +57,8 @@ async def chtream(ch):
         )
         origin = repo.create_remote('chtream', off_repo)
         origin.fetch()
-        repo.create_head('sql-extended', origin.refs.master)
-        repo.heads.master.checkout(True)
+        repo.create_head('sql-extended', origin.refs.sql-extended)
+        repo.heads.sql-extended.checkout(True)
 
     ac_br = repo.active_branch.name
     if not await is_off_br(ac_br):
