@@ -16,7 +16,7 @@ import sys
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import CMD_HELP, bot, HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, HEROKU_APIKEY, HEROKU_APPNAME, UPSTREAM_REPO_URL
 from userbot.events import register
 
 requirements_path = path.join(
@@ -177,18 +177,17 @@ async def upstream(ups):
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
         reqs_upgrade = await update_requirements()
-        await ups.edit('`Successfully Updated!\n'
+        msg  = await ups.edit('`Successfully Updated!\n'
                        'Bot is restarting... Wait for a second!`')
         if BOTLOG:
             await ups.client.send_message(
                 BOTLOG_CHATID,
-                f"`Your UserButt Successfully Updated`",
+                f"`Your UserButt updated successfully`",
             )
         # Spin a new instance of bot
         args = [sys.executable, "-m", "userbot"]
         execle(sys.executable, *args, environ)
         return
-
 
 CMD_HELP.update({
     'update':
