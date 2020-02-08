@@ -38,7 +38,7 @@ async def chtream(ch):
     "For .update command, check if the bot is up to date, update if specified"
     await ch.edit("`Checking for updates, please wait....`")
     conf = ch.pattern_match.group(1).lower()
-    off_repo = 'https://github.com/keselekpermen69/userbutt.git'
+    off_repo = 'https://github.com/userbotindo/userbutt.git'
 
     try:
         txt = "`Oops.. Updater cannot continue due to some problems occured`\n\n**LOGTRACE:**\n"
