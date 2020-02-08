@@ -53,7 +53,6 @@ async def mine(event):
 @register(outgoing=True, pattern="^.name")
 async def update_name(name):
     """ For .name command, change your name in Telegram. """
-    await name.edit("`proccessing`")
     newname = name.text[6:]
     if " " not in newname:
         firstname = newname
@@ -71,7 +70,6 @@ async def update_name(name):
 @register(outgoing=True, pattern="^.setpfp$")
 async def set_profilepic(propic):
     """ For .profilepic command, change your profile picture in Telegram. """
-    await propic.edit("`proccessing`")
     replymsg = await propic.get_reply_message()
     photo = None
     if replymsg.media:
@@ -100,7 +98,6 @@ async def set_profilepic(propic):
 @register(outgoing=True, pattern="^.setbio (.*)")
 async def set_biograph(setbio):
     """ For .setbio command, set a new bio for your profile in Telegram. """
-    await setbio.edit("`proccessing`")
     newbio = setbio.pattern_match.group(1)
     await setbio.client(UpdateProfileRequest(about=newbio))
     await setbio.edit(BIO_SUCCESS)
@@ -109,7 +106,6 @@ async def set_biograph(setbio):
 @register(outgoing=True, pattern="^.username (.*)")
 async def update_username(username):
     """ For .username command, set a new username in Telegram. """
-    await username.edit("`proccessing`")
     newusername = username.pattern_match.group(1)
     try:
         await username.client(UpdateUsernameRequest(newusername))
