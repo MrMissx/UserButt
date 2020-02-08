@@ -7,7 +7,7 @@
 <p align="center">&nbsp;</p>
 <h2 align="center">How To Host</h2>
 <h5 align="center">The easiest way to deploy this userbot! is click on this precious QUEEN below! 😘 </h5>
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/userbotindo/userbutt/tree/master"><img src="https://i.ibb.co/Dtkhp5D/EPs-Ae-G3-UUAEN6s-V.jpg" alt="EPh-Oo8-BUEAAzx-Xm" border="0" alt="Deploy to Heroku" /></a></p>
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/userbotindo/userbutt/tree/sql-extended"><img src="https://i.ibb.co/Dtkhp5D/EPs-Ae-G3-UUAEN6s-V.jpg" alt="EPh-Oo8-BUEAAzx-Xm" border="0" alt="Deploy to Heroku" /></a></p>
 <p align="center">&nbsp;</p>
 <h2 align="center">Credits</h2>
 <p align="center">Huge thanks to <a href="https://github.com/mkaraniya/OpenUserBot/graphs/contributors">everyone</a> who have helped make this userbot awesome!!</p>
@@ -19,4 +19,4 @@
 <p align="center">Also join our <a href="https://t.me/userbotindo">Telegram Support Group</a> for help and support!</p>
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
-<p align="center"><a href="https://github.com/userbotindo/userbutt/blob/master/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019</p>
+<p align="center"><a href="https://github.com/userbotindo/userbutt/blob/sql-extended/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019</p>
