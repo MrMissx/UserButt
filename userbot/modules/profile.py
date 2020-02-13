@@ -70,6 +70,7 @@ async def update_name(name):
 @register(outgoing=True, pattern="^.setpfp$")
 async def set_profilepic(propic):
     """ For .profilepic command, change your profile picture in Telegram. """
+    await propic.edit("`Changing profile picture...`")
     replymsg = await propic.get_reply_message()
     photo = None
     if replymsg.media:
@@ -98,6 +99,7 @@ async def set_profilepic(propic):
 @register(outgoing=True, pattern="^.setbio (.*)")
 async def set_biograph(setbio):
     """ For .setbio command, set a new bio for your profile in Telegram. """
+    await setbio.edit("`setting up a new bio...`")
     newbio = setbio.pattern_match.group(1)
     await setbio.client(UpdateProfileRequest(about=newbio))
     await setbio.edit(BIO_SUCCESS)
@@ -106,6 +108,7 @@ async def set_biograph(setbio):
 @register(outgoing=True, pattern="^.username (.*)")
 async def update_username(username):
     """ For .username command, set a new username in Telegram. """
+    await username.edit("`Changing username...`")
     newusername = username.pattern_match.group(1)
     try:
         await username.client(UpdateUsernameRequest(newusername))
@@ -123,7 +126,7 @@ async def count(event):
     bc = 0
     b = 0
     result = ""
-    await event.edit("`Processing..`")
+    await event.edit("`Processing...`")
     dialogs = await bot.get_dialogs(limit=None, ignore_migrated=True)
     for d in dialogs:
         currrent_entity = d.entity
