@@ -1,4 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
+	# Copyright (C) 2019 The Raphielscape Company LLC.
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
@@ -181,8 +181,8 @@ async def upstream(ups):
                        'Bot is restarting... Wait for a second!`')
         if BOTLOG:
             await ups.client.send_message(
-                BOTLOG_CHATID,
-                f"`Your UserButt was successfully updated `",
+                BOTLOG_CHATID,"#UPDATE \n"
+				"`Your UserButt was successfully updated `",
             )
         # Spin a new instance of bot
         args = [sys.executable, "-m", "userbot"]
