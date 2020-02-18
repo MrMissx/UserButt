@@ -53,6 +53,7 @@ if CONFIG_CHECK:
 API_KEY = os.environ.get("API_KEY", None)
 API_HASH = os.environ.get("API_HASH", None)
 
+
 # Userbot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
@@ -155,7 +156,7 @@ binaries = {
     "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
     "bin/cmrudl",
     "https://raw.githubusercontent.com/adekmaulana/python-scripts/master/shell/megadirect":
-    "megadirect"
+    "bin/megadirect"
 }
 
 for binary, path in binaries.items():
