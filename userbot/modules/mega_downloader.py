@@ -1,4 +1,4 @@
-Learn more or give us feedback
+# Learn more or give us feedback
 # Copyright (C) 2020 Adek Maulana.
 # All rights reserved.
 #
