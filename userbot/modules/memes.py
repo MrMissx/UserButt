@@ -605,6 +605,23 @@ HIT = [
 
 WHERE = ["in the chest", "on the head", "on the butt", "on the crotch"]
 
+GAMBAR_TITIT = """
+🍆🍆
+🍆🍆🍆
+  🍆🍆🍆
+    🍆🍆🍆
+     🍆🍆🍆
+       🍆🍆🍆
+        🍆🍆🍆
+         🍆🍆🍆
+          🍆🍆🍆
+          🍆🍆🍆
+      🍆🍆🍆🍆
+ 🍆🍆🍆🍆🍆🍆
+ 🍆🍆🍆  🍆🍆🍆
+    🍆🍆       🍆🍆
+"""
+
 # ===========================================
 
 
@@ -1295,9 +1312,18 @@ async def nou(e):
         await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
                      "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
                      "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
-"`\n┗━━┻━┛`")                   
+                     "`\n┗━━┻━┛`")
 
-                                                                                    
+
+@register(outgoing=True, pattern=r"^\.(?:penis|dick)\s?(.)?")
+async def emoji_penis(e):
+    emoji = e.pattern_match.group(1)
+    titid = GAMBAR_TITIT
+    if emoji:
+        titid = titid.replace('🍆', emoji)
+    await e.edit(titid)  
+              
+ 
 CMD_HELP.update({
     "memes":
     ".cowsay\
@@ -1356,6 +1382,8 @@ CMD_HELP.update({
 \nUsage: Believe me, you will find this useful.\
 \n\n.type\
 \nUsage: Just a small command to make your keyboard become a typewriter!\
+\n\n.penis <emoji> | .dick <emoji>\
+\nUsage: Creates a penis using the provided emoji, or 🍆 if no emoji is provided.\
 \n\n.lfy <query>\
 \nUsage: Let me Google that for you real quick !!\
 \n\n.decide [Alternates: (.yes, .no, .maybe)]\
