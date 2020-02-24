@@ -21,7 +21,8 @@ async def _(event):
                         fwd_limit=1000000
                     ))
                 except Exception as e:
-                    await event.reply(str(e))
+                    await event.edit(str(e))
+                    return
             await event.edit("`Invited Successfully`")
         else:
             # https://lonamiwebs.github.io/Telethon/methods/channels/invite_to_channel.html
@@ -32,7 +33,8 @@ async def _(event):
                         users=[user_id]
                     ))
                 except Exception as e:
-                    await event.reply(str(e))
+                    await event.edit(str(e))
+                    return
             await event.edit("`Invited Successfully`")
             
 CMD_HELP.update({
