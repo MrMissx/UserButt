@@ -27,7 +27,8 @@ async def github(event):
             \nBio: `{bio}`\
             \nURL: {url}\
             \nCompany: `{company}`\
-            \nCreated at: `{created_at}`"
+            \nCreated at: `{created_at}`\
+            \nMore info : [Here](https://api.github.com/users/{event.pattern_match.group(1)}/events/public)"
 
             if not result.get("repos_url", None):
                 await event.edit(REPLY)
