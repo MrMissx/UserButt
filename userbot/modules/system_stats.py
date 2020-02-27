@@ -168,7 +168,7 @@ CMD_HELP.update(
 CMD_HELP.update({
     "on":
     ".alive | .on\
-    \nUsage: Type .alive to see wether your bot is working or not.\
+    \nUsage: See wether your bot is working or not.\
     \n\n.aliveu <text>\
     \nUsage: Changes the 'user' in alive to the text you want.\
     \n\n.resetalive\
