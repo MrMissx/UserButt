@@ -33,7 +33,7 @@
     },
 	"TELEGRAPH_SHORT_NAME": {
       "description": "Set the userbot's telegra.ph module. You must set this to make the bot alive",
-      "value": "*up to you",
+      "value": "anything",
       "required": true
 	},  
     "HEROKU_API_KEY": {
@@ -141,7 +141,7 @@
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
-      "value": "❤ ️Sana",
+      "value": "I'm using userbot",
       "required": false
     },
     "ALIVE_NAME": {

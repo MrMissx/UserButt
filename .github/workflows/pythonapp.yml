@@ -1,4 +1,4 @@
-name: CheckBug
+name: BugChecker
 
 on: [push, pull_request]
 
