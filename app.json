@@ -31,7 +31,7 @@
       "value": "True",
       "required": true
     },
-	"TELEGRAPH_SHORT_NAME": {
+    "TELEGRAPH_SHORT_NAME": {
       "description": "Set the userbot's telegra.ph module. You must set this to make the bot alive",
       "value": "anything",
       "required": true
@@ -46,6 +46,7 @@
     },
     "UPSTREAM_REPO_URL": {
       "description": "In case you maintain a fork, add your repo URL here.",
+      "value": "https://github.com/KeselekPermen69/UserButt",
       "required": false
     },
     "COUNTRY": {
