@@ -87,7 +87,7 @@ async def bot_community(community):
 async def bot_support(wannahelp):
     """ For .support command, just returns the group link. """
     await wannahelp.edit(
-        "Join the OpenUserBot Chat: @userbotindo"
+        "Join the UserBot support group: @userbotindo"
         )
 
 
