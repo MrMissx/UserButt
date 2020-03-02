@@ -96,7 +96,7 @@ async def creator(e):
     await e.edit(
          "Created By [TeKnoways](https://t.me/Three_Cube_TeKnoways)"
          "\nKanged and Modified by [Mr.Miss | 사나 🧁](https://t.me/KeselekPermen69)"
-		 "\nMore About Me: @SNchant")
+		 )
 
 
 @register(outgoing=True, pattern="^.readme$")
@@ -131,7 +131,7 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        "[click Here](https://github.com/keselekpermen69/userbutt) to open UserButt's repo."
+        "[Click Here](https://github.com/keselekpermen69/userbutt) to open UserButt's repo."
     )
 
 
