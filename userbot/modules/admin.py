@@ -277,6 +277,8 @@ async def nothanos(unbon):
 
     # If everything goes well...
     await unbon.edit("`Unbanning...`")
+    await sleep(3)
+    await unbon.delete()	
 
     user = await get_user_from_event(unbon)
     user = user[0]
@@ -396,6 +398,8 @@ async def unmoot(unmot):
             await unmot.client(
                 EditBannedRequest(unmot.chat_id, user.id, UNBAN_RIGHTS))
             await unmot.edit("```Unmuted Successfully```")
+            await sleep(3)
+            await unmot.delete()
         except UserIdInvalidError:
             await unmot.edit("`Uh oh my unmute logic broke!`")
             return
@@ -473,6 +477,8 @@ async def ungmoot(un_gmute):
     else:
         # Inform about success
         await un_gmute.edit("```Ungmuted Successfully```")
+        await sleep(3)
+        await un_gmute.delete()
 
         if BOTLOG:
             await un_gmute.client.send_message(
@@ -683,6 +689,8 @@ async def kick(usr):
         return
 
     await usr.edit("`Kicking...`")
+	await sleep(3)
+    await usr.delete()
 
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
