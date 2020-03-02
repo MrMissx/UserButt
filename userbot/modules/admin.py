@@ -689,7 +689,7 @@ async def kick(usr):
         return
 
     await usr.edit("`Kicking...`")
-	await sleep(3)
+    await sleep(3)
     await usr.delete()
 
     try:
