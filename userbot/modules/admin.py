@@ -277,8 +277,6 @@ async def nothanos(unbon):
 
     # If everything goes well...
     await unbon.edit("`Unbanning...`")
-    await sleep(3)
-    await unbon.delete()	
 
     user = await get_user_from_event(unbon)
     user = user[0]
@@ -291,6 +289,8 @@ async def nothanos(unbon):
         await unbon.client(
             EditBannedRequest(unbon.chat_id, user.id, UNBAN_RIGHTS))
         await unbon.edit("```Unbanned Successfully```")
+        await sleep(3)
+        await unbon.delete()	
 
         if BOTLOG:
             await unbon.client.send_message(
@@ -689,8 +689,7 @@ async def kick(usr):
         return
 
     await usr.edit("`Kicking...`")
-    await sleep(3)
-    await usr.delete()
+
 
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
@@ -706,6 +705,8 @@ async def kick(usr):
     else:
         await usr.edit(
             f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`")
+        await sleep(5)
+        await usr.delete()
 
     if BOTLOG:
         await usr.client.send_message(
