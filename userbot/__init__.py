@@ -72,6 +72,9 @@ HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ", "False"))
 HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
 HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 
+# Genius lyrics get this value from https://genius.com/developers both has same values
+GENIUS = os.environ.get("GENIUS_API_TOKEN", None)
+
 # Custom (forked) repo URL for updater.
 UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",

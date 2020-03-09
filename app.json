@@ -26,6 +26,10 @@
       "description": "Get this value by running [python3 string_session.py] in Termux or local system.",
       "required": true
     },
+    "GENIUS_API_TOKEN": {
+      "description": "Get this value from https://genius.com/developers., basically same as GENIUS_API_TOKEN.",
+      "value": ""
+    },
     "HEROKU_MEMEZ": {
       "description": "This should be True if the userbot is running on a Heroku Dyno.",
       "value": "True",
