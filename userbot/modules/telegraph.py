@@ -11,7 +11,7 @@ r = telegraph.create_account(short_name=TELEGRAPH_SHORT_NAME)
 auth_url = r["auth_url"]
 
 
-@register(outgoing=True, pattern="^.telegraph (media|text)$")
+@register(outgoing=True, pattern="^.telegraph (m|t)$")
 async def telegraphs(graph):
     """ For .telegraph command, upload media & text to telegraph site. """
     await graph.edit("`Processing...`") 
@@ -24,7 +24,7 @@ async def telegraphs(graph):
             start = datetime.now()
             r_message = await graph.get_reply_message()
             input_str = graph.pattern_match.group(1)
-            if input_str == "media":
+            if input_str == "m":
                 downloaded_file_name = await bot.download_media(
                     r_message,
                     TEMP_DOWNLOAD_DIRECTORY
@@ -45,7 +45,7 @@ async def telegraphs(graph):
                     ms_two = (end - start).seconds
                     os.remove(downloaded_file_name)
                     await graph.edit("Successfully Uploaded to [telegra.ph](https://telegra.ph{}).".format(media_urls[0], (ms + ms_two)), link_preview=True)
-            elif input_str == "text":
+            elif input_str == "t":
                 user_object = await bot.get_entity(r_message.from_id)
                 title_of_page = user_object.first_name # + " " + user_object.last_name
                 # apparently, all Users do not have last_name field
@@ -81,6 +81,6 @@ def resize_image(image):
 
 
 CMD_HELP.update({
-    'telegraph': '.telegraph media | text\
-        \nUsage: Upload text & media on Telegraph.'
+    'telegraph': '.telegraph m | t\
+        \nUsage: Upload t(text) or m(media)	 on Telegraph.'
 })
