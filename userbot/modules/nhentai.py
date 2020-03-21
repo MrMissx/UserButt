@@ -11,7 +11,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
-    link = event.pattern_match.group() 
+    link = event.pattern_match.group(1) 
     chat = "@nHentaiBot"
     await event.edit("```Processing```")
     async with bot.conversation(chat) as conv:
