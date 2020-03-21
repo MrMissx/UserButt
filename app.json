@@ -26,10 +26,6 @@
       "description": "Get this value by running [python3 string_session.py] in Termux or local system.",
       "required": true
     },
-    "GENIUS_API_TOKEN": {
-      "description": "Get this value from https://genius.com/developers., basically same as GENIUS_API_TOKEN.",
-      "value": ""
-    },
     "HEROKU_MEMEZ": {
       "description": "This should be True if the userbot is running on a Heroku Dyno.",
       "value": "True",
@@ -168,15 +164,19 @@
     "WEATHER_DEFCITY": {
       "description": "Set the default city for the userbot's weather module.",
       "required": false
-    },
+    }, 
     "GIT_REPO_NAME": {
       "description": "Set the repo for the gitupload module.",
       "required": false
     },
     "GITHUB_ACCESS_TOKEN": {
-      "description": "Set this in order to make the gitupload work. help here https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line.",
+      "description": "Set this in order to make the gitupload work. you can look https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line to assist you.",
       "required": false
-    }, 	
+    },
+    "GENIUS_API_TOKEN": {
+      "description": "Get this value from https://genius.com/developers.",
+      "required": false 
+    },	  
     "LOGSPAMMER": {
       "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
       "value": "True"

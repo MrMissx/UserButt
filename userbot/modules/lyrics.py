@@ -16,10 +16,6 @@ import random
 from userbot.events import register
 from userbot import CMD_HELP, LOGS, GENIUS
 
-"""Genius(lyrics) staff"""
-GApi = GENIUS
-genius = lyricsgenius.Genius(GApi)
-
 
 @register(outgoing=True, pattern="^.lyrics(?: |$)(.*)")
 async def lyrics(lyric):
@@ -29,11 +25,13 @@ async def lyrics(lyric):
         await lyric.edit("`Error: please use '-' as divider for <artist> and <song>`\n"
                          "eg: `Nicki Minaj - Super Bass`")
         return
-    if GApi is None:
-        await lyric.edit(
-            "`Provide genius access token to config.py or Heroku Var first kthxbye!`")
+    if GENIUS is None:
+        await lyric.edit("`Provide genius access token to config.py or Heroku Var first!`")
+        return
     else:
         try:
+            GApi = GENIUS
+            genius = lyricsgenius.Genius(GApi)
             args = lyric.text.split('.lyrics')[1].split('-')
             artist = args[0].strip(' ')
             song = args[1].strip(' ')
