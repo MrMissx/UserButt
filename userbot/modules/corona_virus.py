@@ -9,7 +9,7 @@ from covid import Covid
 from userbot import CMD_HELP
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.coronavirus(?: |$)(.*)")
+@register(outgoing=True, pattern="^.covid(?: |$)(.*)")
 async def corona(event):
     covid = Covid()
     data = covid.get_data()
@@ -29,6 +29,6 @@ def get_country_data(country, world):
 
 CMD_HELP.update({
         "covid": 
-        ".coronavirus <country>\
-          \nUsage: Get an information about data covid-19 in your country.\n"
+        ".covid <country>\
+          \nUsage: Get an information about data covid-19 in your country."
     })
