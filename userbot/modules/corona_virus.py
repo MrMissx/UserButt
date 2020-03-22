@@ -13,7 +13,8 @@ from userbot.events import register
 async def corona(event):
     covid = Covid()
     data = covid.get_data()
-    country = event.pattern_match.group(1)
+    input_str	 = event.pattern_match.group(1)
+    country = input_str.capitalize()
     country_data = get_country_data(country, data)
     output_text = "" 
     for name, value in country_data.items():
