@@ -52,7 +52,7 @@ if 1 == 1:
         Usage: .pch [template]
         If template is missing, possible templates are fetched."""
         if QUOTES_API_TOKEN is None:
-            await message.edit("Provide QUOTES_API_TOKEN in convig.py or heroku vars first!!")
+            await message.edit("Provide QUOTES_API_TOKEN from http://antiddos.systems in convig.py or heroku vars first!!")
             return
         await message.edit("`Processing...`")
         args = message.raw_text.split(" ")[1:]
