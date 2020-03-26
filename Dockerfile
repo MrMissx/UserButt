@@ -5,6 +5,7 @@ FROM alpine:edge
 # We have to uncomment Community repo for some packages
 #
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
 #
 # Installing Packages
@@ -53,7 +54,11 @@ RUN apk add --no-cache=true --update \
     chromium \
     chromium-chromedriver \
     zlib-dev \
-    jpeg
+    jpeg \
+    zip \
+    megatools \
+    nodejs \
+    freetype-dev
 
 
 RUN python3 -m ensurepip \

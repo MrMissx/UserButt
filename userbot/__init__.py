@@ -82,7 +82,7 @@ GENIUS = os.environ.get("GENIUS_API_TOKEN", None)
 # Custom (forked) repo URL for updater.
 UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
-    "https://github.com/userbotindo/userbutt.git")
+    "https://github.com/keselekpermen69/userbutt.git")
 
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
@@ -130,6 +130,9 @@ CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME", "True"))
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
 DEFAULT_BIO = os.environ.get("DEFAULT_BIO", None)
+
+# Stickerchat Module
+QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
 
 LASTFM_API = os.environ.get("LASTFM_API", None)
 LASTFM_SECRET = os.environ.get("LASTFM_SECRET", None)
