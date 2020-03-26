@@ -26,15 +26,15 @@ if 1 == 1:
         "api_url_cfg_doc": "API URL for Quotes.",
         "colors_cfg_doc": "Username colors",
         "default_username_color_cfg_doc": "Default color for the username.",
-        "no_reply": "<b>You didn't reply to a message.</b>",
-        "no_template": "<b>You didn't specify the template.</b>",
+        "no_reply": "You didn't reply to a message.",
+        "no_template": "You didn't specify the template.",
         "delimiter": "</code>, <code>",
-        "server_error": "<b>Server error. Please report to developer.</b>",
-        "invalid_token": "<b>You've set an invalid token, get it from `http://antiddos.systems`.</b>",
-        "unauthorized": "<b>You're unauthorized to do this.</b>",
-        "not_enough_permissions": "<b>Wrong template. You can use only the default one.</b>",
-        "templates": "<b>Available Templates:</b> <code>{}</code>",
-        "cannot_send_stickers": "<b>You cannot send stickers in this chat.</b>",
+        "server_error": "erver error. Please report to developer.",
+        "invalid_token": "You've set an invalid token, get it from `http://antiddos.systems`.",
+        "unauthorized": "You're unauthorized to do this.",
+        "not_enough_permissions": "Wrong template. You can use only the default one.",
+        "templates": "Available Templates: <code>{}</code>",
+        "cannot_send_stickers": "You cannot send stickers in this chat.",
         "admin": "admin",
         "creator": "creator",
         "hidden": "hidden",
@@ -51,7 +51,10 @@ if 1 == 1:
         """Quote a message.
         Usage: .pch [template]
         If template is missing, possible templates are fetched."""
-        await message.delete()
+        if QUOTES_API_TOKEN is None:
+            await message.edit("Provide QUOTES_API_TOKEN in convig.py or heroku vars first!!")
+            return
+        await message.edit("`Processing...`")
         args = message.raw_text.split(" ")[1:]
         if args == []:
             args = ["default"]
@@ -173,6 +176,7 @@ if 1 == 1:
             sticker.name = "sticker.webp"
             sticker.seek(0)
             try:
+                await message.delete()
                 await reply.reply(file=sticker)
             except telethon.errors.rpcerrorlist.ChatSendStickersForbiddenError:
                 await message.respond(strings["cannot_send_stickers"])
@@ -214,5 +218,5 @@ def get_markdown(reply):
 CMD_HELP.update({
         "stickerchat": 
         ".pch \
-          \nUsage: Same as quotly, enhance ur text to sticker."
+          \nUsage: Enhance ur text to sticker like quotly."
     })
