@@ -178,7 +178,7 @@
       "required": false 
     },
     "QUOTES_API_TOKEN": {
-      "description": "enhance chat to sticker like quotly. Get this API from http://antiddos.systems."
+      "description": "enhance chat to sticker like quotly. Get this API from http://antiddos.systems.",
       "required": false
     },  	
     "LOGSPAMMER": {
