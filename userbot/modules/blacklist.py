@@ -1,9 +1,9 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
 
-# port to userbot from uniborg
-# @keselekpermen69
+# port to userbot from uniborg by @keselekpermen69
 
 
 import asyncio
@@ -28,6 +28,8 @@ async def on_new_message(event):
                 await event.delete()
             except Exception as e:
                 await event.reply("I do not have DELETE permission in this chat")
+                await sleep(1)
+                await reply.delete()
                 sql.rm_from_blacklist(event.chat_id, snip.lower())
             break
         pass
@@ -39,7 +41,7 @@ async def on_add_black_list(addbl):
     to_blacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     for trigger in to_blacklist:
         sql.add_to_blacklist(addbl.chat_id, trigger.lower())
-    await addbl.edit("Added {} triggers to the blacklist in the current chat".format(len(to_blacklist)))
+    await addbl.edit("`Added` **{}** `to the blacklist in the current chat`".format(text))
 
 
 @register(outgoing=True, pattern="^.listbl(?: |$)(.*)")
@@ -50,7 +52,7 @@ async def on_view_blacklist(listbl):
         for trigger in all_blacklisted:
             OUT_STR += f"`{trigger}`\n"
     else:
-        OUT_STR = "No BlackLists. Start Saving using `.addbl`"
+        OUT_STR = "`There are no blacklist in current chat.`"
     if len(OUT_STR) > 4096:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
@@ -75,7 +77,10 @@ async def on_delete_blacklist(rmbl):
     for trigger in to_unblacklist:
         if sql.rm_from_blacklist(rmbl.chat_id, trigger.lower()):
             successful += 1
-    await rmbl.edit(f"Removed {successful} / {len(to_unblacklist)} from the blacklist")
+    if not successful:
+        await rmbl.edit("`Blacklist` **{}** `doesn't exist.`".format(text))
+    else:
+        await rmbl.edit("`Blacklist` **{}** `was deleted successfully`".format(text))
     
 CMD_HELP.update({
     "blacklist":
@@ -85,6 +90,5 @@ CMD_HELP.update({
     \nUsage: Saves the message to the 'blacklist keyword'.\
     \nThe bot will delete to the message whenever 'blacklist keyword' is mentioned.\
     \n\n.rmbl <keyword>\
-    \nUsage: Stops the specified blacklist.\
-	\n btw you need the Delete Messages(admin)."
+    \nUsage: Stops the specified blacklist."
 })
