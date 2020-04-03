@@ -98,7 +98,7 @@ async def ANTI_SPAMBOT(welcm):
                         spambot = True
                     elif "t.cn/" in message.text:
                         reason = "Match on `t.cn` URLs"
-                        spambot = False
+                        spambot = True
                     elif "t.me/joinchat" in message.text:
                         reason = "Potential Promotion Message"
                         spambot = True
@@ -110,7 +110,7 @@ async def ANTI_SPAMBOT(welcm):
                         spambot = True
                     elif "bit.ly/" in message.text:
                         reason = "Match on `bit.ly` URLs"
-                        spambot = False
+                        spambot = True
                     else:
                         if check_user.first_name in ("Bitmex", "Promotion",
                                                      "Information", "Dex",
@@ -133,11 +133,12 @@ async def ANTI_SPAMBOT(welcm):
                 if not admin and not creator:
                     if ANTI_SPAMBOT_SHOUT:
                         await welcm.reply(
+                            "@admins\n"
                             "`ANTI SPAMBOT DETECTOR!\n"
                             "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
                             f"REASON: {reason}")
-                        kicked = True
-                        reported = False
+                        kicked = False
+                        reported = True
                 else:
                     try:
 
@@ -156,11 +157,12 @@ async def ANTI_SPAMBOT(welcm):
                     except BaseException:
                         if ANTI_SPAMBOT_SHOUT:
                             await welcm.reply(
+                                "@admins\n"
                                 "`ANTI SPAMBOT DETECTOR!\n"
                                 "THIS USER MATCHES MY ALGORITHMS AS A SPAMBOT!`"
                                 f"REASON: {reason}")
                             kicked = False
-                            reported = False
+                            reported = True
 
                 if BOTLOG:
                     if kicked or reported:
