@@ -984,21 +984,6 @@ async def Oof(e):
         await e.edit(t)
 
 
-@register(outgoing=True, pattern="^.10iq$")
-async def iqless(e):
-    await e.edit("♿")
-
-                      
-@register(outgoing=True, pattern="^.fuck$")
-async def iqless(e):
-    await e.edit("🖕🖕🖕🖕🖕🖕🖕🖕\n🖕🖕🖕🖕🖕🖕🖕🖕\n🖕🖕\n🖕🖕\n🖕🖕\n🖕🖕🖕🖕🖕🖕\n🖕🖕🖕🖕🖕🖕\n🖕🖕\n🖕🖕\n🖕🖕\n🖕🖕\n🖕🖕")  
-
-                     
-@register(outgoing=True, pattern="^.bye$")
-async def iqless(e):
-    await e.edit("Kek thx bye")       
-                      
-
 @register(outgoing=True, pattern="^.moon$")
 async def moon(event):
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
@@ -1197,12 +1182,6 @@ async def typewriter(typew):
         await sleep(sleep_time)
 
 
-@register(outgoing=True, pattern="^.leave$")
-async def leave(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`You must Leaving dis Group kek!`")
-
-
 @register(outgoing=True, pattern="^.fail$")  
 async def fail(e):
    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
@@ -1360,8 +1339,6 @@ CMD_HELP.update({
 \nUsage: Vaporize everything!\
 \n\n.str\
 \nUsage: Stretch it.\
-\n\n.10iq\
-\nUsage: You retard !!\
 \n\n.zal\
 \nUsage: Invoke the feeling of chaos.\
 \n\nOof\
@@ -1410,8 +1387,8 @@ CMD_HELP.update({
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
 \nUsage: Create fake chat actions, for fun. (Default action: typing)\
 \n\nAnd many more\
-\n.nou ; .bot ; .gey ; .gey ; .tf ; .paw ; .taco ; .nih ;\
-\n.fag ; .gtfo ; .stfu ; .lol ; .lool ; .fail ; .leave\
-\n.love ; .rain ; .earth ; .fuck ; .iwi\
+\n.nou ; .bot ; .gey ; .gey ; .tf ; .paw\
+\n.taco ; .nih ; .fag ; .gtfo ; .stfu ; .lol\
+\n.lool ; .fail ; .love ; .rain ; .earth ; .iwi \
 \n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."
 })
