@@ -180,6 +180,10 @@
     "QUOTES_API_TOKEN": {
       "description": "enhance chat to sticker like quotly. Get this API from http://antiddos.systems.",
       "required": false
+    },
+    "TERM_ALIAS": {
+      "description": "set alias name for term cmd",
+      "required": false
     },  	
     "LOGSPAMMER": {
       "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
