@@ -1,6 +1,6 @@
 {
-  "name": "Project Bish UserBot",
-  "description": "[projectbish] A modular Telegram userbot running on Python 3.8",
+  "name": "Userbutt Fallback",
+  "description": "[Userbutt] A modular Telegram userbot running on Python 3.8",
   "keywords": [
     "telegram",
     "userbot",
@@ -8,7 +8,7 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/adekmaulana/ProjectBish",
+  "repository": "https://github.com/keselekpermen69/userbutt",
   "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02",
   "stack": "container",
   "env": {
@@ -41,7 +41,7 @@
     },
     "UPSTREAM_REPO_URL": {
       "description": "Your forked repo.",
-      "value": "https://github.com/adekmaulana/ProjectBish",
+      "value": "https://github.com/keselekpermen69/userbutt",
       "required": true
     },
     "UPSTREAM_REPO_BRANCH": {
