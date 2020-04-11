@@ -60,14 +60,16 @@ async def last_fm(lastFM):
             image = None
             pass
         tags = await gettags(isNowPlaying=True, playing=playing)
-        rectrack = parse.quote_plus(f"{playing}")
-        rectrack = sub("^", "https://www.youtube.com/results?search_query=",
+        rectrack = parse.quote(f"{playing}")
+        rectrack = sub("^", "https://open.spotify.com/search/",
                        rectrack)
         if image:
-            output = f"[‎]({image})[{LASTFM_USERNAME}]({username}) __is now listening to:__\n\n• [{playing}]({rectrack})\n`{tags}`"
+            output = (f"[‎]({image})[{LASTFM_USERNAME}]({username}) __is now listening to:"
+                      f"__\n\n• [{playing}]({rectrack})\n`{tags}`")
             preview = True
         else:
-            output = f"[{LASTFM_USERNAME}]({username}) __is now listening to:__\n\n• [{playing}]({rectrack})\n`{tags}`"
+            output = (f"[{LASTFM_USERNAME}]({username}) __is now listening to:"
+                      f"__\n\n• [{playing}]({rectrack})\n`{tags}`")
     else:
         recent = User(LASTFM_USERNAME, lastfm).get_recent_tracks(limit=3)
         playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
@@ -76,9 +78,9 @@ async def last_fm(lastFM):
             print(i)
             printable = await artist_and_song(track)
             tags = await gettags(track)
-            rectrack = parse.quote_plus(str(printable))
+            rectrack = parse.quote(str(printable))
             rectrack = sub("^",
-                           "https://www.youtube.com/results?search_query=",
+                           "https://open.spotify.com/search/",
                            rectrack)
             output += f"• [{printable}]({rectrack})\n"
             if tags:
