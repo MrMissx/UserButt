@@ -272,11 +272,18 @@ async def download(gdrive, service, uri=None):
             )
         gid = downloads.gid
         await check_progress_for_dl(gdrive, gid, previous=None)
-        file = aria2.get_download(gid)
+        try:
+            file = aria2.get_download(gid)
+        except Exception as e:
+            LOGS.info(str(e))
+        filename = file.name
         if file.followed_by_ids:
             new_gid = await check_metadata(gid)
             await check_progress_for_dl(gdrive, new_gid, previous=None)
-        required_file_name = filename
+        try:
+            required_file_name = filenames
+        except Exception:
+            required_file_name = filename
     else:
         try:
             current_time = time.time()
@@ -301,7 +308,7 @@ async def download(gdrive, service, uri=None):
         )
     mimeType = await get_mimeType(required_file_name)
     try:
-        status = "[FILE - DOWNLOAD]"
+        status = "[FILE - UPLOAD]"
         if isfile(required_file_name):
             result = await upload(gdrive, service, required_file_name,
                                   file_name, mimeType)
@@ -410,7 +417,7 @@ async def upload(gdrive, service, file_path, file_name, mimeType):
         if status:
             percentage = int(status.progress() * 100)
             prog_str = "`Uploading...` | [{0}{1}] `{2}%`".format(
-                "".join(["**#**" for i in range(math.floor(percentage / 10))]),
+                "".join(["#" for i in range(math.floor(percentage / 10))]),
                 "".join(["**-**"
                          for i in range(10 - math.floor(percentage / 10))]),
                 round(percentage, 2))
@@ -654,8 +661,6 @@ async def google_drive(gdrive):
         uri = re.findall(r'\bhttps?://.*\.\S+', value)
         if "magnet:?" in value:
             uri = [value]
-        if uri and not gdrive.reply_to_msg_id:
-            return await download(gdrive, service, uri)
         if not uri and not gdrive.reply_to_msg_id:
             return await gdrive.edit(
                 "`[VALUE - ERROR]`\n\n"
@@ -664,6 +669,8 @@ async def google_drive(gdrive):
             )
     if not file_path and gdrive.reply_to_msg_id:
         return await download(gdrive, service)
+    if uri and not gdrive.reply_to_msg_id:
+        return await download(gdrive, service, uri)
     mimeType = await get_mimeType(file_path)
     file_name = await get_raw_name(file_path)
     viewURL, downloadURL = await upload(
@@ -698,7 +705,7 @@ async def set_upload_folder(gdrive):
             return await gdrive.edit(
                 "`[FOLDER - SET]`\n\n"
                 " • `Status :` **OK**\n"
-                " • `Reason :` `G_DRIVE_FOLDER_ID` is empty, will use root dir."
+                " • `Reason :` `G_DRIVE_FOLDER_ID` is empty, will use root."
             )
     inp = gdrive.pattern_match.group(2)
     if not inp:
@@ -756,20 +763,24 @@ async def set_upload_folder(gdrive):
                 " • `Status :` **OK**\n"
                 " • `Reason :` Successfully changed."
         )
+    return
 
 
 async def check_progress_for_dl(gdrive, gid, previous):
     complete = None
-    global filename
+    global filenames
     while not complete:
         file = aria2.get_download(gid)
         complete = file.is_complete
-        filename = file.name
+        try:
+            filenames = file.name
+        except IndexError:
+            pass
         try:
             if not complete and not file.error_message:
                 msg = (
                     "`[URI - DOWNLOAD]`\n\n"
-                    f"`Name        :` `{file.name}`\n"
+                    f"`Name       :` `{file.name}`\n"
                     f"`Status` -> **{file.status.capitalize()}**\n"
                     f"`Speed      :` {file.download_speed_string()}\n"
                     f"`Progress   :` {file.progress_string()}\n"
@@ -790,22 +801,28 @@ async def check_progress_for_dl(gdrive, gid, previous):
                                          "Successfully downloaded...")
         except Exception as e:
             if " not found" in str(e) or "'file'" in str(e):
-                await gdrive.edit(
-                     "`[URI - DOWNLOAD]`\n\n"
-                     f" • `Name   :` `{filename}`"
-                     " • `Status :` **OK**"
-                     " • `Reason :` Download cancelled."
-                )
+                try:
+                    await gdrive.edit(
+                         "`[URI - DOWNLOAD]`\n\n"
+                         f" • `Name   :` `{file.name}`\n"
+                         " • `Status :` **OK**\n"
+                         " • `Reason :` Download cancelled."
+                    )
+                except Exception:
+                    pass
                 await asyncio.sleep(2.5)
                 return await gdrive.delete()
             elif " depth exceeded" in str(e):
                 file.remove(force=True)
-                await gdrive.edit(
-                    "`[URI - DOWNLOAD]`\n\n"
-                    f" • `Name   :` `{filename}`"
-                    " • `Status :` **BAD**\n"
-                    " • `Reason :` Auto cancelled download, URI/Torrent dead."
-                )
+                try:
+                    await gdrive.edit(
+                        "`[URI - DOWNLOAD]`\n\n"
+                        f" • `Name   :` `{file.name}`\n"
+                        " • `Status :` **BAD**\n"
+                        " • `Reason :` Auto cancelled download, URI/Torrent dead."
+                    )
+                except Exception:
+                    pass
 
 
 CMD_HELP.update({
