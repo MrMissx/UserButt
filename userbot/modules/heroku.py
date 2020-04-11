@@ -132,11 +132,11 @@ async def dyno_manage(dyno):
         )
     elif exe == "help":
         return await dyno.edit(
-            ">.`dyno usage`"
+            "`.dyno usage`"
             "\nUsage: Check your heroku App usage dyno quota."
             "\nIf one of your app usage is empty, it won't be write in output."
-            "\n\n>.`dyno restart`"
+            "\n\n`.dyno restart`"
             "\nUsage: Restart your dyno application, turn it on if off"
-            "\n\n>.`dyno shutdown`"
+            "\n\n`.dyno shutdown`"
             "\nUsage: Shutdown dyno completly"
         )
