@@ -46,7 +46,7 @@
     },
     "UPSTREAM_REPO_BRANCH": {
       "description": "Your forked repo branch.",
-      "value": "master",
+      "value": "fallback",
       "required": true
     },
     "BOTLOG": {
