@@ -1,4 +1,8 @@
-#created by @KeselekPermen69
+# Copyright (C) 2020 KeselekPermen69
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
 
 import datetime
 from telethon import events
@@ -26,7 +30,7 @@ async def _(event):
              await event.edit("```I think this is not the right link```")
           else: 
              await event.delete()   
-             await bot.forward_messages(event.chat_id, response.message)
+             await bot.send_message(event.chat_id, response.message)
 
 CMD_HELP.update({
 "nhentai": 
