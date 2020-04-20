@@ -8,13 +8,14 @@ import heroku3
 import asyncio
 import requests
 import math
-
 from userbot import (CMD_HELP, HEROKU_APP_NAME, HEROKU_API_KEY,
                      BOTLOG, BOTLOG_CHATID)
 from userbot.events import register
 
-Heroku = heroku3.from_key(HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
+if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
+    Heroku = heroku3.from_key(HEROKU_API_KEY)
+    app = Heroku.app(HEROKU_APP_NAME)
 
 
 @register(outgoing=True, pattern=r"^.(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
@@ -23,13 +24,12 @@ async def variable(var):
         Manage most of ConfigVars setting, set new var, get current var,
         or delete var...
     """
-    if HEROKU_APP_NAME is not None:
-        app = Heroku.app(HEROKU_APP_NAME)
-    else:
+    exe = var.pattern_match.group(1)
+    try:
+        heroku_var = app.config()
+    except NameError:
         return await var.edit("`[HEROKU]:"
                               "\nPlease setup your` **HEROKU_APP_NAME**.")
-    exe = var.pattern_match.group(1)
-    heroku_var = app.config()
     if exe == "get":
         await var.edit("`Getting information...`")
         try:
@@ -121,9 +121,7 @@ async def variable(var):
                     BOTLOG_CHATID, "#DELCONFIGVAR\n\n"
                     "**Delete ConfigVar**:\n"
                     " -> `Config Variable`:\n"
-                    f"     • `{variable}`\n"
-                    " -> `Value`:\n"
-                    f"     • `{value}`\n\n"
+                    f"     • `{variable}`\n\n"
                     "`Successfully deleted...`"
                 )
             await var.edit("`Information deleted...`")
@@ -173,27 +171,34 @@ async def dyno_usage(dyno):
     minutes = math.floor(minutes_remaining % 60)
 
     """ - Current - """
-    App = result['apps']
+    Apps = result['apps']
+    for apps in Apps:
+        if apps.get('app_uuid') == app.id:
+            AppQuotaUsed = apps.get('quota_used') / 60
+            AppPercentage = math.floor(apps.get('quota_used') * 100 / quota)
+            break
+        else:
+            continue
     try:
-        App[0]['quota_used']
-    except IndexError:
+        AppQuotaUsed
+        AppPercentage
+    except NameError:
         AppQuotaUsed = 0
         AppPercentage = 0
-    else:
-        AppQuotaUsed = App[0]['quota_used'] / 60
-        AppPercentage = math.floor(App[0]['quota_used'] * 100 / quota)
+
     AppHours = math.floor(AppQuotaUsed / 60)
     AppMinutes = math.floor(AppQuotaUsed % 60)
 
-    return await dyno.edit("**Dyno Usage**:\n\n"
-                           f" -> `Dyno usage for`  **{HEROKU_APP_NAME}**:\n"
-                           f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
-                           f"**|**  [`{AppPercentage}`**%**]"
-                           "\n\n"
-                           " -> `Dyno hours quota remaining this month`:\n"
-                           f"     •  `{hours}`**h**  `{minutes}`**m**  "
-                           f"**|**  [`{percentage}`**%**]"
-                           )
+    return await dyno.edit(
+         "**Dyno Usage**:\n\n"
+         f" -> `Dyno usage for`  **{app.name}**:\n"
+         f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+         f"**|**  [`{AppPercentage}`**%**]"
+         "\n\n"
+         " -> `Dyno hours quota remaining this month`:\n"
+         f"     •  `{hours}`**h**  `{minutes}`**m**  "
+         f"**|**  [`{percentage}`**%**]"
+    )
 
 
 CMD_HELP.update({
