@@ -39,7 +39,7 @@ async def dyno_manage(dyno):
             Dyno = app.dynos()[0]
         except IndexError:
             app.scale_formation_process("worker", 1)
-            text = f"`Starting` â¬?**{HEROKU_APP_NAME}**"
+            text = f"`Starting` â¬¢**{HEROKU_APP_NAME}**"
             sleep = 1
             dot = "."
             await dyno.edit(text)
@@ -53,20 +53,20 @@ async def dyno_manage(dyno):
                 sleep += 1
             state = Dyno.state
             if state == "up":
-                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `up...`")
+                await dyno.respond(f"â¬¢**{HEROKU_APP_NAME}** `up...`")
             elif state == "crashed":
-                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `crashed...`")
+                await dyno.respond(f"â¬¢**{HEROKU_APP_NAME}** `crashed...`")
             return await dyno.delete()
         else:
-            return await dyno.edit(f"â¬?**{HEROKU_APP_NAME}** `already on...`")
+            return await dyno.edit(f"â¬¢**{HEROKU_APP_NAME}** `already on...`")
     if exe == "restart":
         try:
             """ - Catch error if dyno not on - """
             Dyno = app.dynos()[0]
         except IndexError:
-            return await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `is not on...`")
+            return await dyno.respond(f"â¬¢**{HEROKU_APP_NAME}** `is not on...`")
         else:
-            text = f"`Restarting` â¬?**{HEROKU_APP_NAME}**"
+            text = f"`Restarting` â¬¢**{HEROKU_APP_NAME}**"
             Dyno.restart()
             sleep = 1
             dot = "."
@@ -81,14 +81,14 @@ async def dyno_manage(dyno):
                 sleep += 1
             state = Dyno.state
             if state == "up":
-                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `restarted...`")
+                await dyno.respond(f"â¬¢**{HEROKU_APP_NAME}** `restarted...`")
             elif state == "crashed":
-                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `crashed...`")
+                await dyno.respond(f"â¬¢**{HEROKU_APP_NAME}** `crashed...`")
             return await dyno.delete()
     elif exe == "off":
         """ - Complete shutdown - """
         app.scale_formation_process("worker", 0)
-        text = f"`Shutdown` â¬?**{HEROKU_APP_NAME}**"
+        text = f"`Shutdown` â¬¢**{HEROKU_APP_NAME}**"
         sleep = 1
         dot = "."
         while (sleep <= 3):
@@ -96,7 +96,7 @@ async def dyno_manage(dyno):
             await asyncio.sleep(1)
             dot += "."
             sleep += 1
-        await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `turned off...`")
+        await dyno.respond(f"â¬¢**{HEROKU_APP_NAME}** `turned off...`")
         return await dyno.delete()
     elif exe == "usage":
         """ - Get your account Dyno Usage - """
@@ -148,7 +148,7 @@ async def dyno_manage(dyno):
                 for App in apps:
                     msg += (
                         f" -> `Dyno usage for`  **{App.name}**:\n"
-                        f"     â€?  `0`**h**  `0`**m**  "
+                        f"     â€¢  `0`**h**  `0`**m**  "
                         f"**|**  [`0`**%**]\n\n"
                     )
             for App in Apps:
@@ -170,13 +170,13 @@ async def dyno_manage(dyno):
                             break
                     msg += (
                         f" -> `Dyno usage for`  {AppName}:\n"
-                        f"     â€?  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+                        f"     â€¢  `{AppHours}`**h**  `{AppMinutes}`**m**  "
                         f"**|**  [`{AppPercentage}`**%**]\n\n"
                     )
             msg = (
                 f"{msg}"
                 " -> `Dyno hours quota remaining this month`:\n"
-                f"     â€?  `{hours}`**h**  `{minutes}`**m**  "
+                f"     â€¢  `{hours}`**h**  `{minutes}`**m**  "
                 f"**|**  [`{percentage}`**%**]\n\n"
             )
         if msg:
@@ -202,7 +202,7 @@ async def dyno_manage(dyno):
         }
         path = "/apps/" + build.app.id + "/builds/" + build.id
         r = requests.delete(heroku_api + path, headers=headers)
-        text = f"`Stopping build`  â¬?**{build.app.name}**"
+        text = f"`Stopping build`  â¬¢**{build.app.name}**"
         await dyno.edit(text)
         sleep = 1
         dot = "."
@@ -214,7 +214,7 @@ async def dyno_manage(dyno):
             sleep += 1
         await dyno.respond(
             "`[HEROKU]`\n"
-            f"Build: â¬?**{build.app.name}**  `Stopped...`")
+            f"Build: â¬¢**{build.app.name}**  `Stopped...`")
         """ - Restart main if builds cancelled - """
         try:
             app.dynos()[0].restart()
