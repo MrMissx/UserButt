@@ -25,7 +25,7 @@
       "required": true
     },
     "HEROKU_API_KEY": {
-      "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
+      "description": "Your Heroku main account API key, get it from 'https://dashboard.heroku.com/account'",
       "value": "",
       "required": true
     },
@@ -33,6 +33,10 @@
       "description": "Heroku app name main, the first app you deploy for userbot.",
       "value": "",
       "required": true
+    },
+    "HEROKU_API_KEY_FALLBACK": {
+      "description": "Your Heroku fallback account API key this is only needed if you choose to run fallback into different heroku account, get it from 'https://dashboard.heroku.com/account'",
+      "required": false
     },
     "HEROKU_APP_FALLBACK_NAME": {
       "description": "Heroku app name fallback, this should be app name you make now.",
@@ -42,6 +46,11 @@
     "UPSTREAM_REPO_URL": {
       "description": "Your forked repo.",
       "value": "https://github.com/keselekpermen69/userbutt",
+      "required": true
+    },
+    "MAIN_REPO_BRANCH": {
+      "description": "Your main branch repo.",
+      "value": "sql-extended",
       "required": true
     },
     "UPSTREAM_REPO_BRANCH": {

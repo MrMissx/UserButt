@@ -1,142 +1,274 @@
 # Copyright (C) 2020 Adek Maulana.
 # All rights reserved.
-"""
-   Heroku manager for your userbot
-"""
-
-import heroku3
+""" - a fallback for main userbot - """
+import os
 import asyncio
 import requests
 import math
 
-from userbot import HEROKU_APP_NAME, HEROKU_API_KEY
+from operator import itemgetter
+
+from userbot import (
+    heroku, fallback,
+    HEROKU_APP_NAME, HEROKU_API_KEY, HEROKU_API_KEY_FALLBACK
+)
 from userbot.events import register
 
-Heroku = heroku3.from_key(HEROKU_API_KEY)
+
 heroku_api = "https://api.heroku.com"
-useragent = ('Mozilla/5.0 (Linux; Android 10; SM-G975F) '
-             'AppleWebKit/537.36 (KHTML, like Gecko) '
-             'Chrome/80.0.3987.149 Mobile Safari/537.36'
-             )
+useragent = (
+    'Mozilla/5.0 (Linux; Android 10; SM-G975F) '
+    'AppleWebKit/537.36 (KHTML, like Gecko) '
+    'Chrome/81.0.4044.117 Mobile Safari/537.36'
+)
 
 
-@register(outgoing=True, pattern="^.dyno (restart|shutdown|usage|help)(?: |$)")
+@register(outgoing=True,
+          pattern=(
+              "^.dyno "
+              "(on|restart|off|usage|cancel deploy|cancel build"
+              "|get log|help|update)(?: (.*)|$)")
+          )
 async def dyno_manage(dyno):
     """ - Restart/Kill dyno - """
     await dyno.edit("`Sending information...`")
-    app = Heroku.app(HEROKU_APP_NAME)
+    app = heroku.app(HEROKU_APP_NAME)
     exe = dyno.pattern_match.group(1)
+    if exe == "on":
+        try:
+            Dyno = app.dynos()[0]
+        except IndexError:
+            app.scale_formation_process("worker", 1)
+            text = f"`Starting` â¬?**{HEROKU_APP_NAME}**"
+            sleep = 1
+            dot = "."
+            await dyno.edit(text)
+            while (sleep <= 24):
+                await dyno.edit(text + f"`{dot}`")
+                await asyncio.sleep(1)
+                if len(dot) == 3:
+                    dot = "."
+                else:
+                    dot += "."
+                sleep += 1
+            state = Dyno.state
+            if state == "up":
+                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `up...`")
+            elif state == "crashed":
+                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `crashed...`")
+            return await dyno.delete()
+        else:
+            return await dyno.edit(f"â¬?**{HEROKU_APP_NAME}** `already on...`")
     if exe == "restart":
         try:
             """ - Catch error if dyno not on - """
             Dyno = app.dynos()[0]
         except IndexError:
-            app.scale_formation_process("worker", 1)
-            return await dyno.edit(
-                f"`Starting` â¬¢**{HEROKU_APP_NAME}**`...`")
-        wait = 0.03
-        dot = "."
-        i = 0
-        text = f"`Restarting` â¬¢**{HEROKU_APP_NAME}**"
-        await dyno.edit(text)
-        Dyno.restart()
-        up = False
-        await asyncio.sleep(wait)
-        while not up:
-            loading_dot = text + dot
-            await dyno.edit(loading_dot)
-            i = i + 1
-            await asyncio.sleep(wait)
-            if i == 3:
-                loading_dot = None
-                i = 0
+            return await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `is not on...`")
+        else:
+            text = f"`Restarting` â¬?**{HEROKU_APP_NAME}**"
+            Dyno.restart()
+            sleep = 1
+            dot = "."
+            await dyno.edit(text)
+            while (sleep <= 24):
+                await dyno.edit(text + f"`{dot}`")
+                await asyncio.sleep(1)
+                if len(dot) == 3:
+                    dot = "."
+                else:
+                    dot += "."
+                sleep += 1
             state = Dyno.state
             if state == "up":
-                up = True
-                if i == 0:
-                    await asyncio.sleep(0.05)
-                    loading_dot = text + dot
-                    await dyno.edit(loading_dot)
-                    await asyncio.sleep(0.05)
-                    loading_dot = loading_dot + dot
-                    await dyno.edit(loading_dot)
-                    await asyncio.sleep(0.05)
-                    await dyno.edit(loading_dot + dot)
-                if i == 1:
-                    await asyncio.sleep(0.05)
-                    loading_dot = loading_dot + dot
-                    await dyno.edit(loading_dot)
-                    await asyncio.sleep(0.05)
-                    await dyno.edit(loading_dot + dot)
-                elif i == 2:
-                    await asyncio.sleep(0.05)
-                    await dyno.edit(loading_dot + dot)
-        return await dyno.edit(
-            f"`Restarting` â¬¢**{HEROKU_APP_NAME}**`... done`")
-    elif exe == "shutdown":
+                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `restarted...`")
+            elif state == "crashed":
+                await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `crashed...`")
+            return await dyno.delete()
+    elif exe == "off":
         """ - Complete shutdown - """
         app.scale_formation_process("worker", 0)
-        await dyno.edit(f"`Shutdown` â¬¢**{HEROKU_APP_NAME}**`... done`")
+        text = f"`Shutdown` â¬?**{HEROKU_APP_NAME}**"
+        sleep = 1
+        dot = "."
+        while (sleep <= 3):
+            await dyno.edit(text + f"`{dot}`")
+            await asyncio.sleep(1)
+            dot += "."
+            sleep += 1
+        await dyno.respond(f"â¬?**{HEROKU_APP_NAME}** `turned off...`")
+        return await dyno.delete()
     elif exe == "usage":
         """ - Get your account Dyno Usage - """
         await dyno.edit("`Getting information...`")
-        user_id = Heroku.account().id
+        headers = {
+            'User-Agent': useragent,
+            'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
+        }
+        user_id = []
+        user_id.append(heroku.account().id)
+        if fallback is not None:
+            user_id.append(fallback.account().id)
+        msg = ''
+        for aydi in user_id:
+            if fallback is not None and fallback.account().id == aydi:
+                headers['Authorization'] = f'Bearer {HEROKU_API_KEY_FALLBACK}'
+            else:
+                headers['Authorization'] = f'Bearer {HEROKU_API_KEY}'
+            path = "/accounts/" + aydi + "/actions/get-quota"
+            r = requests.get(heroku_api + path, headers=headers)
+            if r.status_code != 200:
+                await dyno.edit("`Cannot get information...`")
+                continue
+            result = r.json()
+            quota = result['account_quota']
+            quota_used = result['quota_used']
+
+            """ - Used - """
+            remaining_quota = quota - quota_used
+            percentage = math.floor(remaining_quota / quota * 100)
+            minutes_remaining = remaining_quota / 60
+            hours = math.floor(minutes_remaining / 60)
+            minutes = math.floor(minutes_remaining % 60)
+
+            """ - Used per/App Usage - """
+            Apps = result['apps']
+            """ - Sort from larger usage to lower usage - """
+            Apps = sorted(Apps, key=itemgetter('quota_used'), reverse=True)
+            if fallback is not None and fallback.account().id == aydi:
+                apps = fallback.apps()
+                msg += "**Dyno Usage fallback-account**:\n\n"
+            else:
+                apps = heroku.apps()
+                msg += "**Dyno Usage main-account**:\n\n"
+            try:
+                Apps[0]
+            except IndexError:
+                """ - If all apps usage are zero - """
+                for App in apps:
+                    msg += (
+                        f" -> `Dyno usage for`  **{App.name}**:\n"
+                        f"     â€?  `0`**h**  `0`**m**  "
+                        f"**|**  [`0`**%**]\n\n"
+                    )
+            for App in Apps:
+                AppName = '__~~Deleted or transferred app~~__'
+                ID = App.get('app_uuid')
+                try:
+                    AppQuota = App.get('quota_used')
+                    AppQuotaUsed = AppQuota / 60
+                    AppPercentage = math.floor(AppQuota * 100 / quota)
+                except IndexError:
+                    AppQuotaUsed = 0
+                    AppPercentage = 0
+                finally:
+                    AppHours = math.floor(AppQuotaUsed / 60)
+                    AppMinutes = math.floor(AppQuotaUsed % 60)
+                    for names in apps:
+                        if ID == names.id:
+                            AppName = f"**{names.name}**"
+                            break
+                    msg += (
+                        f" -> `Dyno usage for`  {AppName}:\n"
+                        f"     â€?  `{AppHours}`**h**  `{AppMinutes}`**m**  "
+                        f"**|**  [`{AppPercentage}`**%**]\n\n"
+                    )
+            msg = (
+                f"{msg}"
+                " -> `Dyno hours quota remaining this month`:\n"
+                f"     â€?  `{hours}`**h**  `{minutes}`**m**  "
+                f"**|**  [`{percentage}`**%**]\n\n"
+            )
+        if msg:
+            return await dyno.edit(msg)
+        else:
+            return
+    elif exe == "cancel deploy" or exe == "cancel build":
+        """ - Only cancel 1 recent builds from activity - """
+        build_id = dyno.pattern_match.group(2)
+        if build_id is None:
+            build = app.builds(order_by='created_at', sort='desc')[0]
+        else:
+            build = app.builds().get(build_id)
+            if build is None:
+                return await dyno.edit(
+                    f"`There is no such build.id`:  **{build_id}**")
+        if build.status != "pending":
+            return await dyno.edit("`Zero active builds to cancel...`")
         headers = {
             'User-Agent': useragent,
             'Authorization': f'Bearer {HEROKU_API_KEY}',
-            'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
+            'Accept': 'application/vnd.heroku+json; version=3.cancel-build',
         }
-        path = "/accounts/" + user_id + "/actions/get-quota"
-        r = requests.get(heroku_api + path, headers=headers)
-        if r.status_code != 200:
-            return await dyno.edit("`Error: something bad happened`\n\n"
-                                   f">.`{r.reason}`\n")
-        result = r.json()
-        quota = result['account_quota']
-        quota_used = result['quota_used']
-
-        """ - Used - """
-        remaining_quota = quota - quota_used
-        percentage = math.floor(remaining_quota / quota * 100)
-        minutes_remaining = remaining_quota / 60
-        hours = math.floor(minutes_remaining / 60)
-        minutes = math.floor(minutes_remaining % 60)
-
-        """ - Used per/App Usage - """
-        Apps = result['apps']
-        msg = "**Dyno Usage Applications**:\n\n"
-        for App in Apps:
-            try:
-                AppQuota = App['quota_used']
-                AppQuotaUsed = AppQuota / 60
-                AppPercentage = math.floor(AppQuota * 100 / quota)
-            except IndexError:
-                AppQuotaUsed = 0
-                AppPercentage = 0
-            finally:
-                AppHours = math.floor(AppQuotaUsed / 60)
-                AppMinutes = math.floor(AppQuotaUsed % 60)
-                msg += (
-                    f"     â€¢  `{AppHours}`**h**  `{AppMinutes}`**m**  "
-                    f"**|**  [`{AppPercentage}`**%**]\n"
-                )
-        if not msg:
-            msg = (" -> `No quota used for any of your Apps`:\n")
-            for App in Heroku.apps():
-                msg += f"     â€¢  â¬¢**{App.name}**.\n"
-        return await dyno.edit(
-            f"{msg}\n"
-            " -> `Dyno hours quota remaining this month`:\n"
-            f"     â€¢  `{hours}`**h**  `{minutes}`**m**  "
-            f"**|**  [`{percentage}`**%**]"
+        path = "/apps/" + build.app.id + "/builds/" + build.id
+        r = requests.delete(heroku_api + path, headers=headers)
+        text = f"`Stopping build`  â¬?**{build.app.name}**"
+        await dyno.edit(text)
+        sleep = 1
+        dot = "."
+        await asyncio.sleep(2)
+        while (sleep <= 3):
+            await dyno.edit(text + f"`{dot}`")
+            await asyncio.sleep(1)
+            dot += "."
+            sleep += 1
+        await dyno.respond(
+            "`[HEROKU]`\n"
+            f"Build: â¬?**{build.app.name}**  `Stopped...`")
+        """ - Restart main if builds cancelled - """
+        try:
+            app.dynos()[0].restart()
+        except IndexError:
+            await dyno.edit("`Your dyno main app is not on...`")
+            await asyncio.sleep(2.5)
+        return await dyno.delete()
+    elif exe == "get log":
+        await dyno.edit("`Getting information...`")
+        with open('logs.txt', 'w') as log:
+            log.write(app.get_log())
+        await dyno.client.send_file(
+            dyno.chat_id,
+            "logs.txt",
+            reply_to=dyno.id,
+            caption="`Main dyno logs...`",
         )
+        await dyno.edit("`Information gets and sent back...`")
+        await asyncio.sleep(5)
+        await dyno.delete()
+        return os.remove('logs.txt')
     elif exe == "help":
         return await dyno.edit(
             "`.dyno usage`"
             "\nUsage: Check your heroku App usage dyno quota."
             "\nIf one of your app usage is empty, it won't be write in output."
+            "\n\n`.dyno on`"
+            "\nUsage: Turn on your main dyno application."
             "\n\n`.dyno restart`"
-            "\nUsage: Restart your dyno application, turn it on if off"
-            "\n\n`.dyno shutdown`"
-            "\nUsage: Shutdown dyno completly"
+            "\nUsage: Restart your dyno application."
+            "\n\n`.dyno off`"
+            "\nUsage: Shutdown dyno completly."
+            "\n\n`.dyno cancel deploy` or `.dyno cancel build`"
+            "\nUsage: Cancel deploy from main app "
+            "give build.id to specify build to cancel."
+            "\n\n`.dyno get log`"
+            "\nUsage: Get your main dyno recent logs."
+            "\n\n`.dyno help`"
+            "\nUsage: print this help."
+        )
+    elif exe == "update":
+        return await dyno.edit(
+            "`.updatef`"
+            "\nUsage: Check fallback if there are any updates."
+            "\n\n`.updatef deploy`"
+            "\nUsage: If there are any updates, you can deploy fallback app."
+            "\n\n`.updatef now`"
+            "\nUsage: If there are any updates, you can update fallback app."
+            "\n\n"
+            "**FAQ**:\n"
+            "`Q`: What's different `.updatef now` and `.updatef deploy`?\n"
+            "`A`: `.updatef now` update your fallback without deploying, "
+            "but the app will back to latest successfully deployed state if "
+            "fallback restarted.\n"
+            "`.updatef deploy` is more same but if fallback restarted it "
+            "won't rollback."
         )
