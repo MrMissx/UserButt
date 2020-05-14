@@ -27,11 +27,11 @@ for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
 
-LOGS.info("You are running Userbutt [ver : FeelSpecial]")
+LOGS.info("You are running Userbutt [ver : MORE & MORE]")
 
 LOGS.info(
-    "😘 Congratulations, your userbot is now running !!" 
-    "Test it by typing .ping or .alive in any chat 😘."
+    "Congratulations, your userbot is now running !!" 
+    "Test it by typing .alive, .on or .alive in any chat."
     "for further assistance, head to https://t.me/userbotindo")
 
 
