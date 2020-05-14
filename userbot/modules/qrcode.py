@@ -16,7 +16,7 @@ from barcode.writer import ImageWriter
 
 from bs4 import BeautifulSoup
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, LOGS
 from userbot.events import register
 
 
@@ -42,17 +42,16 @@ async def parseqr(qr_e):
     t_response = stdout.decode().strip()
     os.remove(downloaded_file_name)
     if not t_response:
-        logger.info(e_response)
-        logger.info(t_response)
-        await qr_e.edit("Failed to decode.")
-        return
+        LOGS.info(e_response)
+        LOGS.info(t_response)
+        return await qr_e.edit("Failed to decode.")
     soup = BeautifulSoup(t_response, "html.parser")
     qr_contents = soup.find_all("pre")[0].text
     await qr_e.edit(qr_contents)
 
 
 @register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
-async def barcode(event):
+async def bq(event):
     """ For .barcode command, genrate a barcode containing the given content. """
     await event.edit("`Processing..`")
     input_str = event.pattern_match.group(1)
@@ -76,8 +75,7 @@ async def barcode(event):
         else:
             message = previous_message.message
     else:
-        event.edit("SYNTAX: `.barcode <long text to include>`")
-        return
+        return event.edit("SYNTAX: `.barcode <long text to include>`")
 
     bar_code_type = "code128"
     try:
@@ -90,8 +88,7 @@ async def barcode(event):
                                      reply_to=reply_msg_id)
         os.remove(filename)
     except Exception as e:
-        await event.edit(str(e))
-        return
+        return await event.edit(str(e))
     await event.delete()
 
 
