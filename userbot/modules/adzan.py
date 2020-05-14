@@ -53,6 +53,6 @@ async def get_adzan(adzan):
     await adzan.edit(textkirim)
 
 CMD_HELP.update({
-        "adzan": ".adzan <city> or .adzan <country>\
+        "adzan": "`.adzan` <city> or `.adzan` <country>\
         \nUsage: Gets the prayer time for moslem.\n"
     })

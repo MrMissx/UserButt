@@ -124,7 +124,7 @@ async def get_dogbin_content(dog_url):
 
 CMD_HELP.update({
     "dogbin":
-    ".paste <text/reply>\
+    "`.paste` <text/reply>\
 \nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)\
 \n\n.getpaste\
 \nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)"

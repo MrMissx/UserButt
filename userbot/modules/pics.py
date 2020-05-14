@@ -41,5 +41,5 @@ async def on_file_to_photo(pics):
         return
         
 CMD_HELP.update({
-    "pics": ".pic reply any document image\nUsage : Convert any Document Image to Full Size Image"
+    "pics": "`.pic` reply any document image\nUsage : Convert any Document Image to Full Size Image"
 })

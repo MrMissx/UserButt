@@ -40,6 +40,6 @@ async def _(event):
 
 CMD_HELP.update({
         "deepfry": 
-        ".df \
+        "`.df` \
           \nUsage: Krispi image😂👌.\n"
     })

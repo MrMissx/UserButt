@@ -59,7 +59,10 @@ async def endecrypt(query):
         await query.reply("Decoded: `" + lething[:-1] + "`")
 
 
-CMD_HELP.update({"base64": "Find the base64 encoding of the given string"})
+CMD_HELP.update({
+    "base64":
+    "`base64 <en|de>\n\nUsage: Find the base64 encoding.\n\nen:encode ; de:decode."
+	})
 
 CMD_HELP.update({
     "hash":
