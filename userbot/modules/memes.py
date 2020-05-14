@@ -1325,70 +1325,70 @@ async def nou(e):
 
 CMD_HELP.update({
     "memes":
-    ".cowsay\
+    "`.cowsay`\
 \nUsage: cow which says things.\
-\n\n:/\
+\n\n`:/`\
 \nUsage: Check yourself ;)\
-\n\n-_-\
+\n\n`-_-`\
 \nUsage: Ok...\
-\n\n;_;\
+\n\n`;_;`\
 \nUsage: Like `-_-` but crying.\
-\n\n.cp\
+\n\n`.cp`\
 \nUsage: Copypasta the famous meme\
-\n\n.vapor\
+\n\n`.vapor`\
 \nUsage: Vaporize everything!\
-\n\n.str\
+\n\n`.str`\
 \nUsage: Stretch it.\
-\n\n.zal\
+\n\n`.zal`\
 \nUsage: Invoke the feeling of chaos.\
-\n\nOof\
+\n\n`Oof`\
 \nUsage: Ooooof\
-\n\n.fp\
+\n\n`.fp`\
 \nUsage: Facepalm :P\
-\n\n.moon\
+\n\n`.moon`\
 \nUsage: kensar moon animation.\
-\n\n.clock\
+\n\n`.clock`\
 \nUsage: kensar clock animation.\
-\n\n.hi\
+\n\n`.hi`\
 \nUsage: Greet everyone!\
-\n\n.coinflip <heads/tails>\
+\n\n`.coinflip` <heads/tails>\
 \nUsage: Flip a coin !!\
-\n\n.owo\
+\n\n`.owo`\
 \nUsage: UwU\
-\n\n.react\
+\n\n`.react`\
 \nUsage: Make your userbot react to everything.\
-\n\n.slap\
+\n\n`.slap`\
 \nUsage: reply to slap them with random objects !!\
-\n\n.cry\
+\n\n`.cry`\
 \nUsage: y u du dis, i cri.\
-\n\n.shg\
+\n\n`.shg`\
 \nUsage: Shrug at it !!\
-\n\n.run\
+\n\n`.run`\
 \nUsage: Let Me Run, run, RUNNN!\
-\n\n.chase\
+\n\n`.chase`\
 \nUsage: You better start running\
-\n\n.metoo\
+\n\n`.metoo`\
 \nUsage: Haha yes\
-\n\n.mock\
+\n\n`.mock`\
 \nUsage: Do it and find the real fun.\
-\n\n.clap\
+\n\n`.clap`\
 \nUsage: Praise people!\
-\n\n.f <emoji/character>\
+\n\n`.f` <emoji/character>\
 \nUsage: Pay Respects.\
-\n\n.bt\
+\n\n`.bt`\
 \nUsage: Believe me, you will find this useful.\
-\n\n.type\
+\n\n`.type`\
 \nUsage: Just a small command to make your keyboard become a typewriter!\
-\n\n.lfy <query>\
+\n\n`.lfy` <query>\
 \nUsage: Let me Google that for you real quick !!\
-\n\n.decide [Alternates: (.yes, .no, .maybe)]\
+\n\n`.decide` [Alternates: (.yes, .no, .maybe)]\
 \nUsage: Make a quick decision.\
-\n\n.scam <action> <time>\
+\n\n`.scam` <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
 \nUsage: Create fake chat actions, for fun. (Default action: typing)\
 \n\nAnd many more\
-\n.nou ; .bot ; .gey ; .gey ; .tf ; .paw\
-\n.taco ; .nih ; .fag ; .gtfo ; .stfu ; .lol\
-\n.lool ; .fail ; .love ; .rain ; .earth ; .iwi \
+\n`.nou` ; `.bot` ; `.gey` ; `.gey` ; `.tf` ; `.paw`\
+\n`.taco` ; `.nih` ; `.fag` ; `.gtfo` ; `.stfu` ; `.lol`\
+\n`.lool` ; `.fail` ; `.love` ; `.rain` ; `.earth` ; `.iwi`\
 \n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."
 })

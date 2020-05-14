@@ -689,44 +689,44 @@ def deEmojify(inputString):
 
 CMD_HELP.update({
     'img':
-    '.img <search_query>\
+    '`.img` <search_query>\
         \nUsage: Does an image search on Google and shows 5 images.'
 })
 CMD_HELP.update({
     'currency':
-    '.currency <amount> <from> <to>\
+    '`.currency` <amount> <from> <to>\
         \nUsage: Converts various currencies for you.'
 })
 CMD_HELP.update({
     'carbon':
-    '.carbon <text> [or reply]\
+    '`.carbon` <text> [or reply]\
         \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.'
 })
 CMD_HELP.update(
-    {'google': '.google <query>\
+    {'google': '`.google` <query>\
         \nUsage: Does a search on Google.'})
 CMD_HELP.update(
-    {'wiki': '.wiki <query>\
+    {'wiki': '`.wiki` <query>\
         \nUsage: Does a search on Wikipedia.'})
 CMD_HELP.update(
-    {'ud': '.ud <query>\
+    {'ud': '`.ud` <query>\
         \nUsage: Does a search on Urban Dictionary.'})
 CMD_HELP.update({
     'tts':
-    '.tts <text> [or reply]\
+    '`.tts` <text> [or reply]\
         \nUsage: Translates text to speech for the language which is set.\nUse .lang tts <language code> to set language for tts. (Default is English.)'
 })
 CMD_HELP.update({
     'trt':
-    '.trt <text> [or reply]\
+    '`.trt` <text> [or reply]\
         \nUsage: Translates text to the language which is set.\nUse .lang trt <language code> to set language for trt. (Default is English)'
 })
-CMD_HELP.update({'yt': '.yt <text>\
+CMD_HELP.update({'yt': '`.yt` <text>\
         \nUsage: Does a YouTube search.'})
 CMD_HELP.update(
-    {"imdb": ".imdb <movie-name>\nShows movie info and other stuff."})
+    {"imdb": "`.imdb` <movie-name>\nShows movie info and other stuff."})
 CMD_HELP.update({
     'rip':
-    '.ripaudio <url> or ripvideo <url>\
+    '`.ripaudio` <url> or ripvideo <url>\
         \nUsage: Download videos and songs from YouTube (and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).'
 })

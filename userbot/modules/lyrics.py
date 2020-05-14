@@ -3,7 +3,6 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-#
 
 """
 Lyrics Plugin Syntax:
@@ -70,6 +69,6 @@ async def lyrics(lyric):
 
 CMD_HELP.update({
     "lyrics":
-    "**Usage:** .`lyrics <artist name> - <song name>`\n"
+    "**Usage:** .`lyrics` <artist name> - <song name>\n"
     "__note__: **-** is neccessary when searching the lyrics to divided artist and song"
 })

@@ -69,7 +69,7 @@ async def capture(url):
 
 CMD_HELP.update({
     "ss":
-    ".ss <url>\
+    "`.ss` <url>\
     \nUsage: Takes a screenshot of a website and sends the screenshot.\
     \nExample of a valid URL : `https://www.google.com`"
 })

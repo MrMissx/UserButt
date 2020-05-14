@@ -156,7 +156,7 @@ async def decrypt_file(megadl, file_name, temp_file_name,
 
 CMD_HELP.update({
     "mega":
-    ".mega <mega url>\n"
+    "`.mega` <mega url>\n"
     "Usage: Reply to a mega link or paste your mega link to\n"
     "download the file into your userbot server\n\n"
     "Only support for *FILE* only."

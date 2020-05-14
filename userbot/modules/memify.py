@@ -139,6 +139,6 @@ async def silently_send_message(conv, text):
 
 CMD_HELP.update({
     "memify": 
-        ".mmf <top text> ; <bottom text>\
+        "`.mmf` <top text> ; <bottom text>\
         \nUsage: Reply a sticker/image/gif and send with cmd."
 })

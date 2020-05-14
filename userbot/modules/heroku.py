@@ -198,10 +198,10 @@ CMD_HELP.update({
     "heroku":
     "`.usage`"
     "\nUsage: Check your heroku dyno hours remaining"
-    "\n\n`.set var <NEW VAR> <VALUE>`"
+    "\n\n`.set var` <NEW VAR> <VALUE>"
     "\nUsage: add new variable or update existing value variable"
     "\n!!! WARNING !!!, after setting a variable the bot will restarted"
-    "\n\n`.get var` or .get var <VAR>"
+    "\n\n`.get var` or `.get var` <VAR>"
     "\nUsage: get your existing varibles, use it only on your private group!"
     "\nThis returns all of your private information, please be caution..."
     "\n\n`.del var` <VAR>"

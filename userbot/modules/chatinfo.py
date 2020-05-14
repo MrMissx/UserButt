@@ -198,6 +198,6 @@ async def fetch_info(chat, event):
 
 CMD_HELP.update({
         "chatinfo":
-        ".chatinfo [optional: <reply/tag/chat id/invite link>]\
+        "`.chatinfo` [optional: <reply/tag/chat id/invite link>]\
             \nUsage: Gets info of a chat. Some info might be limited due to missing permissions."
 })

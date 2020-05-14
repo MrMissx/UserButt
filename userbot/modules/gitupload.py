@@ -82,5 +82,5 @@ async def git_commit(file_name,mone):
 
 CMD_HELP.update({
     "commit": 
-    ".commit\
+    "`.commit`\
     \nUsage: GITHUB File Uploader Plugin for userbot. Heroku Automation should be Enabled. Else u r not that lazy , For lazy people"}) 

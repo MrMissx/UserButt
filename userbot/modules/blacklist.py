@@ -84,11 +84,11 @@ async def on_delete_blacklist(rmbl):
     
 CMD_HELP.update({
     "blacklist":
-    ".listbl\
+    "`.listbl`\
     \nUsage: Lists all active userbot blacklist in a chat.\
-    \n\n.addbl <keyword>\
+    \n\n`.addbl` <keyword>\
     \nUsage: Saves the message to the 'blacklist keyword'.\
     \nThe bot will delete to the message whenever 'blacklist keyword' is mentioned.\
-    \n\n.rmbl <keyword>\
+    \n\n`.rmbl` <keyword>\
     \nUsage: Stops the specified blacklist."
 })

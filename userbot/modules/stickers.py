@@ -315,14 +315,14 @@ async def get_pack_info(event):
 
 CMD_HELP.update({
     "stickers":
-    ".kang\
+    "`.kang`\
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n.kang [emoji('s)]\
+\n\n`.kang` [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n.kang [number]\
+\n\n`.kang` [number]\
 \nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
-\n\n.kang [emoji('s)] [number]\
+\n\n`.kang `[emoji('s)] [number]\
 \nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
-\n\n.stkrinfo\
+\n\n`.stkrinfo`\
 \nUsage: Gets info about the sticker pack."
 })

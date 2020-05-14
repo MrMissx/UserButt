@@ -162,19 +162,19 @@ async def amireallyalivereset(ureset):
 
 
 CMD_HELP.update(
-    {"sysd": ".sysd\
+    {"sysd": "`.sysd`\
     \nUsage: Shows system information using neofetch."})
-CMD_HELP.update({"botver": ".botver\
+CMD_HELP.update({"botver": "`.botver`\
     \nUsage: Shows the userbot version."})
 CMD_HELP.update(
-    {"pip": ".pip <module(s)>\
+    {"pip": "`.pip` <module(s)>\
     \nUsage: Does a search of pip modules(s)."})
 CMD_HELP.update({
     "on":
-    ".alive | .on\
+    "`.alive` | `.on`\
     \nUsage: See wether your bot is working or not.\
-    \n\n.aliveu <text>\
+    \n\n`.aliveu` <text>\
     \nUsage: Changes the 'user' in alive to the text you want.\
-    \n\n.resetalive\
+    \n\n`.resetalive`\
     \nUsage: Resets the user to default."
 })
