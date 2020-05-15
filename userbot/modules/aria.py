@@ -10,7 +10,7 @@ from asyncio import sleep
 from subprocess import PIPE, Popen
 from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.modules.upload_download import humanbytes
+from userbot.utils import humanbytes
 from requests import get
 
 
@@ -188,9 +188,10 @@ async def check_progress_for_dl(gid, event, previous):
                 percentage = int(file.progress)
                 downloaded = percentage * int(file.total_length) / 100
                 prog_str = "`Downloading` | [{0}{1}] `{2}`".format(
-                    "".join(["**#**" for i in range(math.floor(percentage / 5))]),
-                    "".join(["**--**"
-                             for i in range(20 - math.floor(percentage / 5))]),
+                    "".join(["●" for i in range(
+                            math.floor(percentage / 10))]),
+                    "".join(["○" for i in range(
+                            10 - math.floor(percentage / 10))]),
                     file.progress_string())
                 msg = (
                     f"`Name`: `{file.name}`\n"
@@ -214,7 +215,7 @@ async def check_progress_for_dl(gid, event, previous):
                     f"`Name`: `{file.name}`\n"
                     f"`Size`: `{file.total_length_string()}`\n"
                     f"`Path`: `{TEMP_DOWNLOAD_DIRECTORY + file.name}`\n"
-                    "`Response`: **OK** - Successfully downloaded..."
+                    "`Resp`: **OK** - Successfully downloaded..."
                 )
         except Exception as e:
             if " not found" in str(e) or "'file'" in str(e):
