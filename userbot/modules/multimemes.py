@@ -560,39 +560,39 @@ def deEmojify(inputString: str) -> str:
 
 CMD_HELP.update({
         "memify": 
-        ".mmf texttop ; textbottom\
-            \nUsage: Reply a sticker/image/gif and send with cmd."
+        "`.mmf` <text_top> ; <textbottom>"
+        "\nUsage: Reply a sticker/image/gif and send with cmd."
     })
 
 CMD_HELP.update({
         "quotly": 
-        ".q \
-          \nUsage: Enhance ur text to sticker."
+        "`.q`"
+        "\nUsage: Enhance ur text to sticker."
     })
 
 CMD_HELP.update({
         "hazmat":
-        ".hz or .hz [flip, x2, rotate (degree), background (number), black]"
-            "\nUsage: Reply to a image / sticker to suit up!"
-            "\n@hazmat_suit_bot"
+        "`.hz` or `.hz` [flip, x2, rotate (degree), background (number), black]"
+        "\nUsage: Reply to a image / sticker to suit up!"
+        "\n@hazmat_suit_bot"
     })
 
 CMD_HELP.update({
         "quote": 
-        ".pch \
-          \nUsage: Same as quotly, enhance ur text to sticker."
+        "`.pch`"
+        "\nUsage: Same as quotly, enhance ur text to sticker."
     })
 
 CMD_HELP.update({
         "deepfry":
-        ".df or .df [level(1-8)]"
+        "`.df` or `.df` [level(1-8)]"
             "\nUsage: deepfry image/sticker from the reply."
             "\n@image_deepfrybot"
     })
 
 CMD_HELP.update({
         "waifu": 
-        ".waifu \
-          \nUsage: Enchance your text with beautiful anime girl templates. \
-          \n@StickerizerBot"
+        "`.waifu`"
+        "\nUsage: Enchance your text with beautiful anime girl templates."
+        "\n@StickerizerBot"
     })
