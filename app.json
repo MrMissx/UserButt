@@ -31,11 +31,6 @@
       "value": "True",
       "required": true
     },
-    "TELEGRAPH_SHORT_NAME": {
-      "description": "Set the userbot's telegra.ph module. You must set this to make the bot alive",
-      "value": "anything",
-      "required": true
-	},  
     "HEROKU_API_KEY": {
       "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
       "value": ""

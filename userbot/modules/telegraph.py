@@ -14,7 +14,7 @@ from userbot import (TEMP_DOWNLOAD_DIRECTORY, BOTLOG_CHATID, CMD_HELP, bot)
 from userbot.events import register
 
 telegraph = Telegraph()
-r = telegraph.create_account(short_name="Telegraph")
+r = telegraph.create_account(short_name="telegraph")
 auth_url = r["auth_url"]
 
 
