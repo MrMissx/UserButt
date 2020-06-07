@@ -16,8 +16,8 @@ async def _(hentai):
     if hentai.fwd_from:
         return
     link = hentai.pattern_match.group(1)
-	if not link:
-	    return await hentai.edit("`I can't search nothing`")
+    if not link:
+        return await hentai.edit("`I can't search nothing`")
     chat = "@nHentaiBot"
     await hentai.edit("```Processing```")
     async with bot.conversation(chat) as conv:
@@ -33,7 +33,7 @@ async def _(hentai):
           if response.text.startswith("**Sorry I couldn't get manga from**"):
              await hentai.edit("```I think this is not the right link```")
           else:
-             await hentai.delete()		  
+             await hentai.delete()
              await bot.send_message(hentai.chat_id, response.message)
              await bot.send_read_acknowledge(hentai.chat_id)
              """ - cleanup chat after completed - """
