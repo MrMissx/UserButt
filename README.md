@@ -1,5 +1,5 @@
 # Project Telegram UserButt
-[![](https://github.com/keselekpermen69/userbutt/workflows/BugChecker/badge.svg)](https://github.com/keselekpermen69/userbutt/actions?query=workflow%3ABugChecker)
+![BugChecker](https://github.com/keselekpermen69/UserButt/workflows/BugChecker/badge.svg?branch=staging)
 
 
 ![logo](https://gist.githubusercontent.com/keselekpermen69/71d86f264156542154912216b0ebd234/raw/8bd67b5cc1f2552e6a7c5c235e87c5f8537e6cec/sana_doubleexposure.png)
