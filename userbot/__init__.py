@@ -117,7 +117,7 @@ ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "True"))
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", "AIzaSyBnIY_i5IKaUFG-666mJRR7Xi2C06l-l2I")
 
 # Default .alive name
-ALIVE_NAME = os.environ.get("ALIVE_NAME", "♤CLOWN_CYBER♧)
+ALIVE_NAME = os.environ.get("ALIVE_NAME", "♤CLOWN_CYBER♧")
 
 # Time & Date - Country and Time Zone
 COUNTRY = str(os.environ.get("COUNTRY", "Indonesia"))
