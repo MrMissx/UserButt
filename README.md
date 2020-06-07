@@ -28,7 +28,7 @@ Based on RaphielGang's [Telegram-Paperplane](https://github.com/RaphielGang/Tele
 ## How To Host
 The easiest way to deploy this userbot
 
-<p><a href="https://heroku.com/deploy?template=https://github.com/KeselekPermen69/UserButt/tree/sql-extended"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
+<p><a href="https://heroku.com/deploy?template=https://github.com/Rizkipratama183/UserButt/tree/sql-extended"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
 
 For further guide you can head to [Groups and Support](https://github.com/KeselekPermen69/UserButt#Groups-and-support) or read this [guide](https://telegra.ph/Host-a-Telegram-Userbot-05-07)
 
