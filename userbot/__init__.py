@@ -55,10 +55,10 @@ API_HASH = os.environ.get("API_HASH", "b31151a1dd663e9538b79a5afdf5da07")
 
 
 # Userbot Session String
-STRING_SESSION = os.environ.get("STRING_SESSION", "1BVtsOHgBu24AAhATiCBpTWK9hgPK11Mu4Hbdrdd66SPrp3R50yebePiUc0f246sMrUJg-q8fP_I7sGFGC85ShJgU0ojhjb6-0WSFMP84hpF6iSSMZx5axU9DvOMjtyz6CT4JyOAbfZ-nLRxJOg57EVXZazhvt7L59CZZU4hqLThQvNK0XnrAhcEZUgdtsg7Iph99-UAhdy5p98Cm4f8P94e6GNXCbKJ9wefEodrXzza76PwRu3fbB0hm_1fk-P85YKXFXOhNPiPvGFKQsq9a7tauOu5YulXHnxRi2k9vqinsXQCcs0vomLRxma3aZk6cHyBcxinV0odMtVRgjbjGVtf7ZkHdXDk=")
+STRING_SESSION = os.environ.get("STRING_SESSION", "1BVtsOJQBuyFSnu94b0Y3Gz0mhs28BtN7HA27s8bFYeRNca3IJzLylq7Cw0hcUqncxoUug1TbtmuvlQn7WfYid0zK_4-ijHSrx_C-unsNB7M94aKjOcznt6trsL4Yh7yMUDyZMLOfrCq_X8Lw6Z2HfR7O_29k6pRuDiw-ymTDA0STlHm59MFyxCgatDGKGvQtY8MBNvkPlJSt6XKJyNjQ2ODHZ0Os60mBhkkmoUpJRivjQA-weeDx7lj3dMx0t5ktfYfPu6DO0L2gVubhygL7gzof_PV_H9VOAGFafmTL4DyfXzS_gzevMOyXi4UlbcMZYhaMO4g8dRzjLeciwd2jyY0YKPaw7ys=")
 
 # Logging channel/group ID configuration.
-BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", "-492505987"))
+BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", "-394907402"))
 
 # Userbot logging feature switch.
 BOTLOG = sb(os.environ.get("BOTLOG", "True"))
