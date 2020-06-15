@@ -7,6 +7,7 @@ cffi>=1.0.0
 coffeehouse
 covid
 cryptg
+deezloader
 dnspython
 emoji
 gitpython
