@@ -30,8 +30,8 @@ async def _(event):
         "invalid_arl_token": "please set the required variables for this module",
         "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session 🥺",
         "server_error": "We're experiencing technical difficulties.",
-        "processing": "`Downloading...`"
-		"uploading": "`Uploading...`"
+        "processing": "`Downloading...`",
+        "uploading": "`Uploading...`"
     }
 
     ARL_TOKEN = DEEZER_ARL_TOKEN
@@ -51,7 +51,12 @@ async def _(event):
         os.makedirs(temp_dl_path)
 
     required_link = event.pattern_match.group(1)
+    if not required_link and ".com" not in required_link:
+        return await event.edit("`Give me the spotif/deezer track link.`")
     required_qty = event.pattern_match.group(2)
+    if not required_qty and required_qty not in ("FLAC", "MP3_320", "MP3_256", "MP3_128"):
+        return await event.edit("Please specified the music quality."
+                                "\n**Supported quality**: `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.")
 
     await event.edit(strings["processing"])
 
@@ -159,5 +164,5 @@ CMD_HELP.update({
     "deezload":
         "`.deezload` <spotify/deezer link> <Format>"
         "\nUsage: Download music from deezer."
-		"\n\n *Format= `FLAC` ; `MP3\_320` ; `MP3\_256` ; `MP3\_128`"
+		"\n\n *Format= `FLAC` ; `MP3_320` ; `MP3_256` ; `MP3_128`"
 })
