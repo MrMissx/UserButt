@@ -50,13 +50,17 @@ async def _(event):
     if not os.path.exists(temp_dl_path):
         os.makedirs(temp_dl_path)
 
-    required_link = event.pattern_match.group(1)
-    if ".com" not in required_link:
+    link = event.pattern_match.group(1)
+    qty = event.pattern_match.group(2)
+    if ".com" not in link:
         return await event.edit("`Give me the spotif/deezer track link.`")
-    required_qty = event.pattern_match.group(2)
-    if ("FLAC", "MP3_320", "MP3_256", "MP3_128") not in required_qty:
+    else:
+        required_link = link
+    if ("FLAC", "MP3_320", "MP3_256", "MP3_128") not in qty:
         return await event.edit("Please specified the music quality."
                                 "\n**Supported quality**: `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`.")
+    else:
+        required_qty = qty
 
     await event.edit(strings["processing"])
 
