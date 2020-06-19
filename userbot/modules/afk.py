@@ -95,7 +95,7 @@ async def type_afk_is_not_true(notafk):
     global afk_end
     back_alive = datetime.now()
     afk_end = back_alive.replace(microsecond=0)
-    if ISAFK and not notafk.is_channel:
+    if ISAFK and notafk.is_group and not notafk.is_channel:
         ISAFK = False
         msg = await notafk.respond("I'm no longer AFK.")
         time.sleep(3)
