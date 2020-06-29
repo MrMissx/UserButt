@@ -62,7 +62,6 @@ async def set_afk(afk_e):
     global afk_time  # pylint:disable=E0602
     global afk_start
     global afk_end
-    global reason
     USER_AFK = {}
     afk_time = None
     afk_end = {}

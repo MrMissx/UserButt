@@ -14,9 +14,7 @@ import re
 import random
 from logging import Logger as logger
 from telethon import events
-import datetime
 import os
-import requests
 import requests
 import base64
 import json
