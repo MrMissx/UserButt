@@ -64,7 +64,11 @@ async def github(event):
                 await event.edit(REPLY)
 
 
+<<<<<<< HEAD
+@register(pattern=r".commit (.*)", outgoing=True)
+=======
 @register(outgoing=True, pattern=r".commit (.*)")
+>>>>>>> ea2af995f42fe39acab553b6fe50e476278a1710
 async def download(event):
     if event.fwd_from:
         return	

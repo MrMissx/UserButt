@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
+# (c) https://t.me/TelethonChat/37677 and UniBorg
+=======
 # (c) https://t.me/TelethonChat/37677 and SpEcHiDe
+>>>>>>> ea2af995f42fe39acab553b6fe50e476278a1710
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,5 +27,9 @@ with TelegramClient(StringSession(), API_KEY, API_HASH) as client:
 
 <code>STRING_SESSION</code>: <code>{}</code>
 
-?  <i>Please be carefull to pass this value to third parties</i>""".format(session_string)
+⚠️ <i>Please be carefull to pass this value to third parties</i>""".format(session_string)
+<<<<<<< HEAD
     client.send_message("me", saved_messages_template, parse_mode="html")
+=======
+    client.send_message("me", saved_messages_template, parse_mode="html")
+>>>>>>> ea2af995f42fe39acab553b6fe50e476278a1710
