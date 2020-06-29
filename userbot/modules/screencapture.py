@@ -7,7 +7,6 @@
 # License: MPL and OSSRPL
 
 import io
-import traceback
 from re import match
 from selenium import webdriver
 from asyncio import sleep

@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 
 import asyncio
-from asyncio import wait, sleep
+from asyncio import sleep
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
