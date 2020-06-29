@@ -87,7 +87,7 @@ async def fetch_info(chat, event):
     created = msg_info.messages[0].date if first_msg_valid else None
     former_title = msg_info.messages[0].action.title if first_msg_valid and type(msg_info.messages[0].action) is MessageActionChannelMigrateFrom and msg_info.messages[0].action.title != chat_title else None
     try:
-        dc_id, location = get_input_location(chat.full_chat.chat_photo)
+        dc_id, _ = get_input_location(chat.full_chat.chat_photo)
     except Exception as e:
         dc_id = "Unknown"
         location = str(e)
@@ -125,7 +125,7 @@ async def fetch_info(chat, event):
         except Exception as e:
             print("Exception:", e)
     if bots_list:
-        for bot in bots_list:
+        for _ in bots_list:
             bots += 1
 
     caption = "<b>CHAT INFO:</b>\n"

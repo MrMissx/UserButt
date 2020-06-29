@@ -27,7 +27,6 @@ async def get_adzan(adzan):
    
     city = parsed["results"]["location"]["city"]
     country = parsed["results"]["location"]["country"]
-    timezone = parsed["results"]["location"]["timezone"]
     date = parsed["results"]["datetime"][0]["date"]["gregorian"]
 
     imsak = parsed["results"]["datetime"][0]["times"]["Imsak"]
