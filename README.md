@@ -1,4 +1,5 @@
 # Project Telegram UserButt
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4ea89f38499348719060be9d2b9192f3)](https://app.codacy.com/manual/keselekpermen69/UserButt?utm_source=github.com&utm_medium=referral&utm_content=keselekpermen69/UserButt&utm_campaign=Badge_Grade_Settings)
 [![](https://github.com/keselekpermen69/userbutt/workflows/BugChecker/badge.svg)](https://github.com/keselekpermen69/userbutt/actions?query=workflow%3ABugChecker)
 
 
