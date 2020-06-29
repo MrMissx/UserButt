@@ -12,34 +12,17 @@ from PIL import Image
 import asyncio
 import re
 import random
-import time
-from datetime import datetime
 from logging import Logger as logger
 from telethon import events
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
-from pySmartDL import SmartDL
 import datetime
-from collections import defaultdict
-import math
 import os
 import requests
-import zipfile
 import requests
 import base64
 import json
 import telethon
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from telethon.tl.types import DocumentAttributeVideo
-from telethon.errors.rpcerrorlist import StickersetInvalidError
-from telethon.errors import MessageNotModifiedError
-from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import (DocumentAttributeFilename, DocumentAttributeSticker,
-                               InputMediaUploadedDocument, InputPeerNotifySettings,
-                               InputStickerSetID, InputStickerSetShortName,
-                               MessageMediaPhoto)
-from userbot.utils import progress, humanbytes, time_formatter
+from telethon.tl.types import (MessageMediaPhoto)
 from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, QUOTES_API_TOKEN
 from userbot.events import register
 

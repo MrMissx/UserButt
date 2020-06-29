@@ -8,7 +8,6 @@
 from datetime import datetime
 import time
 from random import choice, randint
-from asyncio import sleep
 
 from telethon.events import StopPropagation
 

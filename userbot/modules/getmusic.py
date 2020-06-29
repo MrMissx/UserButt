@@ -5,11 +5,9 @@
 # you may not use this file except in compliance with the License.
 #
 
-import datetime
 import asyncio
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot import bot, CMD_HELP
 from userbot.events import register
 
