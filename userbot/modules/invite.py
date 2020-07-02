@@ -45,7 +45,7 @@ async def _(event):
             await event.edit("`Invited Successfully`")
             
 CMD_HELP.update({
-    'invite':
-    '`.invite` <username/user id>\
-        \nUsage: Invite user or bots if u want.'
+    "invite":
+    "`.invite` <username/user id>"
+    "\nUsage: Invite user or bots if u want."
 })

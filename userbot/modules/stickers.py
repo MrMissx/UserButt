@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for kanging stickers or making new ones. Thanks @rupansh"""
+"""Userbot module for kanging stickers or making new ones. Thanks @rupansh"""
 
 import io
 import math
@@ -31,14 +31,14 @@ KANGING_STR = [
     "Roses are red\nviolets are blue\nkanging this sticker\nso my pack looks cool",
     "Imprisoning this sticker...\nit'll look good in my pack",
     "I'm is stealing this sticker...\nhehehehehe... ",
-	"May i kang this?\nI'll do it anyway even you says no!",
-	"Seems gud if i kang this...",
+    "May i kang this?\nI'll do it anyway even you says no!",
+    "Seems gud if i kang this...",
 ]
 
 
 @register(outgoing=True, pattern="^.kang")
 async def kang(args):
-    """ For .kang command, kangs stickers or creates new ones. """
+    """For .kang command, kangs stickers or creates new ones."""
     user = await bot.get_me()
     if not user.username:
         user.username = user.first_name
@@ -246,7 +246,7 @@ async def kang(args):
 
 
 async def resize_photo(photo):
-    """ Resize the given photo to 512x512 """
+    """Resize the given photo to 512x512"""
     image = Image.open(photo)
     maxsize = (512, 512)
     if (image.width and image.height) < 512:
@@ -337,16 +337,16 @@ async def sticker_to_png(sticker):
 
 CMD_HELP.update({
     "stickers":
-    "`.kang`\
-\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n`.kang` [emoji('s)]\
-\nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n`.kang` [number]\
-\nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
-\n\n`.kang `[emoji('s)] [number]\
-\nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
-\n\n`.stkrinfo`\
-\nUsage: Gets info about the sticker pack.\
-\n\n>`.getsticker`\
-\nUsage: reply to a sticker to get 'PNG' file of sticker."
+    "`.kang`"
+    "\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack."
+    "\n\n`.kang` [emoji('s)]"
+    "\nUsage: Works just like .kang but uses the emoji('s) you picked."
+    "\n\n`.kang` [number]"
+    "\nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji."
+    "\n\n`.kang `[emoji('s)] [number]"
+    "\nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked."
+    "\n\n`.stkrinfo`"
+    "\nUsage: Gets info about the sticker pack."
+    "\n\n>`.getsticker`"
+    "\nUsage: reply to a sticker to get 'PNG' file of sticker."
 })

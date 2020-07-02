@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for getting the weather of a city. """
+"""Userbot module for getting the weather of a city."""
 
 import json
 from requests import get
@@ -25,8 +25,8 @@ else:
 
 
 async def get_tz(con):
-    """ Get time zone of the given country. """
-    """ Credits: @aragon12 and @zakaryan2004. """
+    """Get time zone of the given country."""
+    """Credits: @aragon12 and @zakaryan2004."""
     for c_code in c_n:
         if con == c_n[c_code]:
             return tz(c_tz[c_code][0])
@@ -39,8 +39,7 @@ async def get_tz(con):
 
 @register(outgoing=True, pattern="^.weather(?: |$)(.*)")
 async def get_weather(weather):
-    """ For .weather command, gets the current weather of a city. """
-
+    """For .weather command, gets the current weather of a city."""
     if not OWM_API:
         await weather.edit(
             "`Get an API key from` https://openweathermap.org/ `first.`")
@@ -81,7 +80,7 @@ async def get_weather(weather):
     result = json.loads(request.text)
 
     if request.status_code != 200:
-        await weather.edit(f"`Invalid country.`")
+        await weather.edit("`Invalid country.`")
         return
 
     cityname = result['name']
@@ -136,6 +135,6 @@ async def get_weather(weather):
 
 CMD_HELP.update({
     "weather":
-    "`.weather` <city> or `.weather` <city>, <country name/code>\
-    \nUsage: Gets the weather of a city."
+    "`.weather` <city> or `.weather` <city>, <country name/code>"
+    "\nUsage: Gets the weather of a city."
 })

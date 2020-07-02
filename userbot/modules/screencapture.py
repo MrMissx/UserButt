@@ -7,7 +7,6 @@
 # License: MPL and OSSRPL
 
 import io
-import traceback
 from re import match
 from selenium import webdriver
 from asyncio import sleep
@@ -69,7 +68,7 @@ async def capture(url):
 
 CMD_HELP.update({
     "ss":
-    "`.ss` <url>\
-    \nUsage: Takes a screenshot of a website and sends the screenshot.\
-    \nExample of a valid URL : `https://www.google.com`"
+    "`.ss` <url>"
+    "\nUsage: Takes a screenshot of a website and sends the screenshot."
+    "\nExample of a valid URL : `https://www.google.com`"
 })

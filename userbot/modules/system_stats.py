@@ -22,7 +22,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 @register(outgoing=True, pattern="^.sysd$")
 async def sysdetails(sysd):
-    """ For .sysd command, get system info using neofetch. """
+    """For .sysd command, get system info using neofetch."""
     if not sysd.text[0].isalpha() and sysd.text[0] not in ("/", "#", "@", "!"):
         try:
             fetch = await asyncrunapp(
@@ -43,7 +43,7 @@ async def sysdetails(sysd):
 
 @register(outgoing=True, pattern="^.botver$")
 async def bot_ver(event):
-    """ For .botver command, get the bot version. """
+    """For .botver command, get the bot version."""
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@",
                                                              "!"):
         if which("git") is not None:
@@ -85,7 +85,7 @@ async def bot_ver(event):
 
 @register(outgoing=True, pattern="^.pip(?: |$)(.*)")
 async def pipcheck(pip):
-    """ For .pip command, do a pip search. """
+    """For .pip command, do a pip search."""
     if not pip.text[0].isalpha() and pip.text[0] not in ("/", "#", "@", "!"):
         pipmodule = pip.pattern_match.group(1)
         if pipmodule:
@@ -130,7 +130,7 @@ async def pipcheck(pip):
 
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
 async def amireallyalive(alive):
-    """ For .alive command, check if the bot is running.  """
+    """For .alive command, check if the bot is running."""
     await alive.edit("`I'm running...`\n"  
                      "----------------------------------------\n"    
                   f"`Telethon : v{version.__version__} `\n"
@@ -142,7 +142,7 @@ async def amireallyalive(alive):
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
-    """ For .aliveu command, change the username in the .alive command. """
+    """For .aliveu command, change the username in the .alive command."""
     message = username.text
     output = '.aliveu [new user without brackets] nor can it be empty'
     if not (message == '.aliveu' or message[7:8] != ' '):
@@ -155,26 +155,27 @@ async def amireallyaliveuser(username):
 
 @register(outgoing=True, pattern="^.resetalive$")
 async def amireallyalivereset(ureset):
-    """ For .resetalive command, reset the username in the .alive command. """
+    """For .resetalive command, reset the username in the .alive command."""
     global DEFAULTUSER
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
 
-CMD_HELP.update(
-    {"sysd": "`.sysd`\
-    \nUsage: Shows system information using neofetch."})
-CMD_HELP.update({"botver": "`.botver`\
-    \nUsage: Shows the userbot version."})
-CMD_HELP.update(
-    {"pip": "`.pip` <module(s)>\
-    \nUsage: Does a search of pip modules(s)."})
+CMD_HELP.update({
+    "sysd": "`.sysd`"
+    "\nUsage: Shows system information using neofetch."})
+CMD_HELP.update({
+    "botver": "`.botver`"
+    "\nUsage: Shows the userbot version."})
+CMD_HELP.update({
+    "pip": "`.pip` <module(s)>"
+    "\nUsage: Does a search of pip modules(s)."})
 CMD_HELP.update({
     "on":
-    "`.alive` | `.on`\
-    \nUsage: See wether your bot is working or not.\
-    \n\n`.aliveu` <text>\
-    \nUsage: Changes the 'user' in alive to the text you want.\
-    \n\n`.resetalive`\
-    \nUsage: Resets the user to default."
+    "`.alive` | `.on`"
+    "\nUsage: See wether your bot is working or not."
+    "\n\n`.aliveu` <text>"
+    "\nUsage: Changes the 'user' in alive to the text you want."
+    "\n\n`.resetalive`"
+    "\nUsage: Resets the user to default."
 })

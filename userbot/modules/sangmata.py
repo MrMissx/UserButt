@@ -5,10 +5,8 @@
 #
 #Port to userbot by @KeselekPermen69
 
-import datetime
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot.events import register
 from userbot import bot, CMD_HELP
 
@@ -24,7 +22,6 @@ async def _(event):
        await event.edit("```reply to text message```")
        return
     chat = "@SangMataInfo_bot"
-    sender = reply_message.sender
     if reply_message.sender.bot:
        await event.edit("`Reply to actual users message.`")
        return
@@ -44,7 +41,7 @@ async def _(event):
 
 
 CMD_HELP.update({
-        "sangmata": 
-        "`.sg` \
-          \nUsage: View user history.\n"
-    })
+    "sangmata": 
+    "`.sg`"
+    "\nUsage: View user history."
+})

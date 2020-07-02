@@ -14,7 +14,6 @@ from sys import setrecursionlimit
 from telethon.errors import AboutTooLongError
 from telethon.tl.functions.account import UpdateProfileRequest
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import User as Userbot
 from telethon.errors.rpcerrorlist import FloodWaitError
 
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, BIO_PREFIX, lastfm, LASTFM_USERNAME, bot
@@ -47,7 +46,7 @@ LastLog = False
 
 @register(outgoing=True, pattern="^.lastfm$")
 async def last_fm(lastFM):
-    """ For .lastfm command, fetch scrobble data from last.fm. """
+    """For .lastfm command, fetch scrobble data from last.fm."""
     await lastFM.edit("Processing...")
     preview = None
     playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
@@ -220,10 +219,10 @@ async def lastlog(lstlog):
 
 CMD_HELP.update({
     'lastfm':
-    "`.lastfm`\
-    \nUsage: Shows currently scrobbling track or most recent scrobbles if nothing is playing.\
-    \n\n`.lastbio` <on/off>\
-    \nUsage: Enables/Disables last.fm current playing to bio.\
-    \n\n`.lastlog` <on/off>\
-    \nUsage: Enable/Disable last.fm bio logging in the bot-log group."
+    "`.lastfm`"
+    "\nUsage: Shows currently scrobbling track or most recent scrobbles if nothing is playing."
+    "\n\n`.lastbio` <on/off>"
+    "\nUsage: Enables/Disables last.fm current playing to bio."
+    "\n\n`.lastlog` <on/off>"
+    "\nUsage: Enable/Disable last.fm bio logging in the bot-log group."
 })

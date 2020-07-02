@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for changing your Telegram profile details. """
+"""Userbot module for changing your Telegram profile details."""
 
 import os
 
@@ -42,7 +42,7 @@ USERNAME_TAKEN = "```This username is already taken.```"
 
 @register(outgoing=True, pattern="^.reserved$")
 async def mine(event):
-    """ For .reserved command, get a list of your reserved usernames. """
+    """For .reserved command, get a list of your reserved usernames."""
     result = await bot(GetAdminedPublicChannelsRequest())
     output_str = ""
     for channel_obj in result.chats:
@@ -52,7 +52,7 @@ async def mine(event):
 
 @register(outgoing=True, pattern="^.name")
 async def update_name(name):
-    """ For .name command, change your name in Telegram. """
+    """For .name command, change your name in Telegram."""
     newname = name.text[6:]
     if " " not in newname:
         firstname = newname
@@ -69,7 +69,7 @@ async def update_name(name):
 
 @register(outgoing=True, pattern="^.setpfp$")
 async def set_profilepic(propic):
-    """ For .profilepic command, change your profile picture in Telegram. """
+    """For .profilepic command, change your profile picture in Telegram."""
     await propic.edit("`Changing profile picture...`")
     replymsg = await propic.get_reply_message()
     photo = None
@@ -98,7 +98,7 @@ async def set_profilepic(propic):
 
 @register(outgoing=True, pattern="^.setbio (.*)")
 async def set_biograph(setbio):
-    """ For .setbio command, set a new bio for your profile in Telegram. """
+    """For .setbio command, set a new bio for your profile in Telegram."""
     await setbio.edit("`setting up a new bio...`")
     newbio = setbio.pattern_match.group(1)
     await setbio.client(UpdateProfileRequest(about=newbio))
@@ -107,7 +107,7 @@ async def set_biograph(setbio):
 
 @register(outgoing=True, pattern="^.username (.*)")
 async def update_username(username):
-    """ For .username command, set a new username in Telegram. """
+    """For .username command, set a new username in Telegram."""
     await username.edit("`Changing username...`")
     newusername = username.pattern_match.group(1)
     try:
@@ -119,7 +119,7 @@ async def update_username(username):
 
 @register(outgoing=True, pattern="^.count$")
 async def count(event):
-    """ For .count command, get profile stats. """
+    """For .count command, get profile stats."""
     u = 0
     g = 0
     c = 0
@@ -156,7 +156,7 @@ async def count(event):
 
 @register(outgoing=True, pattern=r"^.delpfp")
 async def remove_profilepic(delpfp):
-    """ For .delpfp command, delete your current profile picture in Telegram. """
+    """For .delpfp command, delete your current profile picture in Telegram."""
     group = delpfp.text[8:]
     if group == 'all':
         lim = 0
@@ -183,18 +183,18 @@ async def remove_profilepic(delpfp):
 
 CMD_HELP.update({
     "profile":
-    "`.username` <new_username>\
-\nUsage: Changes your Telegram username.\
-\n\n`.name` <firstname> or `.name` <firstname> <lastname>\
-\nUsage: Changes your Telegram name.(First and last name will get split by the first space)\
-\n\n`.setpfp`\
-\nUsage: Reply with .setpfp to an image to change your Telegram profie picture.\
-\n\n`.setbio` <new_bio>\
-\nUsage: Changes your Telegram bio.\
-\n\n`.delpfp` or `.delpfp` <number>/<all>\
-\nUsage: Deletes your Telegram profile picture(s).\
-\n\n`.reserved`\
-\nUsage: Shows usernames reserved by you.\
-\n\n`.count`\
-\nUsage: Counts your groups, chats, bots etc..."
+    "`.username` <new_username>"
+    "\nUsage: Changes your Telegram username."
+    "\n\n`.name` <firstname> or `.name` <firstname> <lastname>"
+    "\nUsage: Changes your Telegram name.(First and last name will get split by the first space)"
+    "\n\n`.setpfp`"
+    "\nUsage: Reply with .setpfp to an image to change your Telegram profie picture."
+    "\n\n`.setbio` <new_bio>"
+    "\nUsage: Changes your Telegram bio."
+    "\n\n`.delpfp` or `.delpfp` <number>/<all>"
+    "\nUsage: Deletes your Telegram profile picture(s)."
+    "\n\n`.reserved`"
+    "\nUsage: Shows usernames reserved by you."
+    "\n\n`.count`"
+    "\nUsage: Counts your groups, chats, bots etc..."
 })

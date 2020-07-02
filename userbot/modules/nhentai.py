@@ -4,10 +4,8 @@
 # you may not use this file except in compliance with the License.
 #
 
-import datetime
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot import bot, CMD_HELP
 from userbot.events import register
 
@@ -41,6 +39,6 @@ async def _(hentai):
                                                 [msg.id, response.id])
 
 CMD_HELP.update({
-"nhentai": 
-"`.nhentai` <link / code>"
-"\nUsage: view nhentai in telegra.ph"})
+    "nhentai": 
+    "`.nhentai` <link / code>"
+    "\nUsage: view nhentai in telegra.ph"})

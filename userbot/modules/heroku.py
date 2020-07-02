@@ -4,11 +4,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-
-
-"""
-   Heroku manager for your userbot
-"""
+"""Heroku manager for your userbot"""
 
 import heroku3
 import aiohttp
@@ -33,9 +29,7 @@ else:
     app = None
 
 
-"""
-   ConfigVars setting, get current var, set var or delete var...
-"""
+"""ConfigVars setting, get current var, set var or delete var..."""
 
 
 @register(outgoing=True,
@@ -125,16 +119,12 @@ async def set_var(var):
     heroku_var[variable] = value
 
 
-"""
-    Check account quota, remaining quota, used quota, used app quota
-"""
+"""Check account quota, remaining quota, used quota, used app quota"""
 
 
 @register(outgoing=True, pattern=r"^.usage(?: |$)")
 async def dyno_usage(dyno):
-    """
-        Get your account Dyno Usage
-    """
+    """Get your account Dyno Usage"""
     await dyno.edit("`Getting Information...`")
     useragent = (
         'Mozilla/5.0 (Linux; Android 10; SM-G975F) '
@@ -162,14 +152,14 @@ async def dyno_usage(dyno):
             quota = result['account_quota']
             quota_used = result['quota_used']
 
-            """ - User Quota Limit and Used - """
+            """- User Quota Limit and Used -"""
             remaining_quota = quota - quota_used
             percentage = math.floor(remaining_quota / quota * 100)
             minutes_remaining = remaining_quota / 60
             hours = math.floor(minutes_remaining / 60)
             minutes = math.floor(minutes_remaining % 60)
 
-            """ - User App Used Quota - """
+            """- User App Used Quota -"""
             Apps = result['apps']
             for apps in Apps:
                 if apps.get('app_uuid') == app.id:

@@ -19,8 +19,7 @@ from telethon.tl.types import DocumentAttributeAudio
 
 @register(outgoing=True, pattern="^\.deezload (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
 async def _(event):
-    """DeezLoader by @An0nimia
-    Ported for UniBorg by @SpEcHlDe"""
+    """DeezLoader by @An0nimia ported for UniBorg by @SpEcHlDe"""
     if event.fwd_from:
         return
 
@@ -28,7 +27,7 @@ async def _(event):
         "name": "DeezLoad",
         "arl_token_cfg_doc": "ARL Token for Deezer",
         "invalid_arl_token": "please set the required variables for this module",
-        "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session 🥺",
+        "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session",
         "server_error": "We're experiencing technical difficulties.",
         "processing": "`Downloading...`",
         "uploading": "`Uploading...`"
@@ -159,5 +158,5 @@ CMD_HELP.update({
     "deezload":
         "`.deezload` <spotify/deezer link> <Format>"
         "\nUsage: Download music from deezer."
-        "\n\n *Format= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`."
+        "\n\n*Format= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`."
 })

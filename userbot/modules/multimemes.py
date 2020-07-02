@@ -12,34 +12,15 @@ from PIL import Image
 import asyncio
 import re
 import random
-import time
-from datetime import datetime
 from logging import Logger as logger
 from telethon import events
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
-from pySmartDL import SmartDL
-import datetime
-from collections import defaultdict
-import math
 import os
-import requests
-import zipfile
 import requests
 import base64
 import json
 import telethon
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.account import UpdateNotifySettingsRequest
-from telethon.tl.types import DocumentAttributeVideo
-from telethon.errors.rpcerrorlist import StickersetInvalidError
-from telethon.errors import MessageNotModifiedError
-from telethon.tl.functions.messages import GetStickerSetRequest
-from telethon.tl.types import (DocumentAttributeFilename, DocumentAttributeSticker,
-                               InputMediaUploadedDocument, InputPeerNotifySettings,
-                               InputStickerSetID, InputStickerSetShortName,
-                               MessageMediaPhoto)
-from userbot.utils import progress, humanbytes, time_formatter
+from telethon.tl.types import (MessageMediaPhoto)
 from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, QUOTES_API_TOKEN
 from userbot.events import register
 
@@ -66,11 +47,10 @@ if 1 == 1:
         "channel": "Channel"
     }
 
-    config = dict({"api_url": "http://api.antiddos.systems",
-                                          "username_colors": ["#fb6169", "#faa357", "#b48bf2", "#85de85",
-                                                              "#62d4e3", "#65bdf3", "#ff5694"],
-                                          "default_username_color": "#b48bf2"})
-
+    config = {"api_url": "http://api.antiddos.systems",
+              "username_colors": ["#fb6169", "#faa357", "#b48bf2", "#85de85",
+                                  "#62d4e3", "#65bdf3", "#ff5694"],
+              "default_username_color": "#b48bf2"}
 
 THUMB_IMAGE_PATH = "./thumb_image.jpg"
 
@@ -270,10 +250,6 @@ async def mim(event):
        await event.edit("```reply to a image/sticker/gif```")
        return
     chat = "@MemeAutobot"
-    sender = reply_message.sender
-    file_ext_ns_ion = "@memetime.png"
-    file = await bot.download_file(reply_message.media)
-    uploaded_gif = None
     if reply_message.sender.bot:
        await event.edit("```Reply to actual users message.```")
        return
@@ -375,7 +351,6 @@ async def quotess(qotli):
        await qotli.edit("```Reply to text message```")
        return
     chat = "@QuotLyBot"
-    sender = reply_message.sender
     if reply_message.sender.bot:
        await qotli.edit("```Reply to actual users message.```")
        return
@@ -432,7 +407,7 @@ async def hazz(hazmat):
                 r = await conv.get_response()
                 response = await conv.get_response()
             elif reply_message.gif:
-                m = f"/hazmat"
+                m = "/hazmat"
                 msg_reply = await conv.send_message(
                           m,
                           reply_to=msg.id)
@@ -559,40 +534,40 @@ def deEmojify(inputString: str) -> str:
 
 
 CMD_HELP.update({
-        "memify": 
-        "`.mmf` <text_top> ; <textbottom>"
-        "\nUsage: Reply a sticker/image/gif and send with cmd."
-    })
+    "memify": 
+    "`.mmf` <text_top> ; <textbottom>"
+    "\nUsage: Reply a sticker/image/gif and send with cmd."
+})
 
 CMD_HELP.update({
-        "quotly": 
-        "`.q`"
-        "\nUsage: Enhance ur text to sticker."
-    })
+    "quotly": 
+    "`.q`"
+    "\nUsage: Enhance ur text to sticker."
+})
 
 CMD_HELP.update({
-        "hazmat":
-        "`.hz` or `.hz` [flip, x2, rotate (degree), background (number), black]"
-        "\nUsage: Reply to a image / sticker to suit up!"
-        "\n@hazmat_suit_bot"
-    })
+    "hazmat":
+    "`.hz` or `.hz` [flip, x2, rotate (degree), background (number), black]"
+    "\nUsage: Reply to a image / sticker to suit up!"
+    "\n@hazmat_suit_bot"
+})
 
 CMD_HELP.update({
-        "quote": 
-        "`.pch`"
-        "\nUsage: Same as quotly, enhance ur text to sticker."
-    })
+    "quote": 
+    "`.pch`"
+    "\nUsage: Same as quotly, enhance ur text to sticker."
+})
 
 CMD_HELP.update({
-        "deepfry":
-        "`.df` or `.df` [level(1-8)]"
-        "\nUsage: deepfry image/sticker from the reply."
-        "\n@image_deepfrybot"
-    })
+    "deepfry":
+    "`.df` or `.df` [level(1-8)]"
+    "\nUsage: deepfry image/sticker from the reply."
+    "\n@image_deepfrybot"
+})
 
 CMD_HELP.update({
-        "waifu": 
-        "`.waifu`"
-        "\nUsage: Enchance your text with beautiful anime girl templates."
-        "\n@StickerizerBot"
-    })
+    "waifu": 
+    "`.waifu`"
+    "\nUsage: Enchance your text with beautiful anime girl templates."
+    "\n@StickerizerBot"
+})

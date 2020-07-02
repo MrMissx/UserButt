@@ -13,7 +13,7 @@ from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.create (b|g|c)(?: |$)(.*)")
 async def telegraphs(grop):
-    """ For .create command, Creating New Group & Channel """
+    """For .create command, Creating New Group & Channel"""
     if not grop.text[0].isalpha() and grop.text[0] not in ("/", "#", "@", "!"):
         if grop.fwd_from:
             return
@@ -50,13 +50,11 @@ async def telegraphs(grop):
                 await grop.edit(str(e))
 
 CMD_HELP.update({
-    "create": "\
-Create\
-\nUsage: Create Channel, Group & Group With Bot.\
-\n\n`.create g` <group name>\
-\nUsage: Create a Private Group.\
-\n\n`.create b` <group name>\
-\nUsage: Create a Group with Bot.\
-\n\n`.create c` <channel name>\
-\nUsage: Create a Channel.\
-"})
+    "create": 
+    "\n\n`.create g` <group name>"
+    "\nUsage: Create a Private Group."
+    "\n\n`.create b` <group name>"
+    "\nUsage: Create a Group with Bot."
+    "\n\n`.create c` <channel name>"
+    "\nUsage: Create a Channel."
+})

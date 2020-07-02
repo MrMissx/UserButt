@@ -50,6 +50,6 @@ async def get_adzan(adzan):
     await adzan.edit(result)
 
 CMD_HELP.update({
-        "adzan": "`.adzan` <city>\
-        \nUsage: Gets the prayer time for moslem."
-    })
+    "adzan": "`.adzan` <city>"
+    "\nUsage: Gets the prayer time for moslem."
+})

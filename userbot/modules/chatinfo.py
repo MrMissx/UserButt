@@ -9,9 +9,9 @@ from datetime import datetime
 from emoji import emojize
 from math import sqrt
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
-from telethon.tl.functions.messages import GetHistoryRequest, CheckChatInviteRequest, GetFullChatRequest
+from telethon.tl.functions.messages import GetHistoryRequest, GetFullChatRequest
 from telethon.tl.types import MessageActionChannelMigrateFrom, ChannelParticipantsAdmins
-from telethon.errors import (ChannelInvalidError, ChannelPrivateError, ChannelPublicGroupNaError, InviteHashEmptyError, InviteHashExpiredError, InviteHashInvalidError)
+from telethon.errors import (ChannelInvalidError, ChannelPrivateError, ChannelPublicGroupNaError)
 from telethon.utils import get_input_location
 from userbot import CMD_HELP
 from userbot.events import register
@@ -87,7 +87,7 @@ async def fetch_info(chat, event):
     created = msg_info.messages[0].date if first_msg_valid else None
     former_title = msg_info.messages[0].action.title if first_msg_valid and type(msg_info.messages[0].action) is MessageActionChannelMigrateFrom and msg_info.messages[0].action.title != chat_title else None
     try:
-        dc_id, location = get_input_location(chat.full_chat.chat_photo)
+        dc_id, _ = get_input_location(chat.full_chat.chat_photo)
     except Exception as e:
         dc_id = "Unknown"
         location = str(e)
@@ -125,7 +125,7 @@ async def fetch_info(chat, event):
         except Exception as e:
             print("Exception:", e)
     if bots_list:
-        for bot in bots_list:
+        for _ in bots_list:
             bots += 1
 
     caption = "<b>CHAT INFO:</b>\n"
@@ -189,7 +189,7 @@ async def fetch_info(chat, event):
         else:
             caption += "\n"
     if hasattr(chat_obj_info, "scam") and chat_obj_info.scam:
-    	caption += "Scam: <b>Yes</b>\n\n"
+        caption += "Scam: <b>Yes</b>\n\n"
     if hasattr(chat_obj_info, "verified"):
         caption += f"Verified by Telegram: {verified}\n\n"
     if description:
@@ -197,7 +197,7 @@ async def fetch_info(chat, event):
     return caption
 
 CMD_HELP.update({
-        "chatinfo":
-        "`.chatinfo` [optional: <reply/tag/chat id/invite link>]\
-            \nUsage: Gets info of a chat. Some info might be limited due to missing permissions."
+    "chatinfo":
+    "`.chatinfo` [optional: <reply/tag/chat id/invite link>]"
+    "\nUsage: Gets info of a chat. Some info might be limited due to missing permissions."
 })

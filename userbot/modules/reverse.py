@@ -5,16 +5,14 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for reverse searching stickers and images on Google """
+"""Userbot module for reverse searching stickers and images on Google"""
 
 import io
 import os
 import urllib
-from urllib.request import urlopen
 import requests
 from bs4 import BeautifulSoup
 import re
-from telethon.tl.types import MessageMediaPhoto
 from PIL import Image
 
 from userbot import bot, CMD_HELP
@@ -27,7 +25,7 @@ opener.addheaders = [('User-agent', useragent)]
 
 @register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
 async def okgoogle(img):
-    """ For .reverse command, Google search images and stickers. """
+    """For .reverse command, Google search images and stickers."""
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -144,7 +142,7 @@ async def scam(results, lim):
 
 
 CMD_HELP.update({
-    'reverse':
-    '`.reverse`\
-        \nUsage: Reply to a pic/sticker to revers-search it on Google Images !!'
+    "reverse":
+    "`.reverse`"
+    "\nUsage: Reply to a pic/sticker to revers-search it on Google Images !!"
 })

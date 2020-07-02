@@ -6,7 +6,6 @@
 
 # Import Libraries
 import sys
-import ast
 version = (3, 0)
 cur_version = sys.version_info
 if cur_version >= version:  # If the Current Version of Python is 3.0 or above
@@ -33,7 +32,6 @@ import datetime
 import json
 import re
 import codecs
-import socket
 
 args_list = ["keywords", "keywords_from_file", "prefix_keywords", "suffix_keywords",
              "limit", "format", "color", "color_type", "usage_rights", "size",
@@ -60,7 +58,7 @@ def user_input():
             for key, value in json_file['Records'][record].items():
                 arguments[key] = value
             records.append(arguments)
-        records_count = len(records)
+        len(records)
     else:
         # Taking command line arguments from users
         parser = argparse.ArgumentParser()
@@ -140,7 +138,7 @@ class googleimagesdownload:
                 resp = urllib.request.urlopen(req)
                 respData = str(resp.read())
                 return respData
-            except Exception as e:
+            except Exception:
                 print("Could not open URL. Please check your internet connection and/or ssl settings \n"
                       "If you are using proxy, make sure your proxy settings is configured correctly")
                 sys.exit()
@@ -190,13 +188,13 @@ class googleimagesdownload:
 
         element = browser.find_element_by_tag_name("body")
         # Scroll down
-        for i in range(30):
+        for _ in range(30):
             element.send_keys(Keys.PAGE_DOWN)
             time.sleep(0.3)
 
         try:
             browser.find_element_by_id("smb").click()
-            for i in range(50):
+            for _ in range(50):
                 element.send_keys(Keys.PAGE_DOWN)
                 time.sleep(0.3)  # bot id protection
         except:
@@ -344,7 +342,7 @@ class googleimagesdownload:
 
                 newurl = "https://www.google.com/search?tbs=sbi:" + urll + "&site=search&sa=X"
                 req2 = urllib.request.Request(newurl, headers=headers)
-                resp2 = urllib.request.urlopen(req2)
+                urllib.request.urlopen(req2)
                 l3 = content.find('/search?sa=X&amp;q=')
                 l4 = content.find(';', l3 + 19)
                 urll2 = content[l3 + 19:l4]
@@ -366,7 +364,7 @@ class googleimagesdownload:
 
                 newurl = "https://www.google.com/search?tbs=sbi:" + urll + "&site=search&sa=X"
                 req2 = urllib2.Request(newurl, headers=headers)
-                resp2 = urllib2.urlopen(req2)
+                urllib2.urlopen(req2)
                 l3 = content.find('/search?sa=X&amp;q=')
                 l4 = content.find(';', l3 + 19)
                 urll2 = content[l3 + 19:l4]
@@ -406,7 +404,7 @@ class googleimagesdownload:
                   'time':[arguments['time'],{'past-24-hours':'qdr:d','past-7-days':'qdr:w','past-month':'qdr:m','past-year':'qdr:y'}],
                   'aspect_ratio':[arguments['aspect_ratio'],{'tall':'iar:t','square':'iar:s','wide':'iar:w','panoramic':'iar:xw'}],
                   'format':[arguments['format'],{'jpg':'ift:jpg','gif':'ift:gif','png':'ift:png','bmp':'ift:bmp','svg':'ift:svg','webp':'webp','ico':'ift:ico','raw':'ift:craw'}]}
-        for key, value in params.items():
+        for _, value in params.items():
             if value[0] is not None:
                 ext_param = value[1][value[0]]
                 # counter will tell if it is first param added or not
@@ -1002,7 +1000,7 @@ def main():
             response.single_image(arguments['single_image'])
         else:  # or download multiple images based on keywords/keyphrase search
             response = googleimagesdownload()
-            paths,errors = response.download(arguments)  #wrapping response in a variable just for consistency
+            _,errors = response.download(arguments)  #wrapping response in a variable just for consistency
             total_errors = total_errors + errors
 
         t1 = time.time()  # stop the timer

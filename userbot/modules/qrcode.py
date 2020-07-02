@@ -5,7 +5,7 @@
 #
 # The entire source code is OSSRPL except 'makeqr and getqr' which is MPL
 # License: MPL and OSSRPL
-""" Userbot module containing commands related to QR Codes. """
+"""Userbot module containing commands related to QR Codes."""
 
 import os
 import asyncio
@@ -22,7 +22,7 @@ from userbot.events import register
 
 @register(pattern=r"^.decode$", outgoing=True)
 async def parseqr(qr_e):
-    """ For .decode command, get QR Code/BarCode content from the replied photo. """
+    """For .decode command, get QR Code/BarCode content from the replied photo."""
     downloaded_file_name = await qr_e.client.download_media(
         await qr_e.get_reply_message())
     # parse the Official ZXing webpage to decode the QRCode
@@ -52,7 +52,7 @@ async def parseqr(qr_e):
 
 @register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
 async def bq(event):
-    """ For .barcode command, genrate a barcode containing the given content. """
+    """For .barcode command, genrate a barcode containing the given content."""
     await event.edit("`Processing..`")
     input_str = event.pattern_match.group(1)
     message = "SYNTAX: `.barcode <long text to include>`"
@@ -94,7 +94,7 @@ async def bq(event):
 
 @register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
-    """ For .makeqr command, make a QR Code containing the given content. """
+    """For .makeqr command, make a QR Code containing the given content."""
     input_str = makeqr.pattern_match.group(1)
     message = "SYNTAX: `.makeqr <long text to include>`"
     reply_msg_id = None
@@ -135,16 +135,16 @@ async def make_qr(makeqr):
 
 CMD_HELP.update({
     'qr':
-    "`.makeqr` <content>\
-\nUsage: Make a QR Code from the given content.\
-\nExample: .makeqr www.google.com\
-\nNote: use `.decode` <reply to barcode/qrcode> to get decoded content."
+    "`.makeqr` <content>"
+    "\nUsage: Make a QR Code from the given content."
+    "\nExample: .makeqr www.google.com"
+    "\nNote: use `.decode` <reply to barcode/qrcode> to get decoded content."
 })
 
 CMD_HELP.update({
     'barcode':
-    "`.barcode` <content>\
-\nUsage: Make a BarCode from the given content.\
-\nExample: .barcode www.google.com\
-\nNote: use `.decode` <reply to barcode/qrcode> to get decoded content."
+    "`.barcode` <content>"
+    "\nUsage: Make a BarCode from the given content."
+    "\nExample: .barcode www.google.com"
+    "\nNote: use `.decode` <reply to barcode/qrcode> to get decoded content."
 })

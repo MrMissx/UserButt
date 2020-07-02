@@ -4,9 +4,7 @@
 # you may not use this file except in compliance with the License.
 # credits to @AvinashReddy3108
 #
-"""
-This module updates the userbot based on upstream revision
-"""
+"""This module updates the userbot based on upstream revision"""
 
 from os import remove, execle, path, environ
 import asyncio
@@ -114,7 +112,7 @@ async def update(event, repo, ups_rem, ac_br):
 
 @register(outgoing=True, pattern=r"^.update(?: |$)(now|deploy)?")
 async def upstream(event):
-    "For .update command, check if the bot is up to date, update if specified"
+    """For .update command, check if the bot is up to date, update if specified"""
     await event.edit("`Checking for updates, please wait....`")
     conf = event.pattern_match.group(1)
     off_repo = UPSTREAM_REPO_URL
@@ -197,7 +195,7 @@ async def upstream(event):
 
 
 CMD_HELP.update({
-    'update':
+    "update":
     "`.update`"
     "\nUsage: Checks if the main userbot repository has any updates and shows a changelog if so."
     "\n\n`.update now`"

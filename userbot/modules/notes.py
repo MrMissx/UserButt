@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module containing commands for keeping notes. """
+"""Userbot module containing commands for keeping notes."""
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
@@ -12,7 +12,7 @@ from asyncio import sleep
 
 @register(outgoing=True, pattern="^.notes$")
 async def notes_active(svd):
-    """ For .notes command, list all of the notes saved in a chat. """
+    """For .notes command, list all of the notes saved in a chat."""
     try:
         from userbot.modules.sql_helper.notes_sql import get_notes
     except AttributeError:
@@ -31,7 +31,7 @@ async def notes_active(svd):
 
 @register(outgoing=True, pattern=r"^.clear (\w*)")
 async def remove_notes(clr):
-    """ For .clear command, clear note with the given name."""
+    """For .clear command, clear note with the given name."""
     try:
         from userbot.modules.sql_helper.notes_sql import rm_note
     except AttributeError:
@@ -47,7 +47,7 @@ async def remove_notes(clr):
 
 @register(outgoing=True, pattern=r"^.save (\w*)")
 async def add_note(fltr):
-    """ For .save command, saves notes in a chat. """
+    """For .save command, saves notes in a chat."""
     try:
         from userbot.modules.sql_helper.notes_sql import add_note
     except AttributeError:
@@ -90,7 +90,7 @@ async def add_note(fltr):
           disable_errors=True,
           ignore_unsafe=True)
 async def incom_note(getnt):
-    """ Notes logic. """
+    """Notes logic."""
     try:
         if not (await getnt.get_sender()).bot:
             try:
@@ -120,8 +120,7 @@ async def incom_note(getnt):
 
 @register(outgoing=True, pattern="^.rmbotnotes (.*)")
 async def kick_marie_notes(kick):
-    """ For .rmbotnotes command, allows you to kick all \
-        Marie(or her clones) notes from a chat. """
+    """For .rmbotnotes command, allows you to kick all Marie(or her clones) notes from a chat."""
     bot_type = kick.pattern_match.group(1).lower()
     if bot_type not in ["marie", "rose"]:
         await kick.edit("`That bot is not yet supported!`")
@@ -146,15 +145,14 @@ async def kick_marie_notes(kick):
 
 CMD_HELP.update({
     "notes":
-    "\
-#<notename>\
-\nUsage: Gets the specified note.\
-\n\n`.save` <notename> <notedata> or reply to a message with .save <notename>\
-\nUsage: Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
-\n\n`.notes`\
-\nUsage: Gets all saved notes in a chat.\
-\n\n`.clear` <notename>\
-\nUsage: Deletes the specified note.\
-\n\n`.rmbotnotes` <marie/rose>\
-\nUsage: Removes all notes of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
+    "#<notename>"
+    "\nUsage: Gets the specified note."
+    "\n\n`.save` <notename> <notedata> or reply to a message with .save <notename>"
+    "\nUsage: Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)"
+    "\n\n`.notes`"
+    "\nUsage: Gets all saved notes in a chat."
+    "\n\n`.clear` <notename>"
+    "\nUsage: Deletes the specified note."
+    "\n\n`.rmbotnotes` <marie/rose>"
+    "\nUsage: Removes all notes of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
 })

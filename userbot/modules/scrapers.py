@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module containing various scrapers. """
+"""Userbot module containing various scrapers."""
 
 import os
 import time
@@ -52,7 +52,7 @@ async def setlang(prog):
 
 @register(outgoing=True, pattern="^.carbon")
 async def carbon_api(e):
-    """ A Wrapper for carbon.now.sh """
+    """A Wrapper for carbon.now.sh"""
     await e.edit("`Processing...`")
     CARBON = 'https://carbon.now.sh/?l={lang}&code={code}'
     global CARBONLANG
@@ -97,7 +97,7 @@ async def carbon_api(e):
 
 @register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
-    """ For .img command, search and return images matching the query. """
+    """For .img command, search and return images matching the query."""
     await event.edit("`Processing...`")
     query = event.pattern_match.group(1)
     lim = findall(r"lim=\d+", query)
@@ -155,7 +155,7 @@ async def moni(event):
 
 @register(outgoing=True, pattern=r"^.google (.*)")
 async def gsearch(q_event):
-    """ For .google command, do a Google search. """
+    """For .google command, do a Google search."""
     match = q_event.pattern_match.group(1)
     page = findall(r"page=\d+", match)
     try:
@@ -189,7 +189,7 @@ async def gsearch(q_event):
 
 @register(outgoing=True, pattern=r"^.wiki (.*)")
 async def wiki(wiki_q):
-    """ For .wiki command, fetch content from Wikipedia. """
+    """For .wiki command, fetch content from Wikipedia."""
     match = wiki_q.pattern_match.group(1)
     try:
         summary(match)
@@ -218,7 +218,7 @@ async def wiki(wiki_q):
 
 @register(outgoing=True, pattern="^.ud (.*)")
 async def urban_dict(ud_e):
-    """ For .ud command, fetch content from Urban Dictionary. """
+    """For .ud command, fetch content from Urban Dictionary."""
     await ud_e.edit("Processing...")
     query = ud_e.pattern_match.group(1)
     try:
@@ -256,7 +256,7 @@ async def urban_dict(ud_e):
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
-    """ For .tts command, a wrapper for Google Text-to-Speech. """
+    """For .tts command, a wrapper for Google Text-to-Speech."""
     textx = await query.get_reply_message()
     message = query.pattern_match.group(1)
     if message:
@@ -380,7 +380,7 @@ async def imdb(e):
 
 @register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
-    """ For .trt command, translate the given text using Google Translate. """
+    """For .trt command, translate the given text using Google Translate."""
     translator = Translator()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
@@ -410,7 +410,7 @@ async def translateme(trans):
 
 @register(pattern=".lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
-    """ For .lang command, change the default langauge of userbot scrapers. """
+    """For .lang command, change the default langauge of userbot scrapers."""
     util = value.pattern_match.group(1).lower()
     if util == "trt":
         scraper = "Translator"
@@ -443,7 +443,7 @@ async def lang(value):
 
 @register(outgoing=True, pattern="^.yt (.*)")
 async def yt_search(video_q):
-    """ For .yt command, do a YouTube search from Telegram. """
+    """For .yt command, do a YouTube search from Telegram."""
     query = video_q.pattern_match.group(1)
     result = ''
 
@@ -472,7 +472,7 @@ async def youtube_search(query,
                          token=None,
                          location=None,
                          location_radius=None):
-    """ Do a YouTube search. """
+    """Do a YouTube search."""
     youtube = build('youtube',
                     'v3',
                     developerKey=YOUTUBE_API_KEY,
@@ -505,7 +505,7 @@ async def youtube_search(query,
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
 async def download_video(v_url):
-    """ For .rip command, download media from YouTube and many other sites. """
+    """For .rip command, download media from YouTube and many other sites."""
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
@@ -631,12 +631,12 @@ async def download_video(v_url):
 
 
 def deEmojify(inputString):
-    """ Remove emojis and other non-safe characters from string """
+    """Remove emojis and other non-safe characters from string"""
     return get_emoji_regexp().sub(u'', inputString)
 
 
 def deEmojify(inputString):
-    """ Remove emojis and other non-safe characters from string """
+    """Remove emojis and other non-safe characters from string"""
     return get_emoji_regexp().sub(u'', inputString)
 
 

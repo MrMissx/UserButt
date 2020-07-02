@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module containing hash and encode/decode commands. """
+"""Userbot module containing hash and encode/decode commands."""
 
 from subprocess import PIPE
 from subprocess import run as runapp
@@ -14,7 +14,7 @@ from userbot.events import register
 
 @register(outgoing=True, pattern="^.hash (.*)")
 async def gethash(hash_q):
-    """ For .hash command, find the md5, sha1, sha256, sha512 of the string. """
+    """For .hash command, find the md5, sha1, sha256, sha512 of the string."""
     hashtxt_ = hash_q.pattern_match.group(1)
     hashtxt = open("hashdis.txt", "w+")
     hashtxt.write(hashtxt_)
@@ -46,7 +46,7 @@ async def gethash(hash_q):
 
 @register(outgoing=True, pattern="^.base64 (en|de) (.*)")
 async def endecrypt(query):
-    """ For .base64 command, find the base64 encoding of the given string. """
+    """For .base64 command, find the base64 encoding of the given string."""
     if query.pattern_match.group(1) == "en":
         lething = str(
             pybase64.b64encode(bytes(query.pattern_match.group(2),
@@ -60,11 +60,6 @@ async def endecrypt(query):
 
 
 CMD_HELP.update({
-    "base64":
-    "`base64 <en|de>\n\nUsage: Find the base64 encoding.\n\nen:encode ; de:decode."
-	})
-
+    "base64":"`base64 <en|de>\n\nUsage: Find the base64 encoding.\n\nen:encode ; de:decode."})
 CMD_HELP.update({
-    "hash":
-    "Find the md5, sha1, sha256, sha512 of the string when written into a txt file."
-})
+    "hash":"Find the md5, sha1, sha256, sha512 of the string when written into a txt file."})

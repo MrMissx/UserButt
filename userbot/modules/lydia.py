@@ -6,9 +6,7 @@
 #
 # Original author of the UniBorg module 'lydia' @Zero_cool7870 (Jaskaran)
 #
-"""
-Userbot module to use an AI To respond to people
-"""
+"""Userbot module to use an AI To respond to people"""
 
 from coffeehouse.lydia import LydiaAI
 from coffeehouse.api import API
@@ -96,11 +94,10 @@ async def user(event):
     
 CMD_HELP.update({
     "lydia":
-    "`.addcf` <username/reply>\
-\nUsage: add's lydia auto chat request in the chat.\
-\n\n`.remcf` <username/reply>\
-\nUsage: remove's lydia auto chat request in the chat.\
-\n\n`.repcf` <username/reply>\
-\nUsage: starts lydia repling to perticular person in the chat."
+    "`.addcf` <username/reply>"
+    "\nUsage: add's lydia auto chat request in the chat."
+    "\n\n`.remcf` <username/reply>"
+    "\nUsage: remove's lydia auto chat request in the chat."
+    "\n\n`.repcf` <username/reply>"
+    "\nUsage: starts lydia repling to perticular person in the chat."
 })
-
