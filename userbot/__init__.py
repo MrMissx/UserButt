@@ -21,7 +21,7 @@ from telethon.sessions import StringSession
 load_dotenv("config.env")
 
 # Bot Logs setup:
-CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
+CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "True"))
 
 if CONSOLE_LOGGER_VERBOSE:
     basicConfig(
@@ -110,8 +110,8 @@ WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
 
 # Anti Spambot Config
-ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "True"))
-ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "True"))
+ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
+ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 
 # Youtube API key
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", "AIzaSyBnIY_i5IKaUFG-666mJRR7Xi2C06l-l2I")
