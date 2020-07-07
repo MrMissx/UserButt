@@ -22,7 +22,7 @@ async def telegraphs(grop):
         if type_of_group == "b":
             try:
                 result = await grop.client(functions.messages.CreateChatRequest(  # pylint:disable=E0602
-                    users=["@sanaTWICEbot"],
+                    users=["@MissRose_bot"],
                     # Not enough users (to create a chat, for example)
                     # Telegram, no longer allows creating a chat with ourselves
                     title=group_name
