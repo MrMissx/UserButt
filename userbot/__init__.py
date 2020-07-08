@@ -158,6 +158,9 @@ TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY",
 # Terminal alias
 TERM_ALIAS = os.environ.get("TERM_ALIAS", "UserButt")
 
+# Zipfile module
+ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
+
 # Deezloader
 DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN", None)
 
