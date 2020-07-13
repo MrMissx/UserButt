@@ -191,6 +191,10 @@
     "DEEZER_ARL_TOKEN": {
       "description": "Input your DEEZER ARL TOKEN https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken",
       "required": false
+    },
+    "ALIVE_LOGO": {
+      "description": "Show Image/Logo in .alive message",
+      "required": false
     }
   },
   "addons": [
