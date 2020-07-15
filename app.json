@@ -44,6 +44,10 @@
       "value": "https://github.com/KeselekPermen69/UserButt",
       "required": false
     },
+    "UPSTREAM_REPO_URL": {
+      "description": "In case you maintain a fork, add your repo BRANCH here.",
+      "required": false
+    },
     "COUNTRY": {
       "description": "Set your Country to be used in the .time and .date commands.",
       "required": false
@@ -69,11 +73,11 @@
     },
     "BOTLOG": {
       "description": "Incase you want to turn off logging, put this to false",
-      "value": "True"
+      "value": "False"
     },
     "BOTLOG_CHATID": {
       "description": "ChatID of the Log group. Create a Group > add a bot e.g. @MissRose_bot > Promote bot > type /id.",
-      "value": "-100..."
+      "value": "0"
     },
     "CONSOLE_LOGGER_VERBOSE": {
       "description": "If you need verbosity on the console logging",
@@ -186,7 +190,7 @@
     },  	
     "LOGSPAMMER": {
       "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
-      "value": "True"
+      "value": "False"
     },
     "DEEZER_ARL_TOKEN": {
       "description": "Input your DEEZER ARL TOKEN https://notabug.org/RemixDevs/DeezloaderRemix/wiki/Login+via+userToken",
