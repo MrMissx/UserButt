@@ -1,5 +1,7 @@
 # Project Telegram UserButt
-![BugChecker](https://github.com/keselekpermen69/UserButt/workflows/BugChecker/badge.svg?branch=staging)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c460544d68334a51b84c83ce8d3a1e98)](https://www.codacy.com/manual/keselekpermen69/UserButt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=keselekpermen69/UserButt&amp;utm_campaign=Badge_Grade)
+![FailCheck](https://github.com/keselekpermen69/UserButt/workflows/FailCheck/badge.svg)
 
 ![logo](https://gist.githubusercontent.com/keselekpermen69/71d86f264156542154912216b0ebd234/raw/8bd67b5cc1f2552e6a7c5c235e87c5f8537e6cec/sana_doubleexposure.png)
 
