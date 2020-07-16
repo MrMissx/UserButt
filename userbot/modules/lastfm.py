@@ -57,14 +57,14 @@ async def last_fm(lastFM):
                          lastfm).get_now_playing().get_cover_image()
         except IndexError:
             image = None
-            pass
         tags = await gettags(isNowPlaying=True, playing=playing)
         rectrack = parse.quote(f"{playing}")
         rectrack = sub("^", "https://open.spotify.com/search/",
                        rectrack)
         if image:
-            output = (f"[‎]({image})[{LASTFM_USERNAME}]({username}) __is now listening to:"
-                      f"__\n\n• [{playing}]({rectrack})\n`{tags}`")
+            output = (
+                f"[‎]({image})[{LASTFM_USERNAME}]({username}) __is now listening to:"
+                f"__\n\n• [{playing}]({rectrack})\n`{tags}`")
             preview = True
         else:
             output = (f"[{LASTFM_USERNAME}]({username}) __is now listening to:"
@@ -217,12 +217,9 @@ async def lastlog(lstlog):
         await lstlog.edit(LFM_LOG_ERR)
 
 
-CMD_HELP.update({
-    'lastfm':
-    "`.lastfm`"
-    "\nUsage: Shows currently scrobbling track or most recent scrobbles if nothing is playing."
-    "\n\n`.lastbio` <on/off>"
-    "\nUsage: Enables/Disables last.fm current playing to bio."
-    "\n\n`.lastlog` <on/off>"
-    "\nUsage: Enable/Disable last.fm bio logging in the bot-log group."
-})
+CMD_HELP.update({'lastfm': "`.lastfm`"
+                 "\nUsage: Shows currently scrobbling track or most recent scrobbles if nothing is playing."
+                 "\n\n`.lastbio` <on/off>"
+                 "\nUsage: Enables/Disables last.fm current playing to bio."
+                 "\n\n`.lastlog` <on/off>"
+                 "\nUsage: Enable/Disable last.fm bio logging in the bot-log group."})

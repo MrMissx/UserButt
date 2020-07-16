@@ -21,16 +21,18 @@ from telethon.sessions import StringSession
 load_dotenv("config.env")
 
 # Bot Logs setup:
-CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE") or "False")
+CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
+    "CONSOLE_LOGGER_VERBOSE") or "False")
 
 if CONSOLE_LOGGER_VERBOSE:
     basicConfig(
-                format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=DEBUG,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=DEBUG,
     )
 else:
     basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=INFO
-    )
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=INFO)
 LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 8:
@@ -41,9 +43,8 @@ if version_info[0] < 3 or version_info[1] < 8:
 
 # Check if the config was edited by using the already used variable.
 # Basically, its the 'virginity check' for the config file ;)
-CONFIG_CHECK = (
-    os.environ.get("___________PLOX_______REMOVE_____THIS_____LINE__________") or None
-)
+CONFIG_CHECK = (os.environ.get(
+    "___________PLOX_______REMOVE_____THIS_____LINE__________") or None)
 
 if CONFIG_CHECK:
     LOGS.info(
@@ -67,7 +68,7 @@ BOTLOG = sb(os.environ.get("BOTLOG") or "False")
 if BOTLOG:
     LOGSPAMMER = sb(os.environ.get("LOGSPAMMER") or "False")
 else:
-    LOGSPAMMER = False	
+    LOGSPAMMER = False
 
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN") or "False")
@@ -81,17 +82,18 @@ HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY") or None
 GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME") or None
 GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 
-# Genius lyrics get this value from https://genius.com/developers both has same values
+# Genius lyrics get this value from https://genius.com/developers both has
+# same values
 GENIUS = os.environ.get("GENIUS_API_TOKEN") or None
 
 # Custom (forked) repo URL for updater.
-UPSTREAM_REPO_URL = (
-    os.environ.get("UPSTREAM_REPO_URL") or "https://github.com/KeselekPermen69/UserButt.git"
-)
+UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
+                     or "https://github.com/KeselekPermen69/UserButt.git")
 UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "sql-extended"
 
 # Console verbose logging
-CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE") or "False")
+CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
+    "CONSOLE_LOGGER_VERBOSE") or "False")
 
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL") or None
@@ -145,7 +147,7 @@ LASTFM_SECRET = os.environ.get("LASTFM_SECRET") or None
 LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME") or None
 LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD") or None
 LASTFM_PASS = md5(LASTFM_PASSWORD_PLAIN)
-if LASTFM_API != None:
+if LASTFM_API is not None:
     lastfm = LastFMNetwork(
         api_key=LASTFM_API,
         api_secret=LASTFM_SECRET,
@@ -161,8 +163,9 @@ G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID") or None
 G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET") or None
 G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA") or None
 G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID") or None
-TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY") or "./downloads"
-										 
+TEMP_DOWNLOAD_DIRECTORY = os.environ.get(
+    "TMP_DOWNLOAD_DIRECTORY") or "./downloads"
+
 # Terminal alias
 TERM_ALIAS = os.environ.get("TERM_ALIAS") or "UserButt"
 
@@ -204,19 +207,18 @@ async def check_botlog_chatid():
     if entity.default_banned_rights.send_messages:
         LOGS.info(
             "Your account doesn't have rights to send messages to BOTLOG_CHATID "
-            "group. Check if you typed the Chat ID correctly."
-            )
+            "group. Check if you typed the Chat ID correctly.")
         quit(1)
 
 
 with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
-    except:
+    except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't a "
             "valid entity. Check your environment variables/config.env file."
-            )
+        )
         quit(1)
 
 # Global Variables

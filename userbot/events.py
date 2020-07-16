@@ -45,7 +45,7 @@ def register(**args):
 
     if "trigger_on_fwd" in args:
         del args['trigger_on_fwd']
-	
+
     if "insecure" in args:
         del args['insecure']
 
@@ -83,7 +83,8 @@ def register(**args):
 
             except events.StopPropagation:
                 raise events.StopPropagation
-            # This is a gay exception and must be passed out. So that it doesnt spam chats
+            # This is a gay exception and must be passed out. So that it doesnt
+            # spam chats
             except KeyboardInterrupt:
                 pass
             except BaseException:

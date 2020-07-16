@@ -43,7 +43,7 @@ async def _(event):
                     await event.edit(str(e))
                     return
             await event.edit("`Invited Successfully`")
-            
+
 CMD_HELP.update({
     "invite":
     "`.invite` <username/user id>"

@@ -6,7 +6,7 @@
 # (c) Spechide - UniBorg
 # Port From UniBorg to UserBot by @afdulfauzan
 
-from telethon.tl import functions, types
+from telethon.tl import functions
 from userbot.events import register
 from userbot import CMD_HELP
 
@@ -50,7 +50,7 @@ async def telegraphs(grop):
                 await grop.edit(str(e))
 
 CMD_HELP.update({
-    "create": 
+    "create":
     "\n\n`.create g` <group name>"
     "\nUsage: Create a Private Group."
     "\n\n`.create b` <group name>"

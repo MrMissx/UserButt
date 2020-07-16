@@ -17,7 +17,9 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from telethon.tl.types import DocumentAttributeAudio
 
-@register(outgoing=True, pattern="^\.deezload (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
+
+@register(outgoing=True,
+          pattern=r"^\.deezload (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
 async def _(event):
     """DeezLoader by @An0nimia ported for UniBorg by @SpEcHlDe"""
     if event.fwd_from:
@@ -30,8 +32,7 @@ async def _(event):
         "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session",
         "server_error": "We're experiencing technical difficulties.",
         "processing": "`Downloading...`",
-        "uploading": "`Uploading...`"
-    }
+        "uploading": "`Uploading...`"}
 
     ARL_TOKEN = DEEZER_ARL_TOKEN
 

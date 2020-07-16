@@ -24,5 +24,5 @@ async def help(event):
             string += "`" + str(i)
             string += "`\t\t\t||\t\t\t "
         await event.edit("Specify which module do you want help for !!"
-                        "\n**Usage:** `.help` <module name>\n\n"
-                        f"{string}")
+                         "\n**Usage:** `.help` <module name>\n\n"
+                         f"{string}")

@@ -5,18 +5,29 @@
 #
 # Port to UserBot by @MoveAngel
 
-import asyncio
 import pyfiglet
-from telethon import events, functions
 from userbot import CMD_HELP
 from userbot.events import register
-import sys
- 
+
+
 @register(outgoing=True, pattern="^.figlet(?: |$)(.*)")
 async def figlet(event):
     if event.fwd_from:
         return
-    CMD_FIG = {"slant": "slant", "3D": "3-d", "5line": "5lineoblique", "alpha": "alphabet", "banner": "banner3-D", "doh": "doh", "iso": "isometric1", "letter": "letters", "allig": "alligator", "dotm": "dotmatrix", "bubble": "bubble", "bulb": "bulbhead", "digi": "digital"}
+    CMD_FIG = {
+        "slant": "slant",
+        "3D": "3-d",
+        "5line": "5lineoblique",
+        "alpha": "alphabet",
+        "banner": "banner3-D",
+        "doh": "doh",
+        "iso": "isometric1",
+        "letter": "letters",
+        "allig": "alligator",
+        "dotm": "dotmatrix",
+        "bubble": "bubble",
+        "bulb": "bulbhead",
+        "digi": "digital"}
     input_str = event.pattern_match.group(1)
     if "|" in input_str:
         text, cmd = input_str.split("|", maxsplit=1)
@@ -39,7 +50,7 @@ async def figlet(event):
     await event.delete()
 
 CMD_HELP.update({
-    "figlet": 
+    "figlet":
     "`.figlet`"
     "\nUsage: Enhance ur text to strip line with anvil."
 })

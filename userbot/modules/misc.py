@@ -80,15 +80,15 @@ async def bot_support(wannahelp):
     """For .support command, just returns the group link."""
     await wannahelp.edit(
         "Join the UserBot support group: @userbotindo"
-        )
+    )
 
 
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
     await e.edit(
-         "Created By [TeKnoways](https://t.me/Three_Cube_TeKnoways)"
-         "\nKanged and Modified by [Mr.Miss | 사나](https://t.me/KeselekPermen69)"
-		 )
+        "Created By [TeKnoways](https://t.me/Three_Cube_TeKnoways)"
+        "\nKanged and Modified by [Mr.Miss | 사나](https://t.me/KeselekPermen69)"
+    )
 
 
 @register(outgoing=True, pattern="^.readme$")
@@ -103,7 +103,7 @@ async def reedme(e):
         "\n[Video Tutorial - 1080p](https://mega.nz/#!x3JVhYwR!u7Uj0nvD8_CyyARrdKrFqlZEBFTnSVEiqts36HBMr-o)"
         "\n[Setup Guide - In Bahasa](https://telegra.ph/UserIndoBot-05-21-3)"
         "\n[Instant Setup - String Session](https://userbutt.keselekpermen.repl.run)")
-    
+
 
 # Copyright (c) Gegham Zakaryan | 2019
 @register(outgoing=True, pattern="^.repeat (.*)")
@@ -164,12 +164,9 @@ CMD_HELP.update({
     "\nUsage: Userbots get tired too. Let yours snooze for a few seconds."
 })
 
-CMD_HELP.update({
-    "shutdown":
-    "`.shutdown`"
-    "\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to"
-    "hear Windows XP shutdown sound... but you don't."
-})
+CMD_HELP.update({"shutdown": "`.shutdown`"
+                 "\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to"
+                 "hear Windows XP shutdown sound... but you don't."})
 
 CMD_HELP.update({
     "support": "`.support`"
@@ -195,7 +192,7 @@ CMD_HELP.update({
 
 CMD_HELP.update(
     {"creator": "`.creator`"
-    "\nUsage: Know who created this awesome userbot !!"})
+     "\nUsage: Know who created this awesome userbot !!"})
 
 CMD_HELP.update({
     "repeat":
@@ -204,7 +201,7 @@ CMD_HELP.update({
 })
 
 CMD_HELP.update({
-"restart": ".restart\nUsage: Restarts the bot !!"})
+    "restart": ".restart\nUsage: Restarts the bot !!"})
 
 CMD_HELP.update({
     "raw":

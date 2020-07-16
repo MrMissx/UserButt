@@ -5,7 +5,6 @@
 #
 # Port From UniBorg to UserBot by @afdulfauzan
 
-from telethon import events
 import os
 from PIL import Image
 from datetime import datetime
@@ -21,8 +20,9 @@ auth_url = r["auth_url"]
 @register(outgoing=True, pattern="^.tg (m|t)$")
 async def telegraphs(graph):
     """For .telegraph command, upload media & text to telegraph site."""
-    await graph.edit("`Processing...`") 
-    if not graph.text[0].isalpha() and graph.text[0] not in ("/", "#", "@", "!"):
+    await graph.edit("`Processing...`")
+    if not graph.text[0].isalpha() and graph.text[0] not in (
+            "/", "#", "@", "!"):
         if graph.fwd_from:
             return
         if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -54,7 +54,7 @@ async def telegraphs(graph):
                     await graph.edit("Successfully Uploaded to [telegra.ph](https://telegra.ph{}).".format(media_urls[0], (ms + ms_two)), link_preview=True)
             elif input_str == "t":
                 user_object = await bot.get_entity(r_message.from_id)
-                title_of_page = user_object.first_name # + " " + user_object.last_name
+                title_of_page = user_object.first_name  # + " " + user_object.last_name
                 # apparently, all Users do not have last_name field
                 page_content = r_message.message
                 if r_message.media:

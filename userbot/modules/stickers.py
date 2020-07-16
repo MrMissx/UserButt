@@ -335,18 +335,15 @@ async def sticker_to_png(sticker):
     return
 
 
-CMD_HELP.update({
-    "stickers":
-    "`.kang`"
-    "\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack."
-    "\n\n`.kang` [emoji('s)]"
-    "\nUsage: Works just like .kang but uses the emoji('s) you picked."
-    "\n\n`.kang` [number]"
-    "\nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji."
-    "\n\n`.kang `[emoji('s)] [number]"
-    "\nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked."
-    "\n\n`.stkrinfo`"
-    "\nUsage: Gets info about the sticker pack."
-    "\n\n>`.getsticker`"
-    "\nUsage: reply to a sticker to get 'PNG' file of sticker."
-})
+CMD_HELP.update({"stickers": "`.kang`"
+                 "\nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack."
+                 "\n\n`.kang` [emoji('s)]"
+                 "\nUsage: Works just like .kang but uses the emoji('s) you picked."
+                 "\n\n`.kang` [number]"
+                 "\nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji."
+                 "\n\n`.kang `[emoji('s)] [number]"
+                 "\nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked."
+                 "\n\n`.stkrinfo`"
+                 "\nUsage: Gets info about the sticker pack."
+                 "\n\n>`.getsticker`"
+                 "\nUsage: reply to a sticker to get 'PNG' file of sticker."})

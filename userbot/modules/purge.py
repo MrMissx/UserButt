@@ -139,7 +139,7 @@ CMD_HELP.update({
 })
 
 CMD_HELP.update({
-    "del": 
+    "del":
     "`.del`"
     "\nUsage: Deletes the message you replied to."
 })

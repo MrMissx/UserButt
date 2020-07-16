@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 """ Userbot module for getting information about the server. """
-	
+
 from asyncio import create_subprocess_exec as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
 from platform import python_version, uname
@@ -132,18 +132,17 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """For .alive command, check if the bot is running."""
     output = ("`UserButt is running...`\n"
-             "`========================`\n"
-             f"👤 `User     :` {DEFAULTUSER}\n"
-             f"🐍 `Python   :` v{python_version()}\n"
-             f"⚙️ `Telethon :` v{version.__version__}\n"
-             "`========================`\n")
+              "`========================`\n"
+              f"👤 `User     :` {DEFAULTUSER}\n"
+              f"🐍 `Python   :` v{python_version()}\n"
+              f"⚙️ `Telethon :` v{version.__version__}\n"
+              "`========================`\n")
     if ALIVE_LOGO:
         logo = ALIVE_LOGO
         await bot.send_file(alive.chat_id, logo, caption=output)
         await alive.delete()
     else:
         await alive.edit(output)
-
 
 
 @register(outgoing=True, pattern="^.aliveu")

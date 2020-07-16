@@ -118,7 +118,7 @@ async def lst(event):
 
 
 CMD_HELP.update({
-    "file": 
-    "`.ls` <directory>" 
+    "file":
+    "`.ls` <directory>"
     "\nUsage: Get list file inside directory."
 })
