@@ -25,31 +25,30 @@ from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, QUOTES_API_TOKEN
 from userbot.events import register
 
 
-if 1 == 1:
-    strings = {
-        "name": "Quotes",
-        "api_token_cfg_doc": "API Key/Token for Quotes.",
-        "api_url_cfg_doc": "API URL for Quotes.",
-        "colors_cfg_doc": "Username colors",
-        "default_username_color_cfg_doc": "Default color for the username.",
-        "no_reply": "You didn't reply to a message.",
-        "no_template": "You didn't specify the template.",
-        "delimiter": "</code>, <code>",
-        "server_error": "Server error. Please report to developer.",
-        "invalid_token": "You've set an invalid token, get it from `http://antiddos.systems`.",
-        "unauthorized": "You're unauthorized to do this.",
-        "not_enough_permissions": "Wrong template. You can use only the default one.",
-        "templates": "Available Templates: <code>{}</code>",
-        "cannot_send_stickers": "You cannot send stickers in this chat.",
-        "admin": "admin",
-        "creator": "creator",
-        "hidden": "hidden",
-        "channel": "Channel"}
+strings = {
+    "name": "Quotes",
+    "api_token_cfg_doc": "API Key/Token for Quotes.",
+    "api_url_cfg_doc": "API URL for Quotes.",
+    "colors_cfg_doc": "Username colors",
+    "default_username_color_cfg_doc": "Default color for the username.",
+    "no_reply": "You didn't reply to a message.",
+    "no_template": "You didn't specify the template.",
+    "delimiter": "</code>, <code>",
+    "server_error": "Server error. Please report to developer.",
+    "invalid_token": "You've set an invalid token, get it from `http://antiddos.systems`.",
+    "unauthorized": "You're unauthorized to do this.",
+    "not_enough_permissions": "Wrong template. You can use only the default one.",
+    "templates": "Available Templates: <code>{}</code>",
+    "cannot_send_stickers": "You cannot send stickers in this chat.",
+    "admin": "admin",
+    "creator": "creator",
+    "hidden": "hidden",
+    "channel": "Channel"}
 
-    config = {"api_url": "http://api.antiddos.systems",
-              "username_colors": ["#fb6169", "#faa357", "#b48bf2", "#85de85",
-                                  "#62d4e3", "#65bdf3", "#ff5694"],
-              "default_username_color": "#b48bf2"}
+config = {"api_url": "http://api.antiddos.systems",
+          "username_colors": ["#fb6169", "#faa357", "#b48bf2", "#85de85",
+                              "#62d4e3", "#65bdf3", "#ff5694"],
+          "default_username_color": "#b48bf2"}
 
 THUMB_IMAGE_PATH = "./thumb_image.jpg"
 

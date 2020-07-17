@@ -34,7 +34,7 @@ async def telegraphs(grop):
                 await grop.edit("Your {} Group Created Successfully. Click [{}]({}) to join".format(group_name, group_name, result.link))
             except Exception as e:  # pylint:disable=C0103,W0703
                 await grop.edit(str(e))
-        elif type_of_group == "g" or type_of_group == "c":
+        elif type_of_group in ("g", "c"):
             try:
                 r = await grop.client(functions.channels.CreateChannelRequest(  # pylint:disable=E0602
                     title=group_name,

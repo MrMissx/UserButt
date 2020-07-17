@@ -44,10 +44,6 @@
       "value": "https://github.com/KeselekPermen69/UserButt",
       "required": false
     },
-    "UPSTREAM_REPO_URL": {
-      "description": "In case you maintain a fork, add your repo BRANCH here.",
-      "required": false
-    },
     "COUNTRY": {
       "description": "Set your Country to be used in the .time and .date commands.",
       "required": false

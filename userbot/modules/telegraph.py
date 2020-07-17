@@ -9,7 +9,7 @@ import os
 from PIL import Image
 from datetime import datetime
 from telegraph import Telegraph, upload_file, exceptions
-from userbot import (TEMP_DOWNLOAD_DIRECTORY, BOTLOG_CHATID, CMD_HELP, bot)
+from userbot import (TEMP_DOWNLOAD_DIRECTORY, CMD_HELP, bot)
 from userbot.events import register
 
 telegraph = Telegraph()
@@ -42,16 +42,13 @@ async def telegraphs(graph):
                 if downloaded_file_name.endswith((".webp")):
                     resize_image(downloaded_file_name)
                 try:
-                    start = datetime.now()
                     media_urls = upload_file(downloaded_file_name)
                 except exceptions.TelegraphException as exc:
                     await graph.edit("ERROR: " + str(exc))
                     os.remove(downloaded_file_name)
                 else:
-                    end = datetime.now()
-                    ms_two = (end - start).seconds
                     os.remove(downloaded_file_name)
-                    await graph.edit("Successfully Uploaded to [telegra.ph](https://telegra.ph{}).".format(media_urls[0], (ms + ms_two)), link_preview=True)
+                    await graph.edit("Successfully Uploaded to [telegra.ph](https://telegra.ph{}).".format(media_urls[0]), link_preview=True)
             elif input_str == "t":
                 user_object = await bot.get_entity(r_message.from_id)
                 title_of_page = user_object.first_name  # + " " + user_object.last_name
@@ -75,9 +72,7 @@ async def telegraphs(graph):
                     title_of_page,
                     html_content=page_content
                 )
-                end = datetime.now()
-                ms = (end - start).seconds
-                await graph.edit("Successfully uploaded to [telegra.ph](https://telegra.ph/{}).".format(response["path"], ms), link_preview=True)
+                await graph.edit("Successfully uploaded to [telegra.ph](https://telegra.ph/{}).".format(response["path"]), link_preview=True)
         else:
             await graph.edit("`Reply to a message to get a permanent telegra.ph link.`")
 

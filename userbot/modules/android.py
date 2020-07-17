@@ -52,7 +52,7 @@ async def device_info(request):
         return await request.edit("`Usage: .device <codename> / <model>`")
     found = [
         i for i in get(DEVICES_DATA).json()
-        if i["device"] == device or i["model"] == device
+        if device in (i['device'], i['model'])
     ]
     if found:
         reply = f'Search results for {device}:\n\n'
