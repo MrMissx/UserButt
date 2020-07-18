@@ -160,12 +160,12 @@ async def upstream(event):
 
     changelog = await gen_chlog(repo, f'HEAD..upstream/{ac_br}')
 
-    if changelog == '' and force_update is False:
+    if changelog == '' and not force_update:
         await event.edit(
             f'\n`Your USERBOT is`  **up-to-date**  `with`  **{UPSTREAM_REPO_BRANCH}**\n')
         return repo.__del__()
 
-    if conf is None and force_update is False:
+    if conf is None and not force_update:
         changelog_str = f'**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`'
         if len(changelog_str) > 4096:
             await event.edit("`Changelog is too big, view the file to see it.`")

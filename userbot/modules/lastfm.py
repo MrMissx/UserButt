@@ -33,11 +33,7 @@ ARTIST = 0
 SONG = 0
 USER_ID = 0
 
-if BIO_PREFIX:
-    BIOPREFIX = BIO_PREFIX
-else:
-    BIOPREFIX = None
-
+BIOPREFIX = BIO_PREFIX if BIO_PREFIX else None
 LASTFMCHECK = False
 RUNNING = False
 LastLog = False
@@ -147,13 +143,12 @@ async def get_curr_track(lfmbio):
                 except AboutTooLongError:
                     short_bio = f"🎧: {SONG}"
                     await bot(UpdateProfileRequest(about=short_bio))
-            else:
-                if playing is None and user_info.about != DEFAULT_BIO:
-                    await sleep(6)
-                    await bot(UpdateProfileRequest(about=DEFAULT_BIO))
-                    if BOTLOG and LastLog:
-                        await bot.send_message(
-                            BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}")
+            if playing is None and user_info.about != DEFAULT_BIO:
+                await sleep(6)
+                await bot(UpdateProfileRequest(about=DEFAULT_BIO))
+                if BOTLOG and LastLog:
+                    await bot.send_message(
+                        BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}")
         except AttributeError:
             try:
                 if user_info.about != DEFAULT_BIO:

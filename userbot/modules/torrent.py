@@ -61,7 +61,7 @@ def dogbin(magnets):
         r = requests.post(url, data=message.encode("UTF-8")).json()
         url = f"https://del.dog/raw/{r['key']}"
         urls.append(url)
-        counter = counter + 1
+        counter += 1
     return urls
 
 
@@ -110,7 +110,7 @@ async def tor_search(event):
             pass
         if counter == 11:
             break
-        counter = counter + 1
+        counter += 1
     if not urls:
         await event.edit("Either the Keyword was restricted or not found..")
         return
@@ -140,7 +140,7 @@ async def tor_search(event):
     while counter != len(titles):
         msg = msg + "⁍ [{}]".format(titles[counter]) + \
             "({})".format(shorted_links[counter]) + "\n\n"
-        counter = counter + 1
+        counter += 1
     await event.edit(msg, link_preview=False)
 
 
