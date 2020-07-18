@@ -256,7 +256,6 @@ async def mim(event):
     if not reply_message.media:
         await event.edit("```reply to a image/sticker/gif```")
         return
-    chat = "@MemeAutobot"
     if reply_message.sender.bot:
         await event.edit("```Reply to actual users message.```")
         return
@@ -265,6 +264,7 @@ async def mim(event):
         await asyncio.sleep(5)
 
     async with bot.conversation("@MemeAutobot") as bot_conv:
+        chat = "@MemeAutobot"
         try:
             memeVar = event.pattern_match.group(1)
             await silently_send_message(bot_conv, "/start")
@@ -337,10 +337,11 @@ def is_message_image(message):
     if message.media:
         if isinstance(message.media, MessageMediaPhoto):
             return True
-        if message.media.document:
-            if message.media.document.mime_type.split("/")[0] == "image":
-                return True
-        return False
+        return bool(
+            message.media.document
+            and message.media.document.mime_type.split("/")[0] == "image"
+        )
+
     return False
 
 
@@ -420,16 +421,13 @@ async def hazz(hazmat):
                     m,
                     reply_to=msg.id)
                 r = await conv.get_response()
-                response = await conv.get_response()
             elif reply_message.gif:
                 m = "/hazmat"
                 msg_reply = await conv.send_message(
                     m,
                     reply_to=msg.id)
                 r = await conv.get_response()
-                response = await conv.get_response()
-            else:
-                response = await conv.get_response()
+            response = await conv.get_response()
             """ - don't spam notif - """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
@@ -491,9 +489,7 @@ async def fryerrr(fry):
                     m,
                     reply_to=msg.id)
                 r = await conv.get_response()
-                response = await conv.get_response()
-            else:
-                response = await conv.get_response()
+            response = await conv.get_response()
             """ - don't spam notif - """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:

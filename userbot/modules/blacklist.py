@@ -35,8 +35,10 @@ async def on_new_message(event):
 @register(outgoing=True, pattern="^.addbl(?: |$)(.*)")
 async def on_add_black_list(addbl):
     text = addbl.pattern_match.group(1)
-    to_blacklist = list(set(trigger.strip()
-                            for trigger in text.split("\n") if trigger.strip()))
+    to_blacklist = list(
+        {trigger.strip() for trigger in text.split("\n") if trigger.strip()}
+    )
+
     for trigger in to_blacklist:
         sql.add_to_blacklist(addbl.chat_id, trigger.lower())
     await addbl.edit("`Added` **{}** `to the blacklist in the current chat`".format(text))
@@ -70,8 +72,10 @@ async def on_view_blacklist(listbl):
 @register(outgoing=True, pattern="^.rmbl(?: |$)(.*)")
 async def on_delete_blacklist(rmbl):
     text = rmbl.pattern_match.group(1)
-    to_unblacklist = list(set(trigger.strip()
-                              for trigger in text.split("\n") if trigger.strip()))
+    to_unblacklist = list(
+        {trigger.strip() for trigger in text.split("\n") if trigger.strip()}
+    )
+
     successful = 0
     for trigger in to_unblacklist:
         if sql.rm_from_blacklist(rmbl.chat_id, trigger.lower()):
