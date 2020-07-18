@@ -39,8 +39,11 @@ async def telegraphs(graph):
                 end = datetime.now()
                 ms = (end - start).seconds
                 await graph.edit("Downloaded to {} in {} seconds.".format(downloaded_file_name, ms))
-                if downloaded_file_name.endswith((".webp")):
-                    resize_image(downloaded_file_name)
+                try:
+                    if downloaded_file_name.endswith((".webp")):
+                        resize_image(downloaded_file_name)
+                except AttributeError:
+                    return await graph.edit("`No media provided`")
                 try:
                     media_urls = upload_file(downloaded_file_name)
                 except exceptions.TelegraphException as exc:
