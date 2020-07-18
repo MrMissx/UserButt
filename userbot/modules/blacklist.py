@@ -27,7 +27,7 @@ async def on_new_message(event):
             except Exception:
                 await event.reply("I do not have DELETE permission in this chat")
                 await sleep(1)
-                await reply.delete()
+                await event.delete()
                 sql.rm_from_blacklist(event.chat_id, snip.lower())
             break
 

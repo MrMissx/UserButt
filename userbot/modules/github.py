@@ -108,8 +108,8 @@ async def git_commit(file_name, mone):
     for i in content_list:
         create_file = True
         if i == 'ContentFile(path="' + file_name + '")':
-            return await mone.edit("`File Already Exists`")
             create_file = False
+            return await mone.edit("`File Already Exists`")
     file_name = "userbot/modules/" + file_name
     if create_file:
         file_name = file_name.replace("./userbot/temp/", "")

@@ -51,7 +51,7 @@ async def lst(event):
                 ):
                     files += "🗜 " + f"`{contents}`\n"
                 elif contents.endswith(
-                    (".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ". webp")
+                    (".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ".webp")
                 ):
                     files += "🖼 " + f"`{contents}`\n"
                 elif contents.endswith((".exe", ".deb")):
@@ -81,7 +81,7 @@ async def lst(event):
             mode = "🎞 "
         elif path.endswith((".zip", ".tar", ".tar.gz", ".rar", ".7z", ".xz")):
             mode = "🗜 "
-        elif path.endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ". webp")):
+        elif path.endswith((".jpg", ".jpeg", ".png", ".gif", ".bmp", ".ico", ".webp")):
             mode = "🖼 "
         elif path.endswith((".exe", ".deb")):
             mode = "⚙️ "
