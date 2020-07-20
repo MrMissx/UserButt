@@ -1,7 +1,16 @@
 # Project Telegram UserButt
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c460544d68334a51b84c83ce8d3a1e98)](https://www.codacy.com/manual/keselekpermen69/UserButt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=keselekpermen69/UserButt&amp;utm_campaign=Badge_Grade)
-![FailCheck](https://github.com/keselekpermen69/UserButt/workflows/FailCheck/badge.svg)
+<p align="center">
+    <a href="https://github.com/keselekpermen69/UserButt/actions?query=workflow%3AFailCheck" > <img src="https://img.shields.io/github/workflow/status/keselekpermen69/userbutt/FailCheck/sql-extended?style=for-the-badge&logo=github-actions&logoColor=white" alt="Failcheck" /></a>
+    <a href="https://github.com/keselekpermen69/UserButt/actions?query=workflow%3Apylint"> <img src="https://img.shields.io/github/workflow/status/keselekpermen69/userbutt/pylint/sql-extended?label=pylint&style=for-the-badge&logo=github-actions&logoColor=white" alt="Pylint" /></a>
+    <a href="https://www.codacy.com/manual/keselekpermen69/UserButt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=keselekpermen69/UserButt&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/c460544d68334a51b84c83ce8d3a1e98?style=for-the-badge&logo=codacy" alt="codacy badge" /></a></br>
+    <a href="https://github.com/keselekpermen69/UserButt/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/keselekpermen69/userbutt/sql-extended?style=for-the-badge&logo=github" alt="commit" /></a>
+    <a href="https://github.com/keselekpermen69/UserButt/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/keselekpermen69/userbutt?style=for-the-badge&logo=github" alt="Contributors" /></a>
+    <a href="https://github.com/keselekpermen69/UserButt/network/members"><img src="https://img.shields.io/github/forks/KeselekPermen69/Userbutt?label=Fork&style=for-the-badge&logo=github" alt="fork" /></a>
+    <a href="https://github.com/keselekpermen69/UserButt"><img src="https://img.shields.io/github/repo-size/keselekpermen69/userbutt?style=for-the-badge&logo=github" alt="size" /></a>
+    <a href="https://hub.docker.com/r/mrmiss/userbutt"> <img src="https://img.shields.io/docker/image-size/mrmiss/userbutt/alpine-latest?color=red&label=Docker%20Size&style=for-the-badge&logo=docker&logoColor=white" alt="docker" /></a></br>
+    <a href="https://t.me/userbotindo"> <img src="https://img.shields.io/badge/telegram-Support_Group-blue?style=social&logo=telegram" alt="support" /></a>
+</p>
 
 ![logo](https://gist.githubusercontent.com/keselekpermen69/71d86f264156542154912216b0ebd234/raw/8bd67b5cc1f2552e6a7c5c235e87c5f8537e6cec/sana_doubleexposure.png)
 
@@ -25,7 +34,8 @@ A modular Telegram userbot running on Python3 with sqlalchemy database.
 Based on RaphielGang's [Telegram-Paperplane](https://github.com/RaphielGang/Telegram-Paperplane) userbot with a lot of changes, features and module.
 
 ## Generate String Session
-Easy way to get STRING_SESSION. Run on repl.it
+Easy way to get STRING_SESSION. 
+Run on repl.it
 
 <a href="https://userbutt.keselekpermen.repl.run" target="_blank"><img src="https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
 
@@ -47,6 +57,7 @@ Join [Userbotindo Support Group](https://t.me/userbotindo) for discussion, bug r
 *   [Mkaraniya](https://github.com/mkaraniya) & [Dev73](https://github.com/Devp73) - OpenUserBot
 *   [adekmaulana](https://github.com/adekmaulana) - ProjectBish
 *   [MoveAngel](https://github.com/MoveAngel) - One4uBot
+*   [GengKapak](https://github.com/GengKapak) - DCLXVI
 
 And [others](https://github.com/keselekpermen69/UserButt/graphs/contributors) that help to make this userbot awesome.
 
