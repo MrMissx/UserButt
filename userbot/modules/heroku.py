@@ -1,6 +1,7 @@
 # Copyright (C) 2020 Adek Maulana.
 # All rights reserved.
 """ - a fallback for main userbot - """
+import codecs
 import os
 import asyncio
 import requests
@@ -226,16 +227,13 @@ async def dyno_manage(dyno):
         await dyno.edit("`Getting information...`")
         with open('logs.txt', 'w') as log:
             log.write(app.get_log())
-        await dyno.client.send_file(
-            dyno.chat_id,
-            "logs.txt",
-            reply_to=dyno.id,
-            caption="`Main dyno logs...`",
-        )
-        await dyno.edit("`Information gets and sent back...`")
-        await asyncio.sleep(5)
-        await dyno.delete()
-        return os.remove('logs.txt')
+        fd = codecs.open("logs.txt", "r", encoding="utf-8")
+        data = fd.read()
+        key = (requests.post("https://nekobin.com/api/documents",
+                             json={"content": data}) .json() .get("result") .get("key"))
+        url = f"https://nekobin.com/raw/{key}"
+        await dyno.edit(f"`Here the heroku logs:`\n\nPasted to: [Nekobin]({url})")
+        return os.remove("logs.txt")
     elif exe == "help":
         return await dyno.edit(
             "`.dyno usage`"
