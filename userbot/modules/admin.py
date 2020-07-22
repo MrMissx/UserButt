@@ -397,7 +397,7 @@ async def unmoot(unmot):
                 f"CHAT: {unmot.chat.title}(`{unmot.chat_id}`)")
 
 
-@register(incoming=True)
+@register(incoming=True, disable_errors=True)
 async def muter(moot):
     """Used for deleting the messages of muted people"""
     try:
@@ -420,12 +420,12 @@ async def muter(moot):
     if muted:
         for i in muted:
             if str(i.sender) == str(moot.sender_id):
-                await moot.delete()
-                await moot.client(
-                    EditBannedRequest(moot.chat_id, moot.sender_id, rights))
-    for i in gmuted:
-        if i.sender == str(moot.sender_id):
-            await moot.delete()
+                try:
+                    await moot.delete()
+                    await moot.client(
+                        EditBannedRequest(moot.chat_id, moot.sender_id, rights))
+                except (BadRequestError, UserAdminInvalidError, ChatAdminRequiredError, UserIdInvalidError):
+                    await moot.client.send_read_acknowledge(moot.chat_id, moot.id)
 
 
 @register(outgoing=True, pattern="^.ungmute(?: |$)(.*)")
@@ -511,7 +511,6 @@ async def gspider(gspdr):
                 BOTLOG_CHATID, "#GMUTE\n"
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
-
 
 @register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
