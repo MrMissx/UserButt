@@ -74,12 +74,26 @@ if __ is not None:
                     G_DRIVE_FOLDER_ID = __.split(
                         "folderview?id=")[1]
                 except IndexError:
-                    _1 = bool(any(map(str.isdigit, __)))
-                    _2 = bool("-" in __ or "_" in __)
-                    if True not in [_1 or _2]:
+                    if 'http://' not in __ or 'https://' not in __:
+                        if any(map(str.isdigit, __)):
+                            _1 = True
+                        else:
+                            _1 = False
+                        if "-" in __ or "_" in __:
+                            _2 = True
+                        else:
+                            _2 = False
+                        if True in [_1 or _2]:
+                            pass
+                        else:
+                            LOGS.info(
+                                "G_DRIVE_FOLDER_ID "
+                                "not a valid ID...")
+                            G_DRIVE_FOLDER_ID = None
+                    else:
                         LOGS.info(
                             "G_DRIVE_FOLDER_ID "
-                            "not a valid ID/URL...")
+                            "not a valid URL...")
                         G_DRIVE_FOLDER_ID = None
 # =========================================================== #
 #                           LOG                               #
@@ -714,7 +728,7 @@ async def lists(gdrive):
             )
             return
     else:
-        page_size = 50  # default page_size is 50
+        page_size = 25  # default page_size is 25
     checker = gdrive.pattern_match.group(2)
     if checker != '':
         if checker.startswith('-p'):
@@ -771,14 +785,12 @@ async def lists(gdrive):
             if files.get('mimeType') == 'application/vnd.google-apps.folder':
                 link = files.get('webViewLink')
                 message += (
-                    f"`[FOLDER]`\n"
-                    f"[{file_name}]({link})\n\n"
+                    f"📁️ • [{file_name}]({link})\n"
                 )
             else:
                 link = files.get('webContentLink')
                 message += (
-                    f"`[FILE]`\n"
-                    f"[{file_name}]({link})\n\n"
+                    f"📄️ • [{file_name}]({link})\n"
                 )
             result.append(files)
         if len(result) >= page_size:
