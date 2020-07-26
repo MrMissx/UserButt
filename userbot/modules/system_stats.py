@@ -133,11 +133,11 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """For .alive command, check if the bot is running."""
     output = ("`UserButt is running...`\n"
-              "`========================`\n"
-              f"👤 `User     :` {DEFAULTUSER}\n"
-              f"🐍 `Python   :` v{python_version()}\n"
-              f"⚙️ `Telethon :` v{version.__version__}\n"
-              "`========================`\n")
+              "`=============================`\n"
+              f"👤 `User        :` {DEFAULTUSER}\n"
+              f"🐍 `Python      :` v{python_version()}\n"
+              f"⚙️ `Telethon    :` v{version.__version__}\n"
+              "`=============================`\n")
     if ALIVE_LOGO:
         logo = ALIVE_LOGO
         await bot.send_file(alive.chat_id, logo, caption=output)
