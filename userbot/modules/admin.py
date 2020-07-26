@@ -10,14 +10,15 @@ from asyncio import sleep
 from os import remove
 
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
-                             ImageProcessFailedError, PhotoCropSizeSmallError,
-                             UserAdminInvalidError)
+                             ChatNotModifiedError, ImageProcessFailedError,
+                             PhotoCropSizeSmallError, UserAdminInvalidError)
 from telethon.errors.rpcerrorlist import (UserIdInvalidError,
                                           MessageTooLongError)
 from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
                                             EditPhotoRequest)
-from telethon.tl.functions.messages import UpdatePinnedMessageRequest
+from telethon.tl.functions.messages import (EditChatDefaultBannedRightsRequest,
+                                            UpdatePinnedMessageRequest)
 from telethon.tl.types import (ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
@@ -60,6 +61,36 @@ UNBAN_RIGHTS = ChatBannedRights(
     send_games=None,
     send_inline=None,
     embed_links=None,
+)
+
+CHATLOCK_RIGHTS = ChatBannedRights(
+    until_date=None,
+    view_messages=None,
+    send_messages=True,
+    send_media=True,
+    send_stickers=True,
+    send_gifs=True,
+    send_games=True,
+    send_inline=True,
+    send_polls=True,
+    invite_users=True,
+    change_info=True,
+    pin_messages=True
+)
+
+CHATUNLOCK_RIGHTS = ChatBannedRights(
+    until_date=None,
+    view_messages=None,
+    send_messages=None,
+    send_media=None,
+    send_stickers=None,
+    send_gifs=None,
+    send_games=None,
+    send_inline=None,
+    send_polls=None,
+    invite_users=True,
+    change_info=True,
+    pin_messages=True
 )
 
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
@@ -923,6 +954,70 @@ async def get_bots(show):
         remove("botlist.txt")
 
 
+@register(outgoing=True, groups_only=True, pattern="^.chatlock$")
+async def emergency_lock(lock):
+    """ For emergency-locking a chat """
+    # Admin or creator check
+    chat = await lock.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, return
+    if not admin and not creator:
+        await lock.edit(NO_ADMIN)
+        return
+
+    await lock.edit("`Locking...`")
+
+    try:
+        await lock.client(
+            EditChatDefaultBannedRightsRequest(
+            lock.chat_id,
+            CHATLOCK_RIGHTS
+        ))
+        await lock.edit("`Locked!`")
+    except ChatNotModifiedError:
+        await lock.edit("`Chat has already been locked!`")
+
+    if BOTLOG:
+        await lock.client.send_message(
+            BOTLOG_CHATID, "#LOCK\n"
+            f"CHAT: {lock.chat.title}(`{lock.chat_id}`)"
+        )
+
+
+@register(outgoing=True, groups_only=True, pattern="^.chatunlock$")
+async def chat_unlock(unlock):
+    """ For unlocking a chat """
+    # Admin or creator check
+    chat = await unlock.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, return
+    if not admin and not creator:
+        await unlock.edit(NO_ADMIN)
+        return
+
+    await unlock.edit("`Unlocking...`")
+
+    try:
+        await unlock.client(
+            EditChatDefaultBannedRightsRequest(
+            unlock.chat_id,
+            CHATUNLOCK_RIGHTS
+        ))
+        await unlock.edit("`Unlocked!`")
+    except ChatNotModifiedError:
+        await unlock.edit("`Chat already unlocked`")
+
+    if BOTLOG:
+        await unlock.client.send_message(
+            BOTLOG_CHATID, "#UNLOCK\n"
+            f"CHAT: {unlock.chat.title}(`{unlock.chat_id}`)"
+        )
+
+
 CMD_HELP.update({
     "admin":
     "`.promote` <username/reply> <custom rank (optional)>"
@@ -953,4 +1048,8 @@ CMD_HELP.update({
     "\nUsage: Retrieves all (or queried) users in the chat."
     "\n\n`.setgpic` <reply to image>"
     "\nUsage: Changes the group's display picture."
+    "\n\n`.chatlock`"
+    "\nUsage: Lock current chat, allowing read only for non-admins."
+    "\n\n`.chatunlock`"
+    "\nUsage: Unlock current chat, allowing read/write for non-admins."
 })
