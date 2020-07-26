@@ -437,7 +437,7 @@ async def muter(moot):
     except AttributeError:
         return
     muted = is_muted(moot.chat_id)
-    gmuted = is_gmuted(moot.sender_id)
+    is_gmuted(moot.sender_id)
     rights = ChatBannedRights(
         until_date=None,
         send_messages=True,
@@ -542,6 +542,7 @@ async def gspider(gspdr):
                 BOTLOG_CHATID, "#GMUTE\n"
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
+
 
 @register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
@@ -972,9 +973,9 @@ async def emergency_lock(lock):
     try:
         await lock.client(
             EditChatDefaultBannedRightsRequest(
-            lock.chat_id,
-            CHATLOCK_RIGHTS
-        ))
+                lock.chat_id,
+                CHATLOCK_RIGHTS
+            ))
         await lock.edit("`Locked!`")
     except ChatNotModifiedError:
         await lock.edit("`Chat has already been locked!`")
@@ -1004,9 +1005,9 @@ async def chat_unlock(unlock):
     try:
         await unlock.client(
             EditChatDefaultBannedRightsRequest(
-            unlock.chat_id,
-            CHATUNLOCK_RIGHTS
-        ))
+                unlock.chat_id,
+                CHATUNLOCK_RIGHTS
+            ))
         await unlock.edit("`Unlocked!`")
     except ChatNotModifiedError:
         await unlock.edit("`Chat already unlocked`")
