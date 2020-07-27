@@ -16,9 +16,8 @@ from userbot.events import register
 async def gethash(hash_q):
     """For .hash command, find the md5, sha1, sha256, sha512 of the string."""
     hashtxt_ = hash_q.pattern_match.group(1)
-    hashtxt = open("hashdis.txt", "w+")
-    hashtxt.write(hashtxt_)
-    hashtxt.close()
+    with open("hashdis.txt", "w+") as hashtxt:
+        hashtxt.write(hashtxt_)
     md5 = runapp(["md5sum", "hashdis.txt"], stdout=PIPE)
     md5 = md5.stdout.decode()
     sha1 = runapp(["sha1sum", "hashdis.txt"], stdout=PIPE)
@@ -31,9 +30,8 @@ async def gethash(hash_q):
     ans = ("Text: `" + hashtxt_ + "`\nMD5: `" + md5 + "`SHA1: `" + sha1 +
            "`SHA256: `" + sha256 + "`SHA512: `" + sha512[:-1] + "`")
     if len(ans) > 4096:
-        hashfile = open("hashes.txt", "w+")
-        hashfile.write(ans)
-        hashfile.close()
+        with open("hashes.txt", "w+") as hashfile:
+            hashfile.write(ans)
         await hash_q.client.send_file(
             hash_q.chat_id,
             "hashes.txt",
@@ -60,6 +58,6 @@ async def endecrypt(query):
 
 
 CMD_HELP.update({
-    "base64": "`base64 <en|de>\n\nUsage: Find the base64 encoding.\n\nen:encode ; de:decode."})
+    "base64": "`.base64` <en|de> <text>\nUsage: Find the base64 encoding.\n\nen:encode , de:decode."})
 CMD_HELP.update({
-    "hash": "Find the md5, sha1, sha256, sha512 of the string when written into a txt file."})
+    "hash": "`.hash` <text>\nFind the md5, sha1, sha256, sha512 of the string when written into a txt file."})

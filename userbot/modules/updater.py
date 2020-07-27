@@ -169,9 +169,8 @@ async def upstream(event):
         changelog_str = f'**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`'
         if len(changelog_str) > 4096:
             await event.edit("`Changelog is too big, view the file to see it.`")
-            file = open("output.txt", "w+")
-            file.write(changelog_str)
-            file.close()
+            with open("output.txt", "w+") as file:
+                file.write(changelog_str)
             await event.client.send_file(
                 event.chat_id,
                 "output.txt",

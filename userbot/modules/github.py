@@ -96,8 +96,8 @@ async def git_commit(file_name, mone):
     content_list = []
     access_token = GITHUB_ACCESS_TOKEN
     g = Github(access_token)
-    file = open(file_name, "r", encoding='utf-8')
-    commit_data = file.read()
+    with open(file_name, "r", encoding='utf-8') as file:
+        commit_data = file.read()
     repo = g.get_repo(GIT_REPO_NAME)
     print(repo.name)
     create_file = True
