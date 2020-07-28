@@ -27,6 +27,7 @@ def register(**args):
     trigger_on_fwd = args.get('trigger_on_fwd', False)
     disable_errors = args.get('disable_errors', False)
     insecure = args.get('insecure', False)
+    trigger_on_inline = args.get('trigger_on_inline', False)
 
     if pattern is not None and not pattern.startswith('(?i)'):
         args['pattern'] = '(?i)' + pattern
@@ -48,6 +49,9 @@ def register(**args):
 
     if "insecure" in args:
         del args['insecure']
+
+    if "trigger_on_inline" in args:
+        del args['trigger_on_inline']
 
     if pattern:
         if not ignore_unsafe:
@@ -72,6 +76,9 @@ def register(**args):
                 return
 
             if check.via_bot_id and not insecure and check.out:
+                return
+
+            if check.via_bot_id and not trigger_on_inline:
                 return
 
             try:

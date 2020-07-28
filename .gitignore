@@ -9,3 +9,4 @@ userbot/modules/sql_helper/__pycache__/*
 .progress
 .vscode/*
 bin/*
+TG_BOT_TOKEN.session 
