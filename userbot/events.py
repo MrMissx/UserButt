@@ -15,6 +15,7 @@ from traceback import format_exc
 from telethon import events
 
 from userbot import bot, BOTLOG_CHATID, LOGSPAMMER
+import userbot.modules.sql_helper.chat_blacklist_sql as sql
 
 
 def register(**args):
@@ -28,6 +29,7 @@ def register(**args):
     disable_errors = args.get('disable_errors', False)
     insecure = args.get('insecure', False)
     trigger_on_inline = args.get('trigger_on_inline', False)
+    blacklist_chat = args.get('blacklist_chat', True)
 
     if pattern is not None and not pattern.startswith('(?i)'):
         args['pattern'] = '(?i)' + pattern
@@ -52,6 +54,9 @@ def register(**args):
 
     if "trigger_on_inline" in args:
         del args['trigger_on_inline']
+
+    if "blacklist_chat" in args:
+        del args['blacklist_chat']
 
     if pattern:
         if not ignore_unsafe:
@@ -80,6 +85,9 @@ def register(**args):
 
             if check.via_bot_id and not trigger_on_inline:
                 return
+
+            if blacklist_chat and check.chat_id in sql.get_chatlist(chat_id):
+                sys.exit()
 
             try:
                 await func(check)
