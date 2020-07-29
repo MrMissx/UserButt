@@ -4,7 +4,7 @@ FROM mrmiss/userbutt:alpine-latest
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b sql-extended https://github.com/keselekpermen69/userbutt /root/userbot
+RUN git clone -b staging https://github.com/keselekpermen69/userbutt /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 
