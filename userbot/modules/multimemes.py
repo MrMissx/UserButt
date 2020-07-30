@@ -20,6 +20,7 @@ import requests
 import base64
 import json
 import telethon
+import time
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import (MessageMediaPhoto)
 from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, QUOTES_API_TOKEN
@@ -530,13 +531,10 @@ async def lastname(steal):
         await steal.edit("`Reply to any user message.`")
         return
     reply_message = await steal.get_reply_message()
-    if not reply_message.text:
-        await steal.edit("`reply to text message`")
-        return
-    chat = "@SangMataInfo_bot"
-    if reply_message.sender.bot:
+    if reply_message.sender.bot or reply_message.from_id is None:
         await steal.edit("`Reply to actual users message.`")
-        return
+    msg = f"/search_id {reply_message.from_id}"
+    chat = "@SangMataInfo_bot"
     await steal.edit("`Sit tight while I steal some data`")
     async with bot.conversation(chat) as conv:
         try:
@@ -544,14 +542,15 @@ async def lastname(steal):
                 events.NewMessage(
                     incoming=True,
                     from_users=461843263))
-            await bot.forward_messages(chat, reply_message)
+            await conv.send_message(msg)
+            time.sleep(2)
             response = await response
+            """Don't spam notif."""
+            await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await steal.reply("`Please unblock @sangmatainfo_bot and try again`")
             return
-        if response.text.startswith("Forward"):
-            await steal.edit("`can you kindly disable your forward privacy settings for good?`")
-        else:
+        if response.text.startswith("Name History"):
             await steal.edit(f"{response.message.message}")
 
 
