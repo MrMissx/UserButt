@@ -16,12 +16,15 @@ from shutil import which
 
 import psutil
 from telethon import __version__, version
+from git import Repo
 
 from userbot import CMD_HELP, ALIVE_NAME, ALIVE_LOGO, bot
 from userbot.events import register
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+repo = Repo()
+modules = CMD_HELP
 # ============================================
 
 
@@ -194,12 +197,15 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
 async def amireallyalive(alive):
     """For .alive command, check if the bot is running."""
-    output = ("`UserButt is running...`\n"
-              "`=============================`\n"
+    output = ("`At your services...`\n"
+              "`=================================`\n"
               f"👤 `User        :` {DEFAULTUSER}\n"
               f"🐍 `Python      :` v{python_version()}\n"
               f"⚙️ `Telethon    :` v{version.__version__}\n"
-              "`=============================`\n")
+              "`---------------------------------\n`"
+              f"🛠 `Running on  :` {repo.active_branch.name}\n"
+              f"🧩 `Loaded modules :` {len(modules)}\n"
+              "`=================================`")
     if ALIVE_LOGO:
         logo = ALIVE_LOGO
         await bot.send_file(alive.chat_id, logo, caption=output)
@@ -233,7 +239,7 @@ CMD_HELP.update({
     "sysd": "`.sysd`"
     "\nUsage: Shows system information using neofetch."
     "\n\n`.spc`"
-    "\nUsage: Show system specification.",})
+    "\nUsage: Show system specification."})
 CMD_HELP.update({
     "botver": "`.botver`"
     "\nUsage: Shows the userbot version."})
