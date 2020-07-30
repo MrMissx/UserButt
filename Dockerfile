@@ -1,5 +1,5 @@
 # using Alpine Edge
-FROM mrmiss/userbutt:alpine-latest
+FROM mrmiss/userbutt:latest
 
 #
 # Clone repo and prepare working directory
