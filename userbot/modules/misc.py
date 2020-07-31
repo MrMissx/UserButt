@@ -68,29 +68,6 @@ async def killdabot(event):
     exit()
 
 
-@register(outgoing=True, pattern="^.community$")
-async def bot_community(community):
-    """For .community command, just returns OG Paperplane"s group link."""
-    await community.edit(
-        "Join Our community : @userbotindo")
-
-
-@register(outgoing=True, pattern="^.support$")
-async def bot_support(wannahelp):
-    """For .support command, just returns the group link."""
-    await wannahelp.edit(
-        "Join the UserBot support group: @userbotindo"
-    )
-
-
-@register(outgoing=True, pattern="^.creator$")
-async def creator(e):
-    await e.edit(
-        "Created By [TeKnoways](https://t.me/Three_Cube_TeKnoways)"
-        "\nKanged and Modified by [Mr.Miss | 사나](https://t.me/KeselekPermen69)"
-    )
-
-
 @register(outgoing=True, pattern="^.readme$")
 async def reedme(e):
     await e.edit(
@@ -169,16 +146,6 @@ CMD_HELP.update({"shutdown": "`.shutdown`"
                  "hear Windows XP shutdown sound... but you don't."})
 
 CMD_HELP.update({
-    "support": "`.support`"
-    "\nUsage: If you need help, use this command."})
-
-CMD_HELP.update({
-    "community":
-    "`.community`"
-    "\nUsage: Join the awesome Paperplane userbot community !!"
-})
-
-CMD_HELP.update({
     "repo":
     "`.repo`"
     "\nUsage: If you are curious what makes the userbot work, this is what you need."
@@ -189,10 +156,6 @@ CMD_HELP.update({
     "`.readme`"
     "\nUsage: Provide links to setup the userbot and it's modules."
 })
-
-CMD_HELP.update(
-    {"creator": "`.creator`"
-     "\nUsage: Know who created this awesome userbot !!"})
 
 CMD_HELP.update({
     "repeat":
