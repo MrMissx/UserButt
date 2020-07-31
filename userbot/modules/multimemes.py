@@ -20,7 +20,6 @@ import requests
 import base64
 import json
 import telethon
-import time
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import (MessageMediaPhoto)
 from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, QUOTES_API_TOKEN
@@ -538,20 +537,16 @@ async def lastname(steal):
     await steal.edit("`Sit tight while I steal some data`")
     async with bot.conversation(chat) as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(
-                    incoming=True,
-                    from_users=461843263))
             await conv.send_message(msg)
-            time.sleep(2)
-            response = await response
+            response = await conv.get_response(timeout=2)
+            reply = response.text
             """Don't spam notif."""
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await steal.reply("`Please unblock @sangmatainfo_bot and try again`")
             return
-        if response.text.startswith("Name History"):
-            await steal.edit(f"{response.message.message}")
+        if reply.startswith("Name History"):
+            await steal.edit(f"{reply.message}")
 
 
 @register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
