@@ -21,7 +21,7 @@ from telethon.tl.functions.messages import UpdatePinnedMessageRequest
 from telethon.tl.types import (ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
-                               ChannelParticipantsBots)
+                               ChannelParticipantsBots, PeerChat)
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
@@ -894,7 +894,7 @@ async def get_bots(show):
     title = info.title if info.title else "this chat"
     mentions = f'<b>Bots in {title}:</b>\n'
     try:
-        if isinstance(message.to_id, PeerChat):
+        if isinstance(show.to_id, PeerChat):
             await show.edit("`I heard that only Supergroups can have bots.`")
             return
         else:
