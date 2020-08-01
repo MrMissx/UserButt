@@ -60,7 +60,7 @@
     },
     "GOOGLE_CHROME_BIN": {
       "description": "Google Chrome (or) Chromium binary location for selenium based modules.",
-      "value": "/usr/bin/chromium-browser",
+      "value": "/usr/bin/google-chrome",
       "required": false
     },
     "OPEN_WEATHER_MAP_APPID": {
@@ -189,7 +189,7 @@
       "required": false
     },
     "ALIVE_LOGO": {
-      "description": "Show Image/Logo in .alive message",
+      "description": "Show Image/Logo in .alive message. the value MUST A DIRECT LINK to the photo unless it'll crash!!",
       "required": false
     },
     "BOT_TOKEN": {

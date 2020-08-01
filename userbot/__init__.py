@@ -104,8 +104,9 @@ OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY") or None
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY") or None
 
 # Chrome Driver and Headless Google Chrome Binaries
-CHROME_DRIVER = os.environ.get("CHROME_DRIVER") or None
-GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN") or None
+CHROME_DRIVER = os.environ.get("CHROME_DRIVER") or "/usr/bin/chromedriver"
+GOOGLE_CHROME_BIN = os.environ.get(
+    "GOOGLE_CHROME_BIN") or "/usr/bin/google-chrome"
 
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID") or None
