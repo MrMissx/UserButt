@@ -50,3 +50,4 @@ urbandict>=0.5
 wikipedia>=1.4.0
 PyGithub
 python-dateutil
+chrome-driver
