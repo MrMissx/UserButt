@@ -41,11 +41,6 @@ AFKSTR = [
     "Life is so short, there are so many things to do...\nI'm away doing one of them..",
     "I am not here right now...\nbut if I was...\n\nwouldn't that be awesome?",
 ]
-
-global USER_AFK  # pylint:disable=E0602
-global afk_time  # pylint:disable=E0602
-global afk_start
-global afk_end
 USER_AFK = {}
 afk_time = None
 afk_start = {}
