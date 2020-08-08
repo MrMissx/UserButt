@@ -35,9 +35,14 @@ Based on RaphielGang's [Telegram-Paperplane](https://github.com/RaphielGang/Tele
 
 ## Generate String Session
 Easy way to get STRING_SESSION. 
-Run on repl.it
 
-<a href="https://userbutt.keselekpermen.repl.run" target="_blank"><img src="https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
+### Run on repl.it
+[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it)](https://userbutt.keselekpermen.repl.run)
+
+### or Run on your terminal
+```
+wget https://raw.githubusercontent.com/keselekpermen69/userbutt/sql-extended/terminal_getstring.sh && bash terminal_getstring.sh
+```
 
 ## How To Host
 Deploy to Heroku
