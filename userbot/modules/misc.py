@@ -46,21 +46,21 @@ async def sleepybot(time):
 
 
 @register(outgoing=True, pattern="^.shutdown$")
-async def killdabot(event):
+async def killbot(shut):
     """For .shutdown command, shut the bot down."""
-    await event.edit("`Goodbye *Windows XP shutdown sound*....`")
+    await shut.edit("`Goodbye *Windows XP shutdown sound*....`")
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "Bot shut down")
+        await shut.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
+                                       "Bot shut down")
     await bot.disconnect()
 
 
 @register(outgoing=True, pattern="^.restart$")
-async def killdabot(event):
-    await event.edit("`*i would be back in a moment*`")
+async def killdabot(reboot):
+    await reboot.edit("`*i would be back in a moment*`")
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
-                                        "Bot Restarted")
+        await reboot.client.send_message(BOTLOG_CHATID, "#RESTART \n"
+                                         "Bot Restarted")
     await bot.disconnect()
     # Spin a new instance of bot
     execl(sys.executable, sys.executable, *sys.argv)
@@ -69,8 +69,8 @@ async def killdabot(event):
 
 
 @register(outgoing=True, pattern="^.readme$")
-async def reedme(e):
-    await e.edit(
+async def reedme(event):
+    await event.edit(
         "Here's something for you to read:\n"
         "\n[UserButt's README.md file](https://github.com/keselekpermen69/userbutt/blob/sql-extended/README.md)"
         "\n[Setup Guide - Basic](https://telegra.ph/Host-a-Telegram-Userbot-05-07)"
@@ -106,21 +106,21 @@ async def repo_is_here(wannasee):
 
 
 @register(outgoing=True, pattern="^.raw$")
-async def raw(event):
+async def raw(rawtext):
     the_real_message = None
     reply_to_id = None
-    if event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
+    if rawtext.reply_to_msg_id:
+        previous_message = await rawtext.get_reply_message()
         the_real_message = previous_message.stringify()
-        reply_to_id = event.reply_to_msg_id
+        reply_to_id = rawtext.reply_to_msg_id
     else:
-        the_real_message = event.stringify()
-        reply_to_id = event.message.id
+        the_real_message = rawtext.stringify()
+        reply_to_id = rawtext.message.id
     with io.BytesIO(str.encode(the_real_message)) as out_file:
         out_file.name = "raw_message_data.txt"
-        await event.edit(
+        await rawtext.edit(
             "`Check the userbot log for the decoded message data !!`")
-        await event.client.send_file(
+        await rawtext.client.send_file(
             BOTLOG_CHATID,
             out_file,
             force_document=True,
@@ -130,44 +130,20 @@ async def raw(event):
 
 
 CMD_HELP.update({
-    "random":
-    "`.random` <item1> <item2> ... <itemN>"
-    "\nUsage: Get a random item from the list of items."
-})
-
-CMD_HELP.update({
-    "sleep":
-    "`.sleep` <seconds>"
-    "\nUsage: Userbots get tired too. Let yours snooze for a few seconds."
-})
-
-CMD_HELP.update({"shutdown": "`.shutdown`"
-                 "\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to"
-                 "hear Windows XP shutdown sound... but you don't."})
-
-CMD_HELP.update({
-    "repo":
-    "`.repo`"
-    "\nUsage: If you are curious what makes the userbot work, this is what you need."
-})
-
-CMD_HELP.update({
-    "readme":
-    "`.readme`"
-    "\nUsage: Provide links to setup the userbot and it's modules."
-})
-
-CMD_HELP.update({
-    "repeat":
-    "`.repeat` <no.> <text>"
-    "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho."
-})
-
-CMD_HELP.update({
-    "restart": ".restart\nUsage: Restarts the bot !!"})
-
-CMD_HELP.update({
-    "raw":
-    "`.raw`"
+    "random": "`.random` <item1> <item2> ... <itemN>"
+    "\nUsage: Get a random item from the list of items.",
+    "sleep": "`.sleep` <seconds>"
+    "\nUsage: Userbots get tired too. Let yours snooze for a few seconds.",
+    "shutdown": "`.shutdown`"
+    "\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to"
+    "hear Windows XP shutdown sound... but you don't.",
+    "repo": "`.repo`"
+    "\nUsage: If you are curious what makes the userbot work, this is what you need.",
+    "readme": "`.readme`"
+    "\nUsage: Provide links to setup the userbot and it's modules.",
+    "repeat": "`.repeat` <no.> <text>"
+    "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.",
+    "restart": ".restart\nUsage: Restarts the bot !!",
+    "raw": "`.raw`"
     "\nUsage: Get detailed JSON-like formatted data about replied message."
 })
