@@ -4,7 +4,6 @@ async_generator
 bs4
 cowpy
 cffi
-coffeehouse
 covid
 cryptg
 deezloader

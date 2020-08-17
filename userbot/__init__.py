@@ -112,9 +112,6 @@ GOOGLE_CHROME_BIN = os.environ.get(
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID") or None
 WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY") or None
 
-# Lydia API
-LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY") or None
-
 # Anti Spambot Config
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT") or "False")
 ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT") or "False")
@@ -135,10 +132,6 @@ CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME") or "True")
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX") or None
 DEFAULT_BIO = os.environ.get("DEFAULT_BIO") or None
-
-# Stickerchat Module
-QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN") or None
-
 LASTFM_API = os.environ.get("LASTFM_API") or None
 LASTFM_SECRET = os.environ.get("LASTFM_SECRET") or None
 LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME") or None

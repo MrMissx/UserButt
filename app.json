@@ -152,10 +152,6 @@
       "description": "Enter the Google Drive authentication data, as a JSON structure.",
       "required": false
     },
-    "LYDIA_API_KEY": {
-      "description": "This Module Needs CoffeeHouse API to work. so Join https://telegram.dog/IntellivoidDev and send #activateapi and follow instructions.",
-      "required": false
-    },
     "WEATHER_DEFCITY": {
       "description": "Set the default city for the userbot's weather module.",
       "required": false
@@ -171,10 +167,6 @@
     "GENIUS_API_TOKEN": {
       "description": "Get this value from https://genius.com/developers.",
       "required": false 
-    },
-    "QUOTES_API_TOKEN": {
-      "description": "enhance chat to sticker like quotly. Get this API from http://antiddos.systems.",
-      "required": false
     },
     "TERM_ALIAS": {
       "description": "set alias name for term cmd",
