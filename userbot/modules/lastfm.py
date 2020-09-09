@@ -53,7 +53,10 @@ async def last_fm(lastFM):
                          lastfm).get_now_playing().get_cover_image()
         except IndexError:
             image = None
-        tags = await gettags(isNowPlaying=True, playing=playing)
+        try:
+            tags = await gettags(isNowPlaying=True, playing=playing)
+        except WSError as err:
+            return await lastFM.edit(err)
         rectrack = parse.quote(f"{playing}")
         rectrack = sub("^", "https://open.spotify.com/search/",
                        rectrack)
