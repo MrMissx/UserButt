@@ -24,7 +24,7 @@ async def help(event):
         string = "Specify which module do you want help for !!\n**Usage:** `.help` <module name>\n\n"
         for i in sorted(CMD_HELP):
             string += "`" + str(i) + "`"
-            string += "\t\t\t||\t\t\t "
+            string += "- \n"
         msg = await event.edit(string)
     await asyncio.sleep(45)
     try:
