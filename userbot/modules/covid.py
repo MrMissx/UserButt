@@ -10,11 +10,14 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.covid (.*)")
+@register(outgoing=True, pattern=r"^\.covid(?: |$)(.*)")
 async def corona(event):
     await event.edit("`Processing...`")
-    input = event.pattern_match.group(1)
-    country = input.capitalize()
+    query = event.pattern_match.group(1)
+    if query:
+        country = query
+    else:
+        country = "world"
     covid = Covid(source="worldometers")
     try:
         country_data = covid.get_status_by_country_name(country)
