@@ -8,9 +8,7 @@
 # License: MPL and OSSRPL
 """ Userbot module which contains everything related to downloading/uploading from/to the server."""
 
-import json
 import os
-import subprocess
 import time
 import math
 
