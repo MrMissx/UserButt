@@ -16,9 +16,6 @@ from userbot.utils import progress
 
 @register(outgoing=True, pattern=r"^\.ssvideo(?: |$)(.*)")
 async def ssvideo(framecap):
-    if not framecap.reply_to_msg_id:
-        await framecap.edit("`Reply to any media..`")
-        return
     reply_message = await framecap.get_reply_message()
     if not reply_message.media:
         await framecap.edit("`reply to a video..`")
@@ -29,17 +26,12 @@ async def ssvideo(framecap):
             return await framecap.edit("`hey..dont put that much`")
     except BaseException:
         return await framecap.edit("`Please input number of frame!`")
-    if reply_message.photo:
-        return await framecap.edit("`Hey..this is an image!`")
-    if (
-        DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
-        in reply_message.media.document.attributes
-    ):
-        return await framecap.edit("`Unsupported files..`")
-    elif (
-        DocumentAttributeFilename(file_name="sticker.webp")
-        in reply_message.media.document.attributes
-    ):
+    if (reply_message.photo
+            or (DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
+                in reply_message.media.document.attributes)
+            or (DocumentAttributeFilename(file_name="sticker.webp")
+                in reply_message.media.document.attributes)
+            ):
         return await framecap.edit("`Unsupported files..`")
     c_time = time.time()
     await framecap.edit("`Downloading media..`")
@@ -70,6 +62,7 @@ async def ssvideo(framecap):
 
 CMD_HELP.update({
     "ssvideo":
-    "`.ssvideo` <frame>"
-    "\nUsage: to ss video frame per frame."
+    "`.ssvideo` <grid>"
+    "\nUsage: Capture video frames by <grid> x <grid>."
+    "\n*max grid is 10."
 })
