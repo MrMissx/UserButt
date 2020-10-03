@@ -16,10 +16,11 @@ from userbot.utils import progress
 
 @register(outgoing=True, pattern=r"^\.ssvideo(?: |$)(.*)")
 async def ssvideo(framecap):
+    if not framecap.reply_to_msg_id():
+        return await framecap.edit("`reply to video!`")
     reply_message = await framecap.get_reply_message()
     if not reply_message.media:
-        await framecap.edit("`reply to a video..`")
-        return
+        return await framecap.edit("`reply to a video!`")
     try:
         frame = int(framecap.pattern_match.group(1))
         if frame > 10:
@@ -32,9 +33,9 @@ async def ssvideo(framecap):
             or (DocumentAttributeFilename(file_name="sticker.webp")
                 in reply_message.media.document.attributes)
             ):
-        return await framecap.edit("`Unsupported files..`")
+        return await framecap.edit("`Unsupported files!`")
     c_time = time.time()
-    await framecap.edit("`Downloading media..`")
+    await framecap.edit("`Downloading media...`")
     ss = await bot.download_media(
         reply_message,
         "anu.mp4",
@@ -43,7 +44,7 @@ async def ssvideo(framecap):
         ),
     )
     try:
-        await framecap.edit("`Proccessing..`")
+        await framecap.edit("`Proccessing...`")
         command = f"vcsi -g {frame}x{frame} {ss} -o ss.png "
         os.system(command)
         await framecap.client.send_file(
@@ -52,12 +53,9 @@ async def ssvideo(framecap):
             reply_to=framecap.reply_to_msg_id,
         )
         await framecap.delete()
-        os.system("rm -rf *.png")
-        os.system("rm -rf *.mp4")
     except BaseException as e:
-        os.system("rm -rf *.png")
-        os.system("rm -rf *.mp4")
-        return await framecap.edit(f"{e}")
+        await framecap.edit(f"{e}")
+    os.system("rm -rf *.png *.mp4")
 
 
 CMD_HELP.update({
