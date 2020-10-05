@@ -16,7 +16,7 @@ from userbot.utils import progress
 
 @register(outgoing=True, pattern=r"^\.ssvideo(?: |$)(.*)")
 async def ssvideo(framecap):
-    if not framecap.reply_to_msg_id():
+    if not framecap.reply_to_msg_id:
         return await framecap.edit("`reply to video!`")
     reply_message = await framecap.get_reply_message()
     if not reply_message.media:
