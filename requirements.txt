@@ -42,7 +42,7 @@ pytz
 qrcode
 redis
 requests
-search-engine-parser
+git+https://github.com/bisoncorps/search-engine-parser.git
 speedtest-cli
 sqlalchemy
 TgCrypto
