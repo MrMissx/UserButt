@@ -135,11 +135,7 @@ async def mention_afk(mention):
     back_alivee = datetime.now()
     afk_end = back_alivee.replace(microsecond=0)
     afk_since = "a while ago"
-    if (
-        mention.message.mentioned
-        and not (await mention.get_sender()).bot
-        and ISAFK
-    ):
+    if ISAFK and mention.message.mentioned:
         now = datetime.now()
         datime_since_afk = now - afk_time  # pylint:disable=E0602
         time = float(datime_since_afk.seconds)
@@ -167,14 +163,18 @@ async def mention_afk(mention):
             afk_since = f"`{int(minutes)}m{int(seconds)}s` ago"
         else:
             afk_since = f"`{int(seconds)}s` ago"
-        if mention.sender_id not in USERS:
+
+        is_bot = False
+        if (sender := await mention.get_sender()):
+            is_bot = sender.bot
+        if not is_bot and mention.sender_id not in USERS:
             if AFKREASON:
                 await mention.reply(f"I'm AFK since {afk_since}.\
                         \nReason: `{AFKREASON}`")
             else:
                 await mention.reply(str(choice(AFKSTR)))
             USERS.update({mention.sender_id: 1})
-        else:
+        elif not is_bot and sender:
             if USERS[mention.sender_id] % randint(2, 4) == 0:
                 if AFKREASON:
                     await mention.reply(f"I'm still AFK since {afk_since}.\
