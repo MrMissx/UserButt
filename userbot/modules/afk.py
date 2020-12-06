@@ -110,13 +110,20 @@ async def type_afk_is_not_true(notafk):
                 str(len(USERS)) + " chats while you were away",
             )
             for i in USERS:
-                name = await notafk.client.get_entity(i)
-                name0 = str(name.first_name)
-                await notafk.client.send_message(
-                    BOTLOG_CHATID,
-                    "[" + name0 + "](tg://user?id=" + str(i) + ")" +
-                    " sent you " + "`" + str(USERS[i]) + " messages`",
-                )
+                if str(i).isnumeric():
+                    name = await notafk.client.get_entity(i)
+                    name0 = str(name.first_name)
+                    await notafk.client.send_message(
+                        BOTLOG_CHATID,
+                        "[" + name0 + "](tg://user?id=" + str(i) + ")" +
+                        " sent you " + "`" + str(USERS[i]) + " message(s)`",
+                    )
+                else:  # anon admin
+                    await notafk.client.send_message(
+                        BOTLOG_CHATID,
+                        "Anonymous admin in `" + i + "` sent you " + "`" +
+                        str(USERS[i]) + " message(s)`",
+                    )
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = None
@@ -167,22 +174,33 @@ async def mention_afk(mention):
         is_bot = False
         if (sender := await mention.get_sender()):
             is_bot = sender.bot
-        if not is_bot and mention.sender_id not in USERS:
+            if is_bot: return  # ignore bot
+
+        chat_obj = await mention.client.get_entity(mention.chat_id)
+        chat_title = chat_obj.title
+
+        if mention.sender_id not in USERS or chat_title not in USERS:
             if AFKREASON:
                 await mention.reply(f"I'm AFK since {afk_since}.\
                         \nReason: `{AFKREASON}`")
             else:
                 await mention.reply(str(choice(AFKSTR)))
-            USERS.update({mention.sender_id: 1})
-        elif not is_bot and sender:
+            if mention.sender_id is not None:
+                USERS.update({mention.sender_id: 1})
+            else:
+                USERS.update({chat_title: 1})
+        else:
             if USERS[mention.sender_id] % randint(2, 4) == 0:
                 if AFKREASON:
                     await mention.reply(f"I'm still AFK since {afk_since}.\
                             \nReason: `{AFKREASON}`")
                 else:
                     await mention.reply(str(choice(AFKSTR)))
-            USERS[mention.sender_id] = USERS[mention.sender_id] + 1
-        COUNT_MSG = COUNT_MSG + 1
+            if mention.sender_id is not None:
+                USERS[mention.sender_id] += 1
+            else:
+                USERS[chat_title] += 1
+        COUNT_MSG += 1
 
 
 @register(incoming=True, disable_errors=True)
