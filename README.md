@@ -2,9 +2,8 @@
 
 <p align="center">
     <a href="https://github.com/keselekpermen69/UserButt/actions?query=workflow%3AFailCheck" > <img src="https://img.shields.io/github/workflow/status/keselekpermen69/userbutt/FailCheck/sql-extended?style=for-the-badge&logo=github-actions&logoColor=white" alt="Failcheck" /></a>
-    <a href="https://github.com/keselekpermen69/UserButt/actions?query=workflow%3Apylint"> <img src="https://img.shields.io/github/workflow/status/keselekpermen69/userbutt/pylint/sql-extended?label=pylint&style=for-the-badge&logo=github-actions&logoColor=white" alt="Pylint" /></a>
-    <a href="https://www.codacy.com/manual/keselekpermen69/UserButt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=keselekpermen69/UserButt&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/c460544d68334a51b84c83ce8d3a1e98?style=for-the-badge&logo=codacy" alt="codacy badge" /></a></br>
-    <a href="https://github.com/keselekpermen69/UserButt/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/keselekpermen69/userbutt/sql-extended?style=for-the-badge&logo=github" alt="commit" /></a>
+    <a href="https://www.codacy.com/manual/keselekpermen69/UserButt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=keselekpermen69/UserButt&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/c460544d68334a51b84c83ce8d3a1e98?style=for-the-badge&logo=codacy" alt="codacy badge" /></a>
+    <a href="https://github.com/keselekpermen69/UserButt/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/keselekpermen69/userbutt/sql-extended?style=for-the-badge&logo=github" alt="commit" /></a></br>
     <a href="https://github.com/keselekpermen69/UserButt/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/keselekpermen69/userbutt?style=for-the-badge&logo=github" alt="Contributors" /></a>
     <a href="https://github.com/keselekpermen69/UserButt/network/members"><img src="https://img.shields.io/github/forks/KeselekPermen69/Userbutt?label=Fork&style=for-the-badge&logo=github" alt="fork" /></a>
     <a href="https://github.com/keselekpermen69/UserButt"><img src="https://img.shields.io/github/repo-size/keselekpermen69/userbutt?style=for-the-badge&logo=github" alt="size" /></a>
@@ -37,7 +36,7 @@ Based on RaphielGang's [Telegram-Paperplane](https://github.com/RaphielGang/Tele
 Easy way to get STRING_SESSION. 
 
 ### Run on repl.it
-[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it)](https://userbutt.keselekpermen.repl.run)
+[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it)](https://repl.it/@KeselekPermen/UserButt#main.py)
 
 ### or Run on your terminal
 ```
