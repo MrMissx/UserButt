@@ -16,7 +16,7 @@ from userbot.events import register
 GITHUB = 'https://github.com'
 
 
-@register(outgoing=True, pattern="^.magisk$")
+@register(outgoing=True, pattern=r"\.magisk$")
 async def magisk(request):
     """magisk latest releases"""
     magisk_dict = {

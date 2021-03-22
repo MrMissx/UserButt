@@ -32,7 +32,7 @@ async def on_new_message(event):
             break
 
 
-@register(outgoing=True, pattern="^.addbl(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.addbl(?: |$)(.*)")
 async def on_add_black_list(addbl):
     text = addbl.pattern_match.group(1)
     to_blacklist = list(
@@ -44,7 +44,7 @@ async def on_add_black_list(addbl):
     await addbl.edit("`Added` **{}** `to the blacklist in the current chat`".format(text))
 
 
-@register(outgoing=True, pattern="^.listbl(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.listbl(?: |$)(.*)")
 async def on_view_blacklist(listbl):
     all_blacklisted = sql.get_chat_blacklist(listbl.chat_id)
     OUT_STR = "Blacklists in the Current Chat:\n"
@@ -69,7 +69,7 @@ async def on_view_blacklist(listbl):
         await listbl.edit(OUT_STR)
 
 
-@register(outgoing=True, pattern="^.rmbl(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.rmbl(?: |$)(.*)")
 async def on_delete_blacklist(rmbl):
     text = rmbl.pattern_match.group(1)
     to_unblacklist = list(

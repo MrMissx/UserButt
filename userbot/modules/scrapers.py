@@ -31,7 +31,7 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
 from asyncio import sleep
-from userbot import (CMD_HELP, BOTLOG, BOTLOG_CHATID,
+from userbot import (CMD_HELP, BOTLOG_CHATID,
                      TEMP_DOWNLOAD_DIRECTORY)
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
@@ -42,14 +42,14 @@ TTS_LANG = "en"
 TRT_LANG = "en"
 
 
-@register(outgoing=True, pattern="^.crblang (.*)")
+@register(outgoing=True, pattern=r"\.crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
 
 
-@register(outgoing=True, pattern="^.carbon")
+@register(outgoing=True, pattern=r"\.carbon")
 async def carbon_api(e):
     """A Wrapper for carbon.now.sh"""
     await e.edit("`Processing...`")
@@ -94,7 +94,7 @@ async def carbon_api(e):
     await e.delete()  # Deleting msg
 
 
-@register(outgoing=True, pattern="^.img (.*)")
+@register(outgoing=True, pattern=r"\.img (.*)")
 async def img_sampler(event):
     """For .img command, search and return images matching the query."""
     await event.edit("`Processing...`")
@@ -125,7 +125,7 @@ async def img_sampler(event):
     await event.delete()
 
 
-@register(outgoing=True, pattern="^.currency (.*)")
+@register(outgoing=True, pattern=r"\.currency (.*)")
 async def moni(event):
     input_str = event.pattern_match.group(1)
     input_sgra = input_str.split(" ")
@@ -152,7 +152,7 @@ async def moni(event):
         return await event.edit("`Invalid syntax.`")
 
 
-@register(outgoing=True, pattern=r"^.google (.*)")
+@register(outgoing=True, pattern=r"\.google (.*)")
 async def gsearch(q_event):
     """For .google command, do a Google search."""
     match = q_event.pattern_match.group(1)
@@ -179,14 +179,14 @@ async def gsearch(q_event):
                        msg,
                        link_preview=False)
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await q_event.client.send_message(
             BOTLOG_CHATID,
             "Google Search query `" + match + "` was executed successfully",
         )
 
 
-@register(outgoing=True, pattern=r"^.wiki (.*)")
+@register(outgoing=True, pattern=r"\.wiki (.*)")
 async def wiki(wiki_q):
     """For .wiki command, fetch content from Wikipedia."""
     match = wiki_q.pattern_match.group(1)
@@ -209,12 +209,12 @@ async def wiki(wiki_q):
         if os.path.exists("output.txt"):
             return os.remove("output.txt")
     await wiki_q.edit("**Search:**\n`" + match + "`\n\n**Result:**\n" + result)
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await wiki_q.client.send_message(
             BOTLOG_CHATID, f"Wiki query `{match}` was executed successfully")
 
 
-@register(outgoing=True, pattern="^.ud (.*)")
+@register(outgoing=True, pattern=r"\.ud (.*)")
 async def urban_dict(ud_e):
     """For .ud command, fetch content from Urban Dictionary."""
     await ud_e.edit("Processing...")
@@ -249,7 +249,7 @@ async def urban_dict(ud_e):
         await ud_e.edit("Text: **" + query + "**\n\nMeaning: **" +
                         mean[0]["def"] + "**\n\n" + "Example: \n__" +
                         mean[0]["example"] + "__")
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await ud_e.client.send_message(
                 BOTLOG_CHATID,
                 "ud query `" + query + "` executed successfully.")
@@ -257,7 +257,7 @@ async def urban_dict(ud_e):
         await ud_e.edit("No result found for **" + query + "**")
 
 
-@register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"\.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
     """For .tts command, a wrapper for Google Text-to-Speech."""
     textx = await query.get_reply_message()
@@ -292,14 +292,14 @@ async def text_to_speech(query):
     with open("k.mp3", "r"):
         await query.client.send_file(query.chat_id, "k.mp3", voice_note=True)
         os.remove("k.mp3")
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await query.client.send_message(
                 BOTLOG_CHATID, "Text to Speech executed successfully !")
         await query.delete()
 
 
 # kanged from Blank-x ;---;
-@register(outgoing=True, pattern="^.imdb (.*)")
+@register(outgoing=True, pattern=r"\.imdb (.*)")
 async def imdb(e):
     try:
         movie_name = e.pattern_match.group(1)
@@ -379,7 +379,7 @@ async def imdb(e):
         await e.edit("Plox enter **Valid movie name** kthx")
 
 
-@register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"\.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
 
@@ -413,7 +413,7 @@ async def translateme(trans):
     await trans.edit(reply_text)
 
 
-@register(pattern=".lang (trt|tts) (.*)", outgoing=True)
+@register(pattern=r"\.lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
     """For .lang command, change the default langauge of userbot scrapers."""
     util = value.pattern_match.group(1).lower()
@@ -440,13 +440,13 @@ async def lang(value):
                 f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
             )
     await value.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await value.client.send_message(
             BOTLOG_CHATID,
             f"`Language for {scraper} changed to {LANG.title()}.`")
 
 
-@register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
+@register(outgoing=True, pattern=r"\.yt (\d*) *(.*)")
 async def yt_search(video_q):
     """For .yt command, do a YouTube search from Telegram."""
     if video_q.pattern_match.group(1) != "":
@@ -487,7 +487,7 @@ async def yt_search(video_q):
     await video_q.edit(output, link_preview=False)
 
 
-@register(outgoing=True, pattern=r".rip(audio|video) (.*)")
+@register(outgoing=True, pattern=r"\.rip(audio|video) (.*)")
 async def download_video(v_url):
     """For .rip command, download media from YouTube and many other sites."""
     url = v_url.pattern_match.group(2)

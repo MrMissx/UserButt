@@ -15,7 +15,7 @@ from userbot import CMD_HELP, GITHUB_ACCESS_TOKEN, GIT_REPO_NAME, bot
 GIT_TEMP_DIR = "./userbot/temp/"
 
 
-@register(outgoing=True, pattern=r".git (.*)")
+@register(outgoing=True, pattern=r"\.git (.*)")
 async def github(event):
     username = event.pattern_match.group(1)
     URL = f"https://api.github.com/users/{username}"
@@ -59,7 +59,7 @@ async def github(event):
                 await event.edit(REPLY)
 
 
-@register(outgoing=True, pattern="^.commit(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.commit(?: |$)(.*)")
 async def download(event):
     if event.fwd_from:
         return

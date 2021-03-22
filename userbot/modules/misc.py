@@ -11,12 +11,12 @@ from time import sleep
 from os import execl
 import sys
 import io
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import time_formatter
 
 
-@register(outgoing=True, pattern="^.random")
+@register(outgoing=True, pattern=r"\.random")
 async def randomise(items):
     """For .random command, get a random item from the list of items."""
     itemo = (items.text[8:]).split()
@@ -30,12 +30,12 @@ async def randomise(items):
                      itemo[index] + "`")
 
 
-@register(outgoing=True, pattern="^.sleep ([0-9]+)$")
+@register(outgoing=True, pattern=r"\.sleep ([0-9]+)$")
 async def sleepybot(time):
     """For .sleep command, let the userbot snooze for a few second."""
     counter = int(time.pattern_match.group(1))
     await time.edit("`I am sulking and snoozing...`")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         str_counter = time_formatter(counter)
         await time.client.send_message(
             BOTLOG_CHATID,
@@ -45,20 +45,20 @@ async def sleepybot(time):
     await time.edit("`OK, I'm awake now.`")
 
 
-@register(outgoing=True, pattern="^.shutdown$")
+@register(outgoing=True, pattern=r"\.shutdown$")
 async def killbot(shut):
     """For .shutdown command, shut the bot down."""
     await shut.edit("`Goodbye *Windows XP shutdown sound*....`")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await shut.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
                                        "Bot shut down")
     await bot.disconnect()
 
 
-@register(outgoing=True, pattern="^.restart$")
+@register(outgoing=True, pattern=r"\.restart$")
 async def killdabot(reboot):
     await reboot.edit("`*i would be back in a moment*`")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await reboot.client.send_message(BOTLOG_CHATID, "#RESTART \n"
                                          "Bot Restarted")
     await bot.disconnect()
@@ -68,7 +68,7 @@ async def killdabot(reboot):
     exit()
 
 
-@register(outgoing=True, pattern="^.readme$")
+@register(outgoing=True, pattern=r"\.readme$")
 async def reedme(event):
     await event.edit(
         "Here's something for you to read:\n"
@@ -83,7 +83,7 @@ async def reedme(event):
 
 
 # Copyright (c) Gegham Zakaryan | 2019
-@register(outgoing=True, pattern="^.repeat (.*)")
+@register(outgoing=True, pattern=r"\.repeat (.*)")
 async def repeat(rep):
     cnt, txt = rep.pattern_match.group(1).split(" ", 1)
     replyCount = int(cnt)
@@ -97,7 +97,7 @@ async def repeat(rep):
     await rep.edit(replyText)
 
 
-@register(outgoing=True, pattern="^.repo$")
+@register(outgoing=True, pattern=r"\.repo$")
 async def repo_is_here(wannasee):
     """For .repo command, just returns the repo URL."""
     await wannasee.edit(
@@ -105,7 +105,7 @@ async def repo_is_here(wannasee):
     )
 
 
-@register(outgoing=True, pattern="^.raw$")
+@register(outgoing=True, pattern=r"\.raw$")
 async def raw(rawtext):
     the_real_message = None
     reply_to_id = None

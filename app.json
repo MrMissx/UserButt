@@ -26,11 +26,6 @@
       "description": "Get this value by running [python3 string_session.py] in Termux or local system.",
       "required": true
     },
-    "HEROKU_MEMEZ": {
-      "description": "This should be True if the userbot is running on a Heroku Dyno.",
-      "value": "True",
-      "required": true
-    },
     "HEROKU_API_KEY": {
       "description": "Your Heroku API key, get it from 'https://dashboard.heroku.com/account'",
       "value": ""
@@ -67,12 +62,8 @@
       "description": "Get your own APPID (API key)from https://api.openweathermap.org/data/2.5/weather",
       "required": false
     },
-    "BOTLOG": {
-      "description": "Incase you want to turn off logging, put this to false",
-      "value": "False"
-    },
     "BOTLOG_CHATID": {
-      "description": "ChatID of the Log group. Create a Group > add a bot e.g. @MissRose_bot > Promote bot > type /id.",
+      "description": "ChatID of the Log group. Create a Group > add a bot e.g. @dAnjani_bot > make the group public > type /id. (*usualy starts with '-100.....')",
       "value": "0"
     },
     "CONSOLE_LOGGER_VERBOSE": {
@@ -107,10 +98,6 @@
       "description": "When a new person joins, the old welcome message is deleted.",
       "value": "True"
     },
-    "G_DRIVE_CLIENT_ID": {
-      "description": "Enter Your Client ID for Google Drive.",
-      "required": false
-    },
     "LASTFM_API": {
       "description": "API Key for Last.FM module. [Get one from - https://www.last.fm/api/account/create]",
       "required": false
@@ -140,14 +127,6 @@
       "description": "Name to show in .alive message",
       "required": false
     },
-    "G_DRIVE_CLIENT_SECRET": {
-      "description": "Enter Your Client Secret for Google Drive.",
-      "required": false
-    },
-    "G_DRIVE_AUTH_TOKEN_DATA": {
-      "description": "Enter the Google Drive authentication data, as a JSON structure.",
-      "required": false
-    },
     "G_DRIVE_DATA": {
       "description": "Enter the Google Drive authentication data, as a JSON structure.",
       "required": false
@@ -173,7 +152,7 @@
       "required": false
     },  	
     "LOGSPAMMER": {
-      "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
+      "description": "Set this to True (recomended) in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
       "value": "False"
     },
     "DEEZER_ARL_TOKEN": {

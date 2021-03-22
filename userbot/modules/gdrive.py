@@ -35,7 +35,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 
 from userbot import (
-    G_DRIVE_DATA, G_DRIVE_CLIENT_ID, G_DRIVE_CLIENT_SECRET,
+    G_DRIVE_DATA,
     G_DRIVE_FOLDER_ID, BOTLOG_CHATID, TEMP_DOWNLOAD_DIRECTORY, CMD_HELP, LOGS,
 )
 from userbot.events import register
@@ -105,7 +105,7 @@ logger.setLevel(logging.ERROR)
 # =========================================================== #
 
 
-@register(pattern="^.gdauth(?: |$)", outgoing=True)
+@register(pattern=r"\.gdauth(?: |$)", outgoing=True)
 async def generate_credentials(gdrive):
     """- Only generate once for long run -"""
     if helper.get_credentials(str(gdrive.from_id)) is not None:
@@ -125,23 +125,13 @@ async def generate_credentials(gdrive):
             )
             return False
     else:
-        """- Only for old user -"""
-        if G_DRIVE_CLIENT_ID is None and G_DRIVE_CLIENT_SECRET is None:
-            await gdrive.edit(
-                "`[AUTHENTICATE - ERROR]`\n\n"
-                "`Status` : **BAD**\n"
-                "`Reason` : please get your **G_DRIVE_DATA** "
-                "[here](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
-            )
-            return False
-        configs = {
-            "installed": {
-                "client_id": G_DRIVE_CLIENT_ID,
-                "client_secret": G_DRIVE_CLIENT_SECRET,
-                "auth_uri": GOOGLE_AUTH_URI,
-                "token_uri": GOOGLE_TOKEN_URI,
-            }
-        }
+        await gdrive.edit(
+            "`[AUTHENTICATE - ERROR]`\n\n"
+            "`Status` : **BAD**\n"
+            "`Reason` : please get your **G_DRIVE_DATA** "
+            "[here](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
+        )
+        return False
     await gdrive.edit("`Creating credentials...`")
     flow = InstalledAppFlow.from_client_config(
         configs, SCOPES, redirect_uri=REDIRECT_URI)
@@ -192,7 +182,7 @@ async def create_app(gdrive):
     return build('drive', 'v3', credentials=creds, cache_discovery=False)
 
 
-@register(pattern="^.gdreset(?: |$)", outgoing=True)
+@register(pattern=r"\.gdreset(?: |$)", outgoing=True)
 async def reset_credentials(gdrive):
     """- Reset credentials or change account -"""
     await gdrive.edit("`Resetting information...`")
@@ -820,7 +810,7 @@ async def lists(gdrive):
     return
 
 
-@register(pattern="^.gdf (mkdir|rm|chck) (.*)", outgoing=True)
+@register(pattern=r"\.gdf (mkdir|rm|chck) (.*)", outgoing=True)
 async def google_drive_managers(gdrive):
     """- Google Drive folder/file management -"""
     await gdrive.edit("`Sending information...`")
@@ -967,7 +957,7 @@ async def google_drive_managers(gdrive):
     return
 
 
-@register(pattern="^.gdabort(?: |$)", outgoing=True)
+@register(pattern=r"\.gdabort(?: |$)", outgoing=True)
 async def cancel_process(gdrive):
     """
        Abort process for download and upload
@@ -983,7 +973,7 @@ async def cancel_process(gdrive):
     await gdrive.delete()
 
 
-@register(pattern="^.gd(?: |$)(.*)", outgoing=True)
+@register(pattern=r"\.gd(?: |$)(.*)", outgoing=True)
 async def google_drive(gdrive):
     reply = ''
     """- Parsing all google drive function -"""
@@ -1156,7 +1146,7 @@ async def google_drive(gdrive):
     return
 
 
-@register(pattern="^.gdfset (put|rm)(?: |$)(.*)", outgoing=True)
+@register(pattern=r"\.gdfset (put|rm)(?: |$)(.*)", outgoing=True)
 async def set_upload_folder(gdrive):
     """- Set parents dir for upload/check/makedir/remove -"""
     await gdrive.edit("`Sending information...`")

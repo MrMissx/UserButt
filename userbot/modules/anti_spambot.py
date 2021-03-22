@@ -11,7 +11,7 @@ from requests import get
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins, Message
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, bot
+from userbot import BOTLOG_CHATID, CMD_HELP, ANTI_SPAMBOT, ANTI_SPAMBOT_SHOUT, bot
 
 
 @bot.on(ChatAction)
@@ -162,7 +162,7 @@ async def ANTI_SPAMBOTS(welcm):
                             kicked = False
                             reported = True
 
-                if BOTLOG:
+                if BOTLOG_CHATID:
                     if kicked or reported:
                         await welcm.client.send_message(
                             BOTLOG_CHATID, "#ANTI_SPAMBOT REPORT\n"

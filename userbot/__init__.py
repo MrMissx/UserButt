@@ -57,86 +57,84 @@ if CONFIG_CHECK:
     quit(1)
 
 # Telegram App KEY and HASH
-API_KEY = os.environ.get("API_KEY") or None
-API_HASH = os.environ.get("API_HASH") or None
+API_KEY = os.environ.get("API_KEY")
+API_HASH = os.environ.get("API_HASH")
 
 
 # Userbot Session String
-STRING_SESSION = os.environ.get("STRING_SESSION") or None
+STRING_SESSION = os.environ.get("STRING_SESSION", None)
 
 # Logging channel/group ID configuration.
-BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID") or 0)
+BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", 0))
 
 # Userbot logging feature switch.
-BOTLOG = sb(os.environ.get("BOTLOG") or "False")
-LOGSPAMMER = sb(os.environ.get("LOGSPAMMER") or "False") if BOTLOG else False
+LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False")) if BOTLOG_CHATID else False
 # Bleep Blop, this is a bot ;)
-PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN") or "False")
+PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
 # Heroku Credentials for updater.
-HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ") or "False")
-HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME") or None
-HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY") or None
+HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
 
 # Github Credentials for updater and Gitupload.
-GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME") or None
-GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
+GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME", None)
+GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN", None)
 
 # Genius lyrics get this value from https://genius.com/developers both has
 # same values
-GENIUS = os.environ.get("GENIUS_API_TOKEN") or None
+GENIUS = os.environ.get("GENIUS_API_TOKEN", None)
 
 # Custom (forked) repo URL for updater.
-UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
-                     or "https://github.com/KeselekPermen69/UserButt.git")
-UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "sql-extended"
+UPSTREAM_REPO_URL = os.environ.get(
+    "UPSTREAM_REPO_URL", "https://github.com/KeselekPermen69/UserButt.git")
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH", "sql-extended")
 
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
-    "CONSOLE_LOGGER_VERBOSE") or "False")
+    "CONSOLE_LOGGER_VERBOSE", "False"))
 
 # SQL Database URI
-DB_URI = os.environ.get("DATABASE_URL") or None
+DB_URI = os.environ.get("DATABASE_URL", None)
 
 # OCR API key
-OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY") or None
+OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
 
 # remove.bg API key
-REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY") or None
+REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
 
 # Chrome Driver and Headless Google Chrome Binaries
-CHROME_DRIVER = os.environ.get("CHROME_DRIVER") or "/usr/bin/chromedriver"
+CHROME_DRIVER = os.environ.get("CHROME_DRIVER", "/usr/bin/chromedriver")
 GOOGLE_CHROME_BIN = os.environ.get(
-    "GOOGLE_CHROME_BIN") or "/usr/bin/google-chrome"
+    "GOOGLE_CHROME_BIN", "/usr/bin/google-chrome")
 
 # OpenWeatherMap API Key
-OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID") or None
-WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY") or None
+OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
+WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 
 # Anti Spambot Config
-ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT") or "False")
-ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT") or "False")
+ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
+ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 
 # Default .alive name
-ALIVE_NAME = os.environ.get("ALIVE_NAME") or None
+ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
 
 # Default .alive logo
-ALIVE_LOGO = os.environ.get("ALIVE_LOGO") or None
+ALIVE_LOGO = os.environ.get("ALIVE_LOGO", None)
 
 # Time & Date - Country and Time Zone
-COUNTRY = str(os.environ.get("COUNTRY") or "")
-TZ_NUMBER = int(os.environ.get("TZ_NUMBER") or 1)
+COUNTRY = str(os.environ.get("COUNTRY", ""))
+TZ_NUMBER = int(os.environ.get("TZ_NUMBER", 1))
 
 # Clean Welcome
-CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME") or "True")
+CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME", "True"))
 
 # Last.fm Module
-BIO_PREFIX = os.environ.get("BIO_PREFIX") or None
-DEFAULT_BIO = os.environ.get("DEFAULT_BIO") or None
-LASTFM_API = os.environ.get("LASTFM_API") or None
-LASTFM_SECRET = os.environ.get("LASTFM_SECRET") or None
-LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME") or None
-LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD") or None
+BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
+DEFAULT_BIO = os.environ.get("DEFAULT_BIO", None)
+LASTFM_API = os.environ.get("LASTFM_API", None)
+LASTFM_SECRET = os.environ.get("LASTFM_SECRET", None)
+LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME", None)
+LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD", None)
 LASTFM_PASS = md5(LASTFM_PASSWORD_PLAIN)
 if LASTFM_API is not None:
     lastfm = LastFMNetwork(
@@ -149,26 +147,23 @@ else:
     lastfm = None
 
 # Google Drive Module
-G_DRIVE_DATA = os.environ.get("G_DRIVE_DATA") or None
-G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID") or None
-G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET") or None
-G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA") or None
-G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID") or None
+G_DRIVE_DATA = os.environ.get("G_DRIVE_DATA", None)
+G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID", None)
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get(
-    "TMP_DOWNLOAD_DIRECTORY") or "./downloads"
+    "TMP_DOWNLOAD_DIRECTORY", "./downloads/")
 
 # Terminal alias
-TERM_ALIAS = os.environ.get("TERM_ALIAS") or "UserButt"
+TERM_ALIAS = os.environ.get("TERM_ALIAS", "UserButt")
 
 # Zipfile module
-ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY") or "./zips"
+ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 
 # Deezloader
-DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN") or None
+DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN", None)
 
 # Inline bot helper
-BOT_TOKEN = os.environ.get("BOT_TOKEN") or None
-BOT_USERNAME = os.environ.get("BOT_USERNAME") or None
+BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
+BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
@@ -196,7 +191,7 @@ else:
 
 
 async def check_botlog_chatid():
-    if not BOTLOG:
+    if not BOTLOG_CHATID:
         return
 
     entity = await bot.get_entity(BOTLOG_CHATID)

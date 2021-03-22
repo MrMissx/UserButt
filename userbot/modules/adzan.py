@@ -7,7 +7,7 @@ from userbot.events import register
 PLACE = ''
 
 
-@register(pattern="^.adzan(?: |$)(.*)")
+@register(pattern=r"\.adzan(?: |$)(.*)")
 async def get_adzan(adzan):
     if not adzan.pattern_match.group(1):
         LOCATION = PLACE

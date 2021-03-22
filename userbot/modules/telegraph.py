@@ -17,7 +17,7 @@ r = telegraph.create_account(short_name="telegraph")
 auth_url = r["auth_url"]
 
 
-@register(outgoing=True, pattern="^.tg (m|t)$")
+@register(outgoing=True, pattern=r"\.tg (m|t)$")
 async def telegraphs(graph):
     """For .telegraph command, upload media & text to telegraph site."""
     await graph.edit("`Processing...`")

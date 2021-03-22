@@ -11,7 +11,7 @@ import sys
 import traceback
 from os import remove
 
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, TERM_ALIAS
+from userbot import CMD_HELP, TERM_ALIAS
 from userbot.events import register
 
 

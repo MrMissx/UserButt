@@ -10,7 +10,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.figlet(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.figlet(?: |$)(.*)")
 async def figlet(event):
     if event.fwd_from:
         return

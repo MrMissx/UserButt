@@ -10,7 +10,7 @@ from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 from sqlalchemy.exc import IntegrityError
 
-from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN,
+from userbot import (COUNT_PM, CMD_HELP, BOTLOG_CHATID, PM_AUTO_BAN,
                      LASTMSG, LOGS)
 
 from userbot.events import register
@@ -84,7 +84,7 @@ async def permitpm(event):
                     del COUNT_PM[event.chat_id]
                     del LASTMSG[event.chat_id]
                 except KeyError:
-                    if BOTLOG:
+                    if BOTLOG_CHATID:
                         await event.client.send_message(
                             BOTLOG_CHATID,
                             "Count PM is seemingly going retard, plis restart bot!",
@@ -95,7 +95,7 @@ async def permitpm(event):
                 await event.client(BlockRequest(event.chat_id))
                 await event.client(ReportSpamRequest(peer=event.chat_id))
 
-                if BOTLOG:
+                if BOTLOG_CHATID:
                     name = await event.client.get_entity(event.chat_id)
                     name0 = str(name.first_name)
                     await event.client.send_message(
@@ -141,7 +141,7 @@ async def auto_accept(event):
                     except IntegrityError:
                         return
 
-                if is_approved(event.chat_id) and BOTLOG:
+                if is_approved(event.chat_id) and BOTLOG_CHATID:
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#AUTO-APPROVED\n" + "User: " +
@@ -215,7 +215,7 @@ async def approvepm(apprvpm):
 
     await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `approved to PM!`")
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await apprvpm.client.send_message(
             BOTLOG_CHATID,
             "#APPROVED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
@@ -244,7 +244,7 @@ async def disapprovepm(disapprvpm):
     await disapprvpm.edit(
         f"[{name0}](tg://user?id={disapprvpm.chat_id}) `Disaproved to PM!`")
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={disapprvpm.chat_id})"
@@ -276,7 +276,7 @@ async def blockpm(block):
     except AttributeError:
         pass
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await block.client.send_message(
             BOTLOG_CHATID,
             "#BLOCKED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
@@ -293,7 +293,7 @@ async def unblockpm(unblock):
         await unblock.client(UnblockRequest(replied_user.id))
         await unblock.edit("`You have been unblocked.`")
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await unblock.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={replied_user.id})"
@@ -337,7 +337,7 @@ async def add_pmsg(cust_msg):
 
         await cust_msg.edit("`Message saved as unapproved message`")
 
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await cust_msg.client.send_message(
                 BOTLOG_CHATID,
                 f"***{status} Unapproved message :*** \n\n{msg}"

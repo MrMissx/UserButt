@@ -11,7 +11,7 @@ from userbot.events import register
 from userbot import CMD_HELP
 
 
-@register(outgoing=True, pattern="^.create (b|g|c)(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.create (b|g|c)(?: |$)(.*)")
 async def telegraphs(grop):
     """For .create command, Creating New Group & Channel"""
     if grop.text[0].isalpha() or grop.text[0] in ("/", "#", "@", "!"):

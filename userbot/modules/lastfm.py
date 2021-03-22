@@ -16,7 +16,7 @@ from telethon.tl.functions.account import UpdateProfileRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.errors.rpcerrorlist import FloodWaitError
 
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, BIO_PREFIX, lastfm, LASTFM_USERNAME, bot
+from userbot import CMD_HELP, BOTLOG_CHATID, DEFAULT_BIO, BIO_PREFIX, lastfm, LASTFM_USERNAME, bot
 from userbot.events import register
 
 # =================== CONSTANT ===================
@@ -40,7 +40,7 @@ LastLog = False
 # ================================================
 
 
-@register(outgoing=True, pattern="^.lastfm$")
+@register(outgoing=True, pattern=r"\.lastfm$")
 async def last_fm(lastFM):
     """For .lastfm command, fetch scrobble data from last.fm."""
     await lastFM.edit("Processing...")
@@ -141,7 +141,7 @@ async def get_curr_track(lfmbio):
                 else:
                     lfmbio = f"🎧: {ARTIST} - {SONG}"
                 try:
-                    if BOTLOG and LastLog:
+                    if BOTLOG_CHATID and LastLog:
                         await bot.send_message(
                             BOTLOG_CHATID,
                             f"Attempted to change bio to\n{lfmbio}")
@@ -152,7 +152,7 @@ async def get_curr_track(lfmbio):
             if playing is None and user_info.about != DEFAULT_BIO:
                 await sleep(6)
                 await bot(UpdateProfileRequest(about=DEFAULT_BIO))
-                if BOTLOG and LastLog:
+                if BOTLOG_CHATID and LastLog:
                     await bot.send_message(
                         BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}")
         except AttributeError:
@@ -160,19 +160,19 @@ async def get_curr_track(lfmbio):
                 if user_info.about != DEFAULT_BIO:
                     await sleep(6)
                     await bot(UpdateProfileRequest(about=DEFAULT_BIO))
-                    if BOTLOG and LastLog:
+                    if BOTLOG_CHATID and LastLog:
                         await bot.send_message(
                             BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}")
             except FloodWaitError as err:
-                if BOTLOG and LastLog:
+                if BOTLOG_CHATID and LastLog:
                     await bot.send_message(BOTLOG_CHATID,
                                            f"Error changing bio:\n{err}")
         except FloodWaitError as err:
-            if BOTLOG and LastLog:
+            if BOTLOG_CHATID and LastLog:
                 await bot.send_message(BOTLOG_CHATID,
                                        f"Error changing bio:\n{err}")
         except WSError as err:
-            if BOTLOG and LastLog:
+            if BOTLOG_CHATID and LastLog:
                 await bot.send_message(BOTLOG_CHATID,
                                        f"Error changing bio:\n{err}")
         await sleep(2)

@@ -7,7 +7,7 @@
 
 from asyncio import sleep
 from re import search, IGNORECASE, escape
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
 
@@ -98,7 +98,7 @@ async def remove_a_filter(r_handler):
             "`Filter`  **{}**  `was deleted successfully`.".format(filt))
 
 
-@register(outgoing=True, pattern="^.rmbotfilters (.*)")
+@register(outgoing=True, pattern=r"\.rmbotfilters (.*)")
 async def kick_marie_filter(event):
     """For .rmfilters command, allows you to kick all Marie(or her clones) filters from a chat."""
     event.text[0]
@@ -118,12 +118,12 @@ async def kick_marie_filter(event):
         await sleep(0.3)
     await event.respond(
         "```Successfully purged bots filters yaay!```\n Gimme cookies!")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await event.client.send_message(
             BOTLOG_CHATID, "I cleaned all filters at " + str(event.chat_id))
 
 
-@register(outgoing=True, pattern="^.filters$")
+@register(outgoing=True, pattern=r"\.filters$")
 async def filters_active(event):
     """For .filters command, lists all of the active filters in a chat."""
     try:

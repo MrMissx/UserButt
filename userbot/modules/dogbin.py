@@ -7,7 +7,7 @@
 
 import os
 from requests import get, post, exceptions
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 DOGBIN_URL = "https://del.dog/"
@@ -68,7 +68,7 @@ async def paste(pstl):
         reply_text = "`Failed to reach Dogbin`"
 
     await pstl.edit(reply_text)
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await pstl.client.send_message(
             BOTLOG_CHATID, "Paste query was executed successfully",
         )
@@ -120,7 +120,7 @@ async def get_dogbin_content(dog_url):
         "\n\n`Content:` " + resp.text)
 
     await dog_url.edit(reply_text)
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await dog_url.client.send_message(
             BOTLOG_CHATID, "Get dogbin content query was executed successfully",
         )

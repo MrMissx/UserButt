@@ -5,12 +5,12 @@
 #
 """Userbot module containing commands for keeping notes."""
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 from asyncio import sleep
 
 
-@register(outgoing=True, pattern="^.notes$")
+@register(outgoing=True, pattern=r"\.notes$")
 async def notes_active(svd):
     """For .notes command, list all of the notes saved in a chat."""
     try:
@@ -117,7 +117,7 @@ async def incom_note(getnt):
         pass
 
 
-@register(outgoing=True, pattern="^.rmbotnotes (.*)")
+@register(outgoing=True, pattern=r"\.rmbotnotes (.*)")
 async def kick_marie_notes(kick):
     """For .rmbotnotes command, allows you to kick all Marie(or her clones) notes from a chat."""
     bot_type = kick.pattern_match.group(1).lower()
@@ -137,7 +137,7 @@ async def kick_marie_notes(kick):
         await sleep(0.3)
     await kick.respond(
         "```Successfully purged bots notes yaay!```\n Gimme cookies!")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await kick.client.send_message(
             BOTLOG_CHATID, "I cleaned all Notes at " + str(kick.chat_id))
 

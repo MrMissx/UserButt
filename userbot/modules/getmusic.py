@@ -13,7 +13,7 @@ from userbot import bot, CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.netease(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.netease(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -44,7 +44,7 @@ async def _(event):
         await event.edit("`Error: `@WooMaiBot` is not responding!.`")
 
 
-@register(outgoing=True, pattern="^.sdd(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.sdd(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -76,7 +76,7 @@ async def _(event):
         await event.edit("`Error: `@DeezLoadBot` is not responding!.`")
 
 
-@register(outgoing=True, pattern="^.smd(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\.smd(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return

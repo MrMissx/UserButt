@@ -13,7 +13,7 @@ import sys
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY,
+from userbot import (BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY,
                      HEROKU_APP_NAME, UPSTREAM_REPO_URL, UPSTREAM_REPO_BRANCH)
 from userbot.events import register
 
@@ -83,7 +83,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
             return repo.__del__()
         await event.edit('`Successfully Updated!\n'
                          'Restarting, please wait...`')
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await event.client.send_message(BOTLOG_CHATID, "#UPDATE \n"
                                             "Your UserButt was successfully updated")
     else:
@@ -101,7 +101,7 @@ async def update(event, repo, ups_rem, ac_br):
     await update_requirements()
     await event.edit('`Successfully Updated!\n'
                      'Bot is restarting... Wait for a second!`')
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await event.client.send_message(BOTLOG_CHATID, "#UPDATE \n"
                                         "Your UserButt was successfully updated")
     # Spin a new instance of bot

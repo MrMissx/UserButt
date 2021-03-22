@@ -16,7 +16,6 @@ from userbot import (
     COUNT_MSG,
     CMD_HELP,
     ISAFK,
-    BOTLOG,
     BOTLOG_CHATID,
     USERS,
     PM_AUTO_BAN)  # pylint: disable=unused-imports
@@ -56,7 +55,7 @@ afk_start = {}
 # =================================================================
 
 
-@register(outgoing=True, pattern="^.afk(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"\.afk(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
     """For .afk command, allows you to inform people that you are afk when they message you"""
     afk_e.text
@@ -78,7 +77,7 @@ async def set_afk(afk_e):
         \nReason: `{string}`")
     else:
         await afk_e.edit("Going AFK!")
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
     ISAFK = True
     afk_time = datetime.now()  # pylint:disable=E0602
@@ -103,7 +102,7 @@ async def type_afk_is_not_true(notafk):
         msg = await notafk.respond("I'm no longer AFK.")
         time.sleep(3)
         await msg.delete()
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await notafk.client.send_message(
                 BOTLOG_CHATID,
                 "You've recieved " + str(COUNT_MSG) + " messages from " +
