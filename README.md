@@ -39,7 +39,7 @@ Easy way to get STRING_SESSION.
 
 ### Run on repl.it
 
-[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it)](https://replit.com/@KeselekPermen/UserButt?lite=1&outputonly=1)
+[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=for-the-badge&logo=repl.it)](https://replit.com/@KeselekPermen/UserButt)
 
 ### or Run on your terminal
 
