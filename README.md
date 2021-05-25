@@ -1,4 +1,4 @@
-<h1 align="center">UserButt Fallback</h1>
+<h1 align="center">Fallback</h1>
 <h3 align="center">For the sake of god please read that THIS IS A FALLBACK BRANCH NOT A MAIN BRANCH!!!!</h3>
 <h3 align="center">If you want to build your first userbot don't deploy this branch.... GO TO <a href="https://github.com/keselekpermen69/userbutt/tree/sql-extended">THIS BRANCH</a> instead!</h3>
 <h2 align="center">How To Host</h2>
