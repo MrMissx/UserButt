@@ -72,7 +72,7 @@ async def killdabot(reboot):
 async def reedme(event):
     await event.edit(
         "Here's something for you to read:\n"
-        "\n[UserButt's README.md file](https://github.com/keselekpermen69/userbutt/blob/sql-extended/README.md)"
+        "\n[UserButt's README.md file](https://github.com/mrmissx/userbutt/blob/sql-extended/README.md)"
         "\n[Setup Guide - Basic](https://telegra.ph/Host-a-Telegram-Userbot-05-07)"
         "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-Google-Drive-04-03)"
         "\n[Setup Guide - LastFM Module](https://telegra.ph/How-to-set-up-LastFM-module-for-Paperplane-userbot-11-02)"
@@ -101,7 +101,7 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """For .repo command, just returns the repo URL."""
     await wannasee.edit(
-        "[Click here](https://github.com/keselekpermen69/userbutt) to open UserButt's repo."
+        "[Click here](https://github.com/mrmissx/userbutt) to open UserButt's repo."
     )
 
 
