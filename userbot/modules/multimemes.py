@@ -273,12 +273,6 @@ def deEmojify(inputString: str) -> str:
 
 
 CMD_HELP.update({
-    "memify":
-    "`.mmf` <text_top> ; <textbottom>"
-    "\nUsage: Reply a sticker/image/gif and send with cmd."
-})
-
-CMD_HELP.update({
     "hazmat":
     "`.hz` or `.hz` [flip, x2, rotate (degree), background (number), black]"
     "\nUsage: Reply to a image / sticker to suit up!"
