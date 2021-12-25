@@ -8,9 +8,9 @@
 
 import os
 import re
-
+import requests
 from sys import version_info
-from logging import basicConfig, getLogger, INFO, DEBUG
+from logging import basicConfig, getLogger, INFO, DEBUG, error
 from distutils.util import strtobool as sb
 from math import ceil
 from platform import python_version
@@ -21,6 +21,25 @@ from dotenv import load_dotenv
 from telethon import version
 from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
+
+# For Download config.env
+CONFIG_FILE_URL = os.environ.get('CONFIG_FILE_URL', None)
+try:
+    if len(CONFIG_FILE_URL) == 0:
+        raise TypeError
+    try:
+        res = requests.get(CONFIG_FILE_URL)
+        if res.status_code == 200:
+            with open('config.env', 'wb+') as p:
+                p.write(res.content)
+                p.close()
+        else:
+            logging.error(f"Failed to load config.env {res.status_code}")
+    except Exception as a:
+        logging.error(str(a))
+except TypeError:
+    pass
+
 
 load_dotenv("config.env")
 
