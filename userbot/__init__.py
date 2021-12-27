@@ -87,7 +87,10 @@ STRING_SESSION = os.environ.get("STRING_SESSION", None)
 BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", 0))
 
 # Userbot logging feature switch.
-LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False")) if BOTLOG_CHATID else False
+LOGSPAMMER = sb(
+    os.environ.get(
+        "LOGSPAMMER",
+        "False")) if BOTLOG_CHATID else False
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
@@ -231,7 +234,6 @@ async def send_alive_status():
         )
         await bot.send_message(BOTLOG_CHATID, message)
         return True
-
 
 
 # Global Variables

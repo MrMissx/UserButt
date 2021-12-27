@@ -34,7 +34,7 @@ async def evaluate(query):
     redirected_output = sys.stdout = io.StringIO()
     redirected_error = sys.stderr = io.StringIO()
     stdout, stderr, exc = None, None, None
-    
+
     async def aexec(code, event):
         """ execute command """
         head = "async def __aexec(event):\n "
@@ -67,10 +67,10 @@ async def evaluate(query):
                 remove("output.txt")
                 return
             await query.edit("**Query: **\n`"
-                                f"{expression}"
-                                "`\n**Result: **\n`"
-                                f"{evaluation}"
-                                "`")
+                             f"{expression}"
+                             "`\n**Result: **\n`"
+                             f"{evaluation}"
+                             "`")
         else:
             await query.edit("**Query: **\n`"
                              f"{expression}"
@@ -185,7 +185,7 @@ async def terminal_runner(term):
 
 
 CMD_HELP.update({
-    "eval": 
+    "eval":
         "`.eval <cmd>`\n`.eval return 2 + 3`\n`.eval print(event)`\n"
         "`.eval await event.reply('hii..')`\n\n"
         "Usage: Evaluate Python expressions in the running script args.",

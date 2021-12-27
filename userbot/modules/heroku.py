@@ -101,7 +101,7 @@ async def variable(var):
 async def set_var(var):
     if app is None:
         return await var.edit("`[HEROKU]\nPlease setup your`  "
-                       "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**.")
+                              "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**.")
     await var.edit("`Setting information...`")
     variable = var.pattern_match.group(1)
     value = var.pattern_match.group(2)
@@ -132,7 +132,7 @@ async def dyno_usage(dyno):
     """Get your account Dyno Usage"""
     if app is None:
         return await dyno.edit("`[HEROKU]\nPlease setup your`  "
-                       "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**.")
+                               "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**.")
     await dyno.edit("`Getting Information...`")
     user_id = Heroku.account().id
     path = "/accounts/" + user_id + "/actions/get-quota"
@@ -199,7 +199,7 @@ async def dyno_usage(dyno):
 async def _(dyno):
     if app is None:
         await dyno.edit("`[HEROKU]\nPlease setup your`  "
-                       "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**.")
+                        "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**.")
     await dyno.edit("`Getting Logs....`")
     with open("logs.txt", "w") as log:
         log.write(app.get_log())
