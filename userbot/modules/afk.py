@@ -173,7 +173,8 @@ async def mention_afk(mention):
         is_bot = False
         if (sender := await mention.get_sender()):
             is_bot = sender.bot
-            if is_bot: return  # ignore bot
+            if is_bot:
+                return  # ignore bot
 
         chat_obj = await mention.client.get_entity(mention.chat_id)
         chat_title = chat_obj.title

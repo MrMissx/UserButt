@@ -47,9 +47,11 @@ wget https://raw.githubusercontent.com/mrmissx/userbutt/sql-extended/terminal_ge
 
 ## How To Host
 
-Deploy to Heroku
+Deploy to Heroku with button
 
 <p><a href="https://heroku.com/deploy?template=https://github.com/mrmissx/UserButt/tree/sql-extended"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" target="_blank" /></a></p>
+
+[Deploy to heroku with github actions](https://github.com/mrmissx/UserButt/blob/sql-extended/helper.md)
 
 For further guide you can head to [Groups and Support](https://github.com/mrmissx/UserButt#Groups-and-support) or read this [guide](https://telegra.ph/Host-a-Telegram-Userbot-05-07)
 

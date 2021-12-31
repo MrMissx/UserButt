@@ -237,11 +237,8 @@ async def get_dogbin_content(dog_url):
         )
 
 
-CMD_HELP.update({
-    "pastebin":
-    "`.paste` <text/reply>"
-    "\nUsage: Create a paste to a pastebin service flags['-d', '-n', '-h']"
-    "\n\n`.getpaste` <reply/link>"
-    "\nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)"
-    "\n\n -d -> Dogbin\n-n -> Nekobin\n-h -> Hastebin"
-})
+CMD_HELP.update({"pastebin": "`.paste` <text/reply>"
+                 "\nUsage: Create a paste to a pastebin service flags['-d', '-n', '-h']"
+                 "\n\n`.getpaste` <reply/link>"
+                 "\nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)"
+                 "\n\n -d -> Dogbin\n-n -> Nekobin\n-h -> Hastebin"})

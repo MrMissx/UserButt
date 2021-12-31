@@ -405,7 +405,7 @@ async def translateme(trans):
 
     try:
         source_lan = translator.detect(deEmojify(message))[1].title()
-    except:
+    except BaseException:
         source_lan = "(Google didn't provide this info)"
 
     reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"

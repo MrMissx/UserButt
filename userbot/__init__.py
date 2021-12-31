@@ -8,12 +8,13 @@
 
 import os
 import re
-
+import requests
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
 from math import ceil
 from platform import python_version
+
 
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
@@ -21,6 +22,27 @@ from dotenv import load_dotenv
 from telethon import version
 from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
+
+
+# For Download config.env
+CONFIG_FILE_URL = os.environ.get("CONFIG_FILE_URL", None)
+if CONFIG_FILE_URL is not None:
+    basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=INFO)
+    log = getLogger(__name__)
+    try:
+        res = requests.get(CONFIG_FILE_URL)
+        if res.status_code == 200:
+            with open("config.env", "wb") as f:
+                f.write(res.content)
+        else:
+            log.error(f"Failed to load config.env {res.status_code}")
+            quit(1)
+    except Exception as e:
+        log.error(str(e))
+        quit(1)
+
 
 load_dotenv("config.env")
 
@@ -68,7 +90,10 @@ STRING_SESSION = os.environ.get("STRING_SESSION", None)
 BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", 0))
 
 # Userbot logging feature switch.
-LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False")) if BOTLOG_CHATID else False
+LOGSPAMMER = sb(
+    os.environ.get(
+        "LOGSPAMMER",
+        "False")) if BOTLOG_CHATID else False
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
@@ -212,7 +237,6 @@ async def send_alive_status():
         )
         await bot.send_message(BOTLOG_CHATID, message)
         return True
-
 
 
 # Global Variables
