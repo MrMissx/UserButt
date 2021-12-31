@@ -43,7 +43,7 @@ if CONFIG_FILE_URL is not None:
         log.error(str(e))
         quit(1)
 
-    
+
 load_dotenv("config.env")
 
 # Bot Logs setup:
